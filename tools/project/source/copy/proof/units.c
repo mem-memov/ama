@@ -49,7 +49,7 @@ SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *map, const S
         if (removed_name(old->source->logical_path, removed, count)) { continue; }
         if (removed_name(old->source->logical_path, retired.names, retired.count)) {
             issue->unit = old; issue->path = source_path(old->source->text);
-            if (!source_copy_proof_preserved_unit(old, final->image)) { return SOURCE_COPY_PROOF_ORIGINAL; }
+            if (!source_captured_unit_preserved(old, final->image)) { return SOURCE_COPY_PROOF_ORIGINAL; }
             continue;
         }
         issue->unit = find(final->units, old->source->logical_path); issue->path = source_path(old->source->text);

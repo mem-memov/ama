@@ -47,7 +47,7 @@ SourceOperationPlanStatus source_operation_plan_removal(SourceOperationPlan *pla
             : !S_ISREG(row->metadata.st_mode) || !row->content || source_length(row->content) != source_length(old->file.content)
                 || memcmp(source_bytes(row->content), source_bytes(old->file.content), source_length(row->content)))) { return SOURCE_OPERATION_PLAN_REMOVAL; }
     }
-    plan->removal_status = source_removal_selection_review(inputs->removal, inputs->inputs, inputs->clients, &plan->removal_review);
+    plan->removal_status = source_removal_selection_review(&plan->arena, inputs->removal, inputs->inputs, inputs->clients, &plan->removal_review);
     plan->failed_path = NULL;
     return plan->removal_status == SOURCE_REMOVAL_OK ? SOURCE_OPERATION_PLAN_OK : SOURCE_OPERATION_PLAN_REMOVAL;
 }

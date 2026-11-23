@@ -41,7 +41,7 @@ SourceVersionInitializationStatus source_version_initialize(SourceArena *arena, 
         return issue->identity_status == SOURCE_IDENTITY_MEMORY ? SOURCE_VERSION_INITIALIZATION_MEMORY : SOURCE_VERSION_INITIALIZATION_PLACEMENT;
     }
     if (strcmp(placed.identity, version->identity)) { return SOURCE_VERSION_INITIALIZATION_PLACEMENT; }
-    if (!source_configuration_version_absent(&original->image, version->physical)) { return SOURCE_VERSION_INITIALIZATION_ABSENCE; }
+    if (!source_image_path_absent(&original->image, version->physical)) { return SOURCE_VERSION_INITIALIZATION_ABSENCE; }
     const char *paths[3];
     const char *suffixes[] = {"package.ini", "src", "tests"};
     for (size_t i = 0; i < 3; i++) {

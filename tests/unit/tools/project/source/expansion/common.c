@@ -52,11 +52,9 @@ static void fixtures(void) {
     file("generated/project/packages/vendor/pkg/v2.0.0/package.ini", "; empty selected version\n");
 }
 /** Freeze all compiler inputs once; real child processes read only the serialized request. */
-static void capture_fixtures(void) {
+static void capture_fixtures_roots(const ModuleRoot *roots, size_t count) {
     source_root_capture_init(&capture, sources.allocator);
-    ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
-        {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
-    assert(source_root_capture_build(&capture, roots, 2) == SOURCE_CAPTURE_OK);
+    assert(source_root_capture_build(&capture, roots, count) == SOURCE_CAPTURE_OK);
     FILE *request = fopen("generated/request.json", "wb"); assert(request);
     assert(delivery_source_snapshot_write(request, &capture.view));
     assert(fclose(request) == 0);
@@ -68,6 +66,12 @@ static void capture_fixtures(void) {
     assert(status == SOURCE_ANALYSIS_OK);
     source_expansion_init(&expansion, sources.allocator, &capture, &analysis, NULL);
     acquisition_closure_init(&closure, sources.allocator);
+}
+/** Preserve the usual project and standard boundaries for existing consumers. */
+static void capture_fixtures(void) {
+    ModuleRoot roots[] = {{"generated/project", NULL, 0, MODULE_ROOT_PROJECT},
+        {"generated/standard", NULL, 0, MODULE_ROOT_STANDARD}};
+    capture_fixtures_roots(roots, 2);
 }
 /** Prepare fixture variants before freezing their shared original domain. */
 static void prepare_profile(bool standard_dependency, bool open_main_test, bool missing_main_test) {

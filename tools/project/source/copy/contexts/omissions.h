@@ -9,10 +9,11 @@
 #include "../closure.h"
 #include "../../mapping/map.h"
 #include "../../capture/image.h"
+#include "../../observation/observation.h"
 /** A missing final provider and a changed retained parent are distinct refusals. */
 typedef enum { SOURCE_COPY_CONTEXT_OK, SOURCE_COPY_CONTEXT_INVALID,
     SOURCE_COPY_CONTEXT_MEMORY, SOURCE_COPY_CONTEXT_MISSING,
-    SOURCE_COPY_CONTEXT_CHANGED } SourceCopyContextStatus;
+    SOURCE_COPY_CONTEXT_CHANGED, SOURCE_COPY_CONTEXT_UNNECESSARY, SOURCE_COPY_CONTEXT_UNOBSERVED } SourceCopyContextStatus;
 /** One borrowed structural-only original role; arena owns the list node. */
 typedef struct SourceCopyContextOmission {
     struct SourceCopyContextOmission *next;
@@ -51,8 +52,11 @@ SourceCopyContextStatus source_copy_context_omit(SourceCopyContextOmissions *, c
 SourceCopyContextStatus source_copy_context_omissions_seal(SourceCopyContextOmissions *);
 /** Prove frozen obligations against actual common final discovery. Every requiring
  * copied main must exist at its mapped identity/path. Its actual plus ancestors
- * must either be explicitly mapped mains or unchanged retained originals with
- * identical main/dot-companion bytes and no removal entry. Ordinary containing
+ * must either be explicitly mapped mains or have unchanged originally observed
+ * physical main/dot-companion bytes and complete membership. The observer must
+ * belong to the exact original capture. A same-path originally selected provider
+ * may not be removed. A formerly ignored physical provider still needs the full
+ * outer supplier-introduction proof; this gate grants no selection authority. Ordinary containing
  * directories need no parent main. No old parent becomes a new reference target.
  *
  * No allocation/I/O/mutation; repeatable. Output issue is cleared on success.
@@ -61,5 +65,20 @@ SourceCopyContextStatus source_copy_context_omissions_seal(SourceCopyContextOmis
  * Finite role/reason/main/ancestor/file scans bound work; constant scratch.
  */
 SourceCopyContextStatus source_copy_context_omissions_check(const SourceCopyContextOmissions *,
-    const SourceImageCapture *, const char *const *removed, size_t, SourceCopyContextIssue *);
+    const SourceObservedImage *, const SourceImageCapture *, const char *const *removed, size_t, SourceCopyContextIssue *);
+/** Certify every mapped structural-only, non-explicit original parent is needed
+ * by an actual topology requester mapped below it in both final logical identity
+ * and physical plus storage. Its final main must be proven absent originally;
+ * existing destination parents are retained, never cloned solely for context.
+ * Active/promoted and explicitly selected raw units retain their normal rules.
+ * Exact original observer and genuine frozen omission/map/closure owners are
+ * mandatory. No allocation/I/O/mutation. Finite C*(R+U+T(C+F)+B*L) comparisons
+ * for C clones, R roles, U raw units, T maximum topology reasons, F final units,
+ * B original image rows and L path components; constant scratch. This proves
+ * context-copy necessity only; full material, supplier, graph and write gates
+ * remain mandatory. Typed witnesses borrow all owners through consumption.
+ */
+SourceCopyContextStatus source_copy_context_copies_check(const SourceCopyContextOmissions *,
+    const SourceObservedImage *, const SourceImageCapture *, SourceCopyContextIssue *);
+
 #endif

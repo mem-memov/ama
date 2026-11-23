@@ -38,7 +38,7 @@ static void domain_compile(SourceCompilerClient *client, const DeliverySourceSna
 }
 /** Prepare a dependency-only version and unrelated invalid bytes outside its
  * module roots. Relocation includes the empty destination in original analysis. */
-static void domain_begin(DomainFixture *fixture, unsigned mode) {
+static void domain_begin_configuration(DomainFixture *fixture, unsigned mode, const char *configuration) {
     bool relocate = mode != 0, existing = mode == 1;
     setup_test(); memset(fixture, 0, sizeof(*fixture)); source_arena_init(&fixture->arena, sources.allocator);
     const char *base = mode == 2 ? "generated/domain-new-root" : relocate ? "generated/domain-relocation" : "generated/domain-promotion"; directory(base);
@@ -50,7 +50,7 @@ static void domain_begin(DomainFixture *fixture, unsigned mode) {
         "dependencies/vendor/pkg/v1.0.0/tests/main", "dependencies/vendor/pkg/v1.0.0/tests/helper"};
     directory(fixture->project);
     for (size_t i = 1; i < sizeof(directories)/sizeof(*directories); i++) { directory(domain_path(fixture, fixture->project, directories[i])); }
-    file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/package.ini"), "");
+    file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/package.ini"), configuration);
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/src/main"), "@!\nhelper&\n./helper\n");
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/src/helper"), "@!\n# stable marker\n");
     file(domain_path(fixture, fixture->project, "dependencies/vendor/pkg/v1.0.0/tests/main/check"), "@!\n");
@@ -74,6 +74,8 @@ static void domain_begin(DomainFixture *fixture, unsigned mode) {
     source_image_capture_init(&fixture->final, sources.allocator); source_clone_map_init(&fixture->map, sources.allocator, &fixture->original);
     fixture->final_root = (ModuleRoot){relocate ? fixture->destination : fixture->project, NULL, 0, MODULE_ROOT_PROJECT};
 }
+/** Preserve the default empty configuration for existing promotion/root fixtures. */
+static void domain_begin(DomainFixture *fixture, unsigned mode) { domain_begin_configuration(fixture, mode, ""); }
 /** Teardown never owns or deletes source paths; Make owns the leaf's fixtures. */
 static void domain_end(DomainFixture *fixture) {
     source_compiler_client_destroy(&fixture->after); source_analysis_destroy(&fixture->analysis);

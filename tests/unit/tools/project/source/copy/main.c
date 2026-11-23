@@ -3,6 +3,7 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "common.c"
+#include "../write-join/common.c"
 #include "destinations.c"
 #include "physical.c"
 #include "prepared.c"
@@ -14,6 +15,9 @@
 #include "tests.c"
 #include "declared.c"
 #include "contexts.c"
+#include "context-copies.c"
+#include "context-suppliers.c"
+#include "context-unobserved.c"
 #include "environment.c"
 #include "permissions.c"
 #include "versions.c"
@@ -21,10 +25,28 @@
 #include "permission-additions/cases.c"
 #include "permission-additions/check.c"
 #include "permission-additions/initialize.c"
+#include "configuration-writes/fixture.c"
+#include "complete/retained.c"
+#include "complete/placement.c"
+#include "configuration-writes/verify.c"
+#include "configuration-writes/cases.c"
+#include "configuration-writes/failures.c"
+#include "configuration-writes/unrelated.c"
+#include "complete/common.c"
+#include "configuration-writes/carried.c"
+#include "module-writes/fixture.c"
+#include "module-writes/cases.c"
+#include "module-writes/failures.c"
+#include "module-writes/join-refusals.c"
+#include "write-join/initialization.c"
 #include "modes.c"
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
+#include "client-settings/cases.c"
+#include "root-settings/rebuild.c"
+#include "root-settings/cases.c"
+#include "root-settings/regions.c"
 #include "domains/fixture.c"
 #include "domains/projection.c"
 #include "domains/edits.c"
@@ -34,6 +56,18 @@
 #include "domains/cases.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_decides_root_region_unions_against_exhaustive_tree_sets();
+    it_joins_test_only_copies_with_required_new_version_areas();
+    it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins();
+    it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance();
+    it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions();
+    it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority();
+    it_owns_carried_package_configuration_aliases_without_importing_unselected_tables();
+    it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts();
+    it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes();
+    it_refuses_unknown_context_destinations_without_borrowing_final_image_absence();
+    it_proves_unchanged_previously_ignored_parents_as_structural_providers();
+    it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones();
     it_refuses_self_overlap_even_when_the_prepared_image_compiles();
     it_initializes_version_under_existing_or_missing_final_roots_with_one_image_projection();
     it_refuses_final_root_initializer_boundaries_and_retires_each_allocation_failure();

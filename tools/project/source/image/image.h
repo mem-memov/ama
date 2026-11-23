@@ -59,6 +59,13 @@ typedef struct { size_t entry; const char *path; } SourceImageIssue;
  * lets original observation and prepared-image admission use identical boundaries.
  */
 bool source_image_below(const char *path, const char *root);
+/** Prove a canonical absolute path absent through the closest complete observed
+ * directory ancestor. An existing key, unknown observation, regular ancestor or
+ * null/nonabsolute input refuses. Other keys must use canonical image spelling.
+ * No I/O, allocation or implicit file-to-directory
+ * repair. Finite O(path components * image rows) comparisons, constant scratch.
+ */
+bool source_image_path_absent(const SourceCatalogImage *, const char *);
 /** Return the finite physical envelope size, independently of catalog selection. */
 size_t source_image_bound_count(const SourceCatalogImage *);
 /** Borrow an exact physical boundary; index must be below bound_count. */

@@ -4,8 +4,8 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275, T282, T283, T284 and T285 below. The public operation is not
-complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
+accepted T275, T282, T283, T284, T285 and T276 below. The public operation is not
+complete. [TODO](../../TODO.md#t277) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
@@ -28,8 +28,8 @@ components or declare the unfinished parent complete.
 | Original graph/input safety and compiler analysis export | Accepted [T272](../../DONE.md#t272); use the complete original domain, not runtime reachability |
 | Project-side process/wire/input capture | Accepted [T273](../../DONE.md#t273); no compiler dispatcher is linked into the project tool |
 | Source/test/native/configuration closure | Accepted [T235](../../DONE.md#t235), plus the detailed compositions below; acquisition remains separate |
-| Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; their complete root-changing orchestration is pending |
-| [Operation image plan](../../tools/project/source/operation/plan/plan.h) | Joins dependency modes, joint removal and final proofs; T282 supplies explicit final-root assembly; T283 unifies deletion and copy material/configuration/mutation/proof gates; complete authorization remains T276. The proof derives selected-registry retirement separately from physical removal |
+| Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; T276 now joins the complete read-only root-changing certificate |
+| [Operation image plan](../../tools/project/source/operation/plan/plan.h) | Joins dependency modes, joint removal and final proofs; T282 supplies explicit final-root assembly; T283 unifies deletion and copy material/configuration/mutation/proof gates; T276 supplies the accepted complete authorization owner. The proof derives selected-registry retirement separately from physical removal |
 | [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; T275 adds separate physical boundaries, unchanged-root regression and real changed-root consumers |
 | [Image records](../../tools/project/source/transaction/document/document.h) and [private-tree ownership](../../tools/project/source/transaction/tree/tree.h) | Codec roundtrip, exact saved classes, synchronization/readback, reopen and permitted partial-cleanup transitions pass; a codec/private copy is not yet a durable transaction journal |
 | Public command and process-loss recovery | Unfinished: command dispatch still supports init, not source-operation preview/apply; real whole-operation journal/recovery must be integrated |
@@ -46,7 +46,7 @@ review checkpoint.
 ### Remaining tasks and consumers
 
 Each row is a separately accepted implementation/test/documentation task and
-commit. [TODO](../../TODO.md#t276) gives its complete scope and acceptance;
+commit. [TODO](../../TODO.md#t277) gives its complete scope and acceptance;
 review that scope against actual circumstances before starting, under the
 [task-entry rule](../development/README.md#review-the-next-task-against-the-current-state).
 Use a short entry record here for each task, then append only its actual steps
@@ -60,7 +60,7 @@ next action; keep prior facts explicitly historical.
 | [T283](../../DONE.md#t283) | T275, T282 | One shared copy/deletion image and proof owner, with migrated real consumers; T276 supplies remaining authorization |
 | [T284](../../DONE.md#t284) | T275, T282, T283 | Request/material/main-edit review and final-root initialization; actual shared image/proof consumers |
 | [T285](../../DONE.md#t285) | T275, T284 | Exact admission boundary for untouched newly selected suppliers after PKG-02 selection |
-| [T276](../../TODO.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
+| [T276](../../DONE.md#t276) | T275, T282, T283, T284, T285 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
 | [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
@@ -4962,3 +4962,429 @@ publication; full-plan preparation/sealing remains T276. Next ready task: review
 T276 against the accepted request/material/edit/selection interfaces, then complete
 its remaining configuration/root/client/rebuild and seal steps. Do not repeat the
 completed T284/T285 foundations or claim public preview/application support.
+
+## T276 resumed entry review after T285
+
+Entry baseline is `8280fb6d`; the working tree was clean after the T285 commit.
+All T276 prerequisites are accepted. Reuse their actual original/final captures,
+request/material review, exact main edit intervals, supplier J, independent final
+compiler proof and measured failure cases. They do not authorize supplemental
+writes or establish that each copied structural-only parent is necessary.
+No language change is needed or authorized.
+
+Remaining finite steps inside T276 (not separately completed tasks):
+
+| Step | Remaining deliverable | Actual acceptance boundary |
+|---|---|---|
+| I2a | Exact copied-context necessity plus complete provenance for retained parent providers | Existing/detached/new parent cases, unnecessary copied original parent, promoted active role, final supplier J, unknown observation and changed parent refusals |
+| I2b | Typed owners for each supplemental write and exact package/module alias/selector edit authority | Known prepared transformations only; unauthorized extra writes, comments/repository/literal/native changes, absent-version initialization and set-preserving selector cases |
+| I3 | Original/final root and explicit client dispositions plus owned build invalidation/report intentions | Carried/untouched root mapping, explicit new-root authority, missing client targets, safe drop/map decisions and unknown external format reporting |
+| I4 | One complete immutable operation certificate over these owners and the independent actual final compiler/site proof | Real copy/delete/move compositions, malformed compiling images, all relevant allocation/failure prefixes, strict/sanitizer/documentation checks |
+
+Current I2a finding: the existing context ledger certifies **omissions**, but a
+mapped structural-only parent can bypass necessity checks. Material reconstruction
+faithfully reproduces that supplied map, so it cannot itself prove that the parent
+should have been copied. Also, retained-provider checking currently recognizes only
+originally selected units or C; a newly selected unchanged J provider needs the
+same physical-preservation test without inventing a selected-original unit.
+Inspect the actual closure's role/reason provenance and final plus topology;
+retain existing destination parents rather than authorize an unnecessary clone.
+Current step: implement and test that source gate, then continue I2b/I3/I4.
+No task is complete and no implementation/test job is active at this checkpoint.
+
+### T276 I2a source-context results
+
+Extracted exact main/dot-companion preservation from the copy-only proof into
+`source/capture/preservation`, consumed by original preservation, J provenance
+and retained context-provider proof. Removed the superseded copy-only source.
+Moved the existing absence algorithm to `source/image/absence`, shared by new
+version initialization and required context creation; removed the old
+configuration-specific owner/name. These are narrow actual shared operations,
+not compatibility wrappers or dormant alternatives.
+
+Mapped context-only parents now require an actual original topology cause whose
+mapped final requester lies strictly below them in both logical identity and
+physical plus storage. Every such parent main must be proven absent in original
+observations. Existing parents are retained; an unrelated extra parent cannot be
+justified by final compilation. Explicit raw and active/promoted copies retain
+normal independent copying rules. Strict ancestry gives a finite acyclic demand
+relation; all joins use genuine closure/map/capture handles. The gate allocates
+nothing and cannot grant root, replacement or write authority.
+
+Omitted-context providers now compare actual final parent material against the
+exact original observer, with same-path selected removals still refusing. This
+accepts a physically unchanged J provider only when the enclosing full supplier
+and graph proof also accepts it. It does not fabricate an originally selected
+unit or allow final bytes to replace unavailable original evidence.
+
+Strict compositions passed:
+`/tmp/ama-t276-context-providers.exit = 0`,
+`/tmp/ama-t276-context-necessity.exit = 0`,
+`/tmp/ama-t276-context-supplier-corrected.exit = 0`, and final expanded
+`/tmp/ama-t276-context-boundaries.exit = 0`.
+The final run includes independently compiling required/existing/detached
+parent images, explicit original-parent selection, a formerly ignored real
+supplier, and complete versus genuinely incomplete original observers. A complete
+final image cannot repair missing original context-destination absence facts.
+
+The first supplier fixture incorrectly expected exclusions on the local version
+to select its external copy. PKG-02 selects the complete local version before
+module exclusions, so the common catalog correctly hid the proposed child.
+Diagnostic `/tmp/ama-t276-context-supplier-diagnostic.exit = 2` confirmed a missing
+selected requester, not changed parent bytes. The corrected fixture supplies both
+roots in the original analysis and separately supplies the final root selection.
+It certifies source/provenance facts only; root-setting/request authorization
+remains I3. Shared fixture setup now accepts explicit root arrays without changing
+its original project-plus-standard default. No requirement changed.
+
+Current continuation: I2a strict checks are collected; T276 is unfinished. No
+implementation job is active at this point. Next implement I2b typed supplemental
+write/configuration ownership, then I3/I4. Final full-task sanitizers, independent
+tool build, shared-fixture regressions, per-file coverage and Doxygen remain open;
+no completed-task commit is justified yet.
+
+### T276 I2b typed configuration producers
+
+Current strategy is a closed producer/join contract, not trusting arbitrary
+successfully applied text edits as configuration-write authority. Typed package
+writers borrow the exact copy/C/P/original observer and genuine original/preview
+scope owners. Existing destinations preserve old alias/repository bytes and use
+only shared selector preservation/explicit additions. A carried table requires
+its actual raw selected configuration and byte-equal P placement; every supplied
+version pair must itself have such actual whole-configuration placement. A new
+version uses its actual typed empty initializer plus genuine empty preview scope;
+no original package scope or repository/alias table is fabricated.
+
+Reuse the existing configuration permission/re-expression algorithms. Carried
+owned aliases are rooted to their original normalized bindings by the existing
+explicit rooted-source-use strategy. Main operand preparation remains separate.
+Writers own applied text, exact expected root sets and failed prefixes; repeated
+preparation cannot erase a valid result. These producers will be consumed by the
+one complete write join below, not a second command-specific planner.
+
+Typed module writers require an actual C row, an active original exported
+identity and its registered present INI companion at the shared unit-member
+mapped path with exact P bytes. Resolve the actual original package/local scopes,
+then use the existing alias writer to retain keys/comments and normalized original
+bindings. Standard modules borrow no foreign package table. Draft companions stay
+opaque; they cannot be parsed or edited by the module-INI producer.
+
+Observed receipts (strict C11/POSIX with -Wall/-Wextra/-Werror/-pedantic):
+
+- `/tmp/ama-t276-preservation-removal-regression.exit = 0`: real deletion and
+  supplier-J regression after shared preservation/context extraction.
+- `/tmp/ama-t276-config-write-build.exit = 0`: independent initial configuration
+  producer tool build; later module/join inputs still need their final build.
+- `/tmp/ama-t276-config-write-recipes.exit = 0`: existing/initialized recipes,
+  exact concrete expected permission bytes, actual independent final compilation,
+  uncovered-mode refusal, unrelated/unowned categories and all measured allocations.
+- `/tmp/ama-t276-config-carried-corrected.exit = 0`: actual carried raw tables and
+  version endpoints, rooted alias/comment preservation, wrong endpoint categories,
+  every measured allocation, shared final image and independent compiler/site proof.
+  The first compile attempt incorrectly linked a mutable prepared-text next field
+  to a const list; the test now owns copied list nodes without casting/mutating
+  frozen inputs (`/tmp/ama-t276-config-carried.exit = 2`).
+- `/tmp/ama-t276-module-write-recipes-corrected.exit = 0`: ordinary/standard local
+  aliases at copied namespaces, exact expected bytes, independent final compiler
+  and complete source proof, all measured parser/normalizer/edit/result failures,
+  foreign C row, missing P companion/package scope, missing INI and draft refusal.
+  Initial standalone source compilation exposed a missing explicit map-type header;
+  corrected before tests (`/tmp/ama-t276-module-write-recipes.exit = 2`).
+
+All recorded sessions are collected. Current step: implement the closed typed
+write join that constructs removals, initialization rows and regular configuration
+changes and merges only verified module/package/main preparations. Reject extra
+untyped writes; then complete I3 root/client/rebuild intentions and I4 sealing.
+T276 remains unfinished; no final sanitizer/documentation or full-operation/public
+command claim is made. The per-file registry records the current real consumers;
+final whole-task acceptance remains pending. No test/build job is active here.
+
+### T276 I2b closed write-join results
+
+Added `source/operation/writes/join`: one bounded owned list of typed prepared
+main/module/carried-configuration text plus index-aligned supplemental changes
+and exact typed owners. It accepts no untyped extra change array. Actual D
+removals come from the shared material helper. Initialization must belong to
+this original observer, decode through its declared final roots, be wholly
+absent originally, supply exactly required package.ini/src/tests rows and have
+actual P material in that destination version. A valid unrelated initializer
+therefore grants no source-operation write permission.
+
+Existing package updates require observed original bytes/metadata and the exact
+typed recipe output. Byte-identical existing configurations cause no rewrite.
+Initialized config recipes replace only their registered initializer's empty
+config row. Carried/module INI recipes remain P preparations. Main preparation
+rows must target actual C mains; an applied companion edit cannot enter through
+that route. Duplicate output/initializer ownership, cycles, impossible counts and
+wrong categories refuse. Output nodes borrow immutable producer edits/results;
+all links and metadata arrays belong to the join. Shared exact symbolic identity
+allocation prevents accidental aliases between independent new rows.
+
+Bounds/invariant: with R D members, I initializers, G package writers, M module
+writers and T supplied main preparations, there are at most R+3I+G extra rows and
+T+M+G prepared rows. No stage expands those input sets. Every admitted output key
+has one explicit recognized owner. Pairwise key scans and shared placement/class
+algorithms are finite; checked array sizes reject representation overflow before
+iteration. Each allocation failure leaves an owned invalid prefix, without
+modifying successful borrowed writers or maps. This is a closed write-set proof,
+not yet root/client authorization, full material/safety or publication acceptance.
+
+Strict actual receipts:
+
+- `/tmp/ama-t276-write-join-build.exit = 0`: independent initial joined-tool build.
+- `/tmp/ama-t276-write-join-copy.exit = 0`: closed package/module writer lists,
+  real ordinary/standard copied companions and initialized/existing versions,
+  independent final compilation and complete source proof; all measured joins.
+- `/tmp/ama-t276-write-join-removal.exit = 0`: real shared deletion plan now
+  consumes the same closed D changes and typed owners, including all measured
+  image/preparation/proof failure prefixes and original safety checks.
+- `/tmp/ama-t276-write-join-scope.exit = 0`: an independently compiling image
+  also passes the earlier complete source proof, yet its unrelated empty version
+  initialization is rejected because no P material requires it.
+- `/tmp/ama-t276-write-join-refusals.exit = 0`: applied INI via main route, cyclic
+  preparation, duplicate typed writers and unrepresentable counts refuse; actual
+  move/replacement cuts and carried configurations use the same join.
+- `/tmp/ama-t276-write-join-areas.exit = 0` and final expanded
+  `/tmp/ama-t276-write-join-boundaries.exit = 0`: test-only copies create the
+  needed empty src area, without inventing tests-of-tests; missing/duplicate
+  initialization and unregistered/duplicate config owners refuse.
+
+All listed sessions completed and were collected. No implementation job is
+active at this checkpoint. I2b source/configuration producers and closed joining
+have strict composition evidence. Next I3: certify original configured versus
+augmented analysis roots, explicit final root/client settings and owned rebuild
+intentions; then I4 one complete immutable certificate and final acceptance.
+T276 remains unfinished. Its final sanitizers, shared-fixture checks, tool build,
+coverage and Doxygen have not yet been claimed or archived. No spec file changed.
+
+### T276 I3 explicit settings: first accepted component checks
+
+The configured original snapshot **O**, the single augmented original catalog
+**U**, and the projected final roots **F** are now separate borrowed inputs to
+`source/operation/roots`. Client rows explicitly account for each O setting and
+every F setting. A carry needs the actual directory row in P and retains root
+kind; keeping a root retains its physical location. An explicit destination
+setting is represented separately. Dropping a setting authorizes no physical
+removal. Reports retain actual immutable root/exclusion descriptors and introduce
+no root fields in package.ini or invented writable external configuration.
+
+Coverage is symbolic inclusion of unions of physical subtrees minus exact
+exclusions. The predicate checks root and exclusion endpoints: inclusion can
+change only at these finite prefixes, so an uncovered component has an uncovered
+boundary endpoint. Nested providers can fill exclusions. Coverage checks use the
+same namespace family and no discovered-file sample, depth cap or guessed path.
+Existing F regions require U coverage; proven absent F regions do not require a
+fictitious original capture. When O and U differ, old complete units and version
+configuration bytes must match original observations and shared structural
+identity decoding must preserve old names. Whole-version selection still occurs
+in the one common U catalog; the check does not merge independent graphs or
+require that an earlier physical supplier remain selected.
+
+`source/operation/clients` retains each explicit entry/export choice separately,
+including repeated selections. It reuses original D-root safety, requires an
+independent final compiler response matching this exact prepared capture, and
+checks KEEP/MAP destinations in its actual final registry. Explicit DROP records
+no destination. Missing destinations refuse despite successful compilation.
+These are name/disposition checks, not executable specialization or ABI proofs;
+unknown external client configuration remains unmodified.
+
+Strict `make -j2 -C tests/unit/tools/project/source/copy` with
+`-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+-D_POSIX_C_SOURCE=200809L` passed in `/tmp/ama-t276-clients.log`,
+`/tmp/ama-t276-root-settings.log` and `/tmp/ama-t276-root-regions.log`
+(all matching `.exit` receipts are zero). Actual copy/move promotion and
+existing/absent root-relocation plans now exercise explicit root settings,
+independently captured O subsets, explicit additions/removals, client KEEP,
+DROP/MAP, missing final targets, malformed accounting and every measured owner
+allocation failure. Root-region tests compare all **46,656** combinations of 36
+scopes/two providers against an independent heap-indexed ternary-tree bitset
+model; all model boundaries end at depth two and the third level represents
+continuation regions. Missing providers, wrong families, nested/sibling
+exclusions and allocation-prefix teardown are checked. No compiler/capture
+validity flags are fabricated.
+
+Continuation: these I3 components have strict checks only; no final T276
+sanitizer/documentation acceptance or complete-operation certificate is claimed.
+No jobs remain active. Finish source-coverage boundary compositions and owned
+rebuild/report intentions, then I4 common complete owner/final sealing. T276
+remains unfinished and uncommitted. No spec files were changed.
+
+### T276 I3 rebuild intentions and I4 complete-owner join
+
+`source/operation/rebuild` owns report rows for every O/U/F root descriptor and
+retains their phase/exclusions explicitly. The initial exact policy invalidates
+all reusable build contexts using these supplied domains, rather than guessing
+an incomplete importer closure or generated filenames. Generated C, source maps,
+native prefixes, caches and test outputs must be revalidated/regenerated through
+normal producers after successful publication. This is a finite conservative
+superset with an explicit domain, not a claim of minimal invalidation or an
+executed effect. Outside importers, opaque embedded paths and unknown external
+client configuration remain explicit unmodified/report-only boundaries. Its
+strict copy/move composition, wrong-plan refusal and all measured report
+allocations passed in `/tmp/ama-t276-settings-rebuild.log` (`.exit` zero).
+
+`source/operation/complete` now owns the typed write join, original package
+environment, shared plan/material/settings/client/rebuild children and every
+scope authority. Construction has one projection. The shared fact-level image
+plan exposes private project/finish phases: project builds the actual final
+capture/environment without setting `prepared`; finish checks expectations and
+mutation trees. Existing public fact-level build composes these same phases.
+The complete owner derives expectations between them, instead of constructing
+another image or fabricating an original scope. All carried package.ini files
+and active copied module INI files need actual typed recipes. Unchanged original
+scopes derive finite preserved sets through the shared selector-image operation;
+required untouched empty initialization grants only an empty baseline. Unchanged
+previously ignored supplier scopes retain actual bytes and remain pending the
+mandatory complete supplier proof. Caller-invented expected sets are not inputs.
+
+The complete owner becomes `prepared` only after write/configuration, original
+cut, exact request/material and explicit root gates. A separate single-use seal
+requires an independently successful compiler reply for the exact final capture,
+then all shared main/unit/context/supplier/occurrence laws, explicit final client
+availability and owned rebuild intentions. Only `sealed` is the complete
+immutable handoff. Neither state is live freshness, publication or recovery.
+The remaining T277+ tasks must consume this owner rather than construct a second
+command-specific planner.
+
+Removal review scratch now belongs to an explicit caller arena and borrows a
+const genuine removal selection. All real consumers migrated; no compatibility
+wrapper or const-discarding cast remains. Independent failed complete plans no
+longer append diagnostic allocations into borrowed original cut owners.
+
+Initial strict complete copy/move/promotion/root-relocation preparation/sealing,
+repeat refusal, missing root/configuration authority, wrong final reply, missing
+client target and all measured prepare/seal allocations passed in
+`/tmp/ama-t276-complete-copy.log`. Strict genuine deletion and previously ignored
+supplier reselection (including explicit original client DROP) plus all measured
+prepare/seal failure prefixes passed in `/tmp/ama-t276-complete-delete.log`.
+Both corresponding `.exit` receipts are zero.
+
+The expanded root-preserving composition then found a useful earlier fixture
+limit: permission-only tests arbitrarily renamed an additional dependency
+`other` to `helper`. Such a C relation can test permissions and compile, but it
+violates TOOL-02's complete-operation suffix placement. The complete owner
+correctly refused at MATERIAL/LOGICAL. The failed assertions/diagnosis are retained
+in `/tmp/ama-t276-complete-retained.log` and
+`/tmp/ama-t276-retained-diagnosis.log` (nonzero). The fixture is corrected to retain
+`other` and its associated test suffix; production placement rules were not
+weakened. The corrected expanded strict run is
+`/tmp/ama-t276-retained-corrected.log`; collect its actual `.exit`/session before
+claiming success. An earlier incremental tool build overlapped changing complete
+inputs and is not final build acceptance; rerun on frozen maintained inputs.
+
+Continuation checkpoint: active T276 I4. Complete construction/sealing exists and
+has initial real copy/delete/move and supplier checks, but final acceptance is
+pending. Finish expanded retained-root/initialization/module-INI compositions,
+source-coverage refusal compositions and any resulting fixes, then run strict
+parent/shared consumers, sanitizer leaves, independent tool build, per-file
+coverage and Doxygen on final inputs. Keep T276 unfinished until these pass;
+no task completion/commit or public preview/publication support is claimed yet.
+
+### T276 final acceptance entry
+
+Expanded retained-root cases passed after the fixture correction:
+`/tmp/ama-t276-retained-corrected.exit=0`. The complete owner now also covers
+existing and initialized permission writers, active ordinary/standard module-INI
+recipes, and empty-baseline test-only version initialization. Every measured
+initialized prepare allocation is injected. Missing required module-INI authority
+refuses despite an independently compiled final image. Genuine inconsistent O
+captures (main bytes and package configuration independently) are rejected
+against U observations after host fixtures are restored; the gate performs no
+recapture or host I/O. These boundary cases passed in
+`/tmp/ama-t276-complete-boundaries.exit=0`.
+
+The former arbitrary additional rename is retained as an intentional negative
+composition: its actual final compiler and source/site proof succeed, while the
+complete operation refuses MATERIAL/LOGICAL. The first negative harness
+incorrectly required the source-unit witness rather than allowing its associated
+test to be the first offending role; the required refusal already occurred. The
+nonzero `/tmp/ama-t276-complete-wrong-placement.log` records that test assertion.
+The witness check now verifies the exact corresponding expected name for either
+actual offending source/test role, without imposing unspecified discovery order.
+Collect `/tmp/ama-t276-placement-corrected.exit` before final acceptance.
+
+Common original-client checking also refuses cyclic client lists before any plan
+traversal. This is shared by the cut and final client stages rather than separate
+cycle implementations. Root reports distinguish explicit ADD from a CARRY with
+actual directory provenance. Scope authority records call their reference a
+baseline, distinguishing an original preserved scope from a first selected
+unchanged supplier scope.
+
+Next: freeze code, collect the corrected copy leaf, then run strict affected source
+parent, sanitized copy/removal leaves, independent ama-project build and official
+per-file/Doxygen gates. Archive/commit T276 only after those results are collected.
+No source-operation publication or CLI preview support is claimed at this stage.
+
+Active final-entry jobs (same frozen code): strict source parent session **40651**
+`/tmp/ama-t276-final-parent.log`; independent tool build session **6650**
+`/tmp/ama-t276-final-build.log`; official coverage session **15378**
+`/tmp/ama-t276-final-coverage.log`. Each command writes a sibling `.exit` receipt.
+Collect actual results; do not launch either source leaf while its parent runs.
+The corrected placement leaf was collected successfully (`.exit=0`). Sanitizers
+and generated Doxygen acceptance remain to be run after these gates.
+
+Final tool build collected successfully (`/tmp/ama-t276-final-build.exit=0`).
+The first official coverage run refused missing standalone-header commands for
+new I3/I4 headers; no compilation/semantic claim was accepted from that failed
+run. The registry now explicitly includes the standard independent C11 header
+command for every new header. Corrected coverage session **58867** writes
+`/tmp/ama-t276-final-coverage-corrected.log` and its `.exit` receipt. Strict parent
+session **40651** continues on unchanged code. Final generated-document checks
+will run after registry/test acceptance; these metadata corrections do not require
+restarting independent source behavior tests.
+
+Strict complete affected source parent collected successfully:
+`/tmp/ama-t276-final-parent.exit=0`. The recursive command was
+`make -j2 -C tests/unit/tools/project/source` with
+`C_COMPILER_FLAGS='-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+-D_POSIX_C_SOURCE=200809L'`; no child was run concurrently with that parent.
+Sanitized disjoint copy/removal leaves now use the same flags plus
+`-fsanitize=address,undefined -fno-omit-frame-pointer -fno-pie -no-pie`, with
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`. Logs are
+`/tmp/ama-t276-final-sanitizer-copy.log` and
+`/tmp/ama-t276-final-sanitizer-removal.log`, each with an `.exit` receipt.
+LeakSanitizer remains unavailable in this sandbox as previously documented;
+ASan/UBSan and explicit fail-at-every-allocation live-owner accounting are
+separate claims. Collect both actual results before acceptance.
+
+Collected final behavior/coverage results: both
+`/tmp/ama-t276-final-sanitizer-copy.exit` and
+`/tmp/ama-t276-final-sanitizer-removal.exit` are zero; no sanitizer job remains
+active. Corrected official `make docs-check` collected successfully in
+`/tmp/ama-t276-final-coverage-corrected.log`: **3998 ready inputs, zero explicit
+debts**. Independent header and actual named-C-case interface checks are included.
+Code remains unchanged from the strict source-parent and sanitizer input set.
+Next run the supported Doxygen generator/HTML validation on these maintained
+inputs, then archive the accepted task and regenerate final Markdown fingerprints.
+
+The first Doxygen generation refused one missing interface purpose comment:
+`source_operation_writes_modules` shared a preceding comment with the separate
+configuration function, so its own declaration/definition had no extracted
+purpose. `/tmp/ama-t276-final-doxygen.exit=1` records the refusal. The module join
+now has its own contract explaining exact copy/C/P ownership, actual companion
+mapping, duplicate checks, borrowing and failed-prefix behavior. This is a comment-
+only header correction: interface/code behavior and all prior behavioral results
+are unchanged. Recheck that header independently and regenerate the complete
+Doxygen reference; no hand-written reference replacement is introduced.
+
+
+### T276 accepted complete read-only operation certificate
+
+All T276 acceptance is collected. Corrected Doxygen generation completed with
+`/tmp/ama-t276-final-doxygen-corrected.exit=0`: Doxygen 1.11.0,
+**3128 maintained file pages, 11843 documented interfaces, 495 canonical
+destinations and 9711 total pages**, using markdown-it-py 3.0.0 and Python 3.14.4.
+The comment-only header correction also compiled independently under the standard
+strict standalone C11 command. Strict full affected source-parent, both sanitized
+leaves, independent tool build and official coverage results are recorded above;
+all final successful receipts are zero. No test/build job remains active.
+
+The full T276 record is archived in [DONE](../../DONE.md#t276). The finite current
+handoff is the complete `prepared`/`sealed` owner, not public preview/application
+support or live freshness. T277 is next: review its request/observation/preparation
+consumers against this actual interface before wiring public previews. T278–T281
+retain durable publication/recovery and metadata application. No spec files were
+changed. Regenerate Doxygen once more after this archival Markdown change so the
+reference fingerprints describe the committed inputs; this does not require a
+repeat of unchanged behavioral or header checks.

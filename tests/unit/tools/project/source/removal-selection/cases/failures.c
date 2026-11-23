@@ -36,7 +36,7 @@ static void it_retires_all_material_and_review_allocation_failures(void) {
         SourceClientRootBlocker blocker = {0};
         SourceRemovalReview sentinel = {.clients = &blocker}, review = sentinel;
         failure_at = allocation_count + index;
-        assert(source_removal_selection_review(&removal, NULL, &root, &review) == SOURCE_REMOVAL_OUT_OF_MEMORY);
+        assert(source_removal_selection_review(&removal.arena, &removal, NULL, &root, &review) == SOURCE_REMOVAL_OUT_OF_MEMORY);
         assert(review.clients == sentinel.clients && review.consumers == sentinel.consumers);
         failure_at = 0; end_removal(MATERIAL_TESTS);
     }

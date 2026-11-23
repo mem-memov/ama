@@ -13,6 +13,7 @@ typedef struct {
     SourceCloneMap mains;
     SourceFileMap files;
     SourcePackageEnvironment expected;
+    SourceOperationWrites writes;
     SourceOperationPlan plan;
 } RemovalPlanFixture;
 /** Prepare actual read-only facts without invoking a removal-specific planner.
@@ -25,12 +26,16 @@ static bool removal_plan_fixture_build(RemovalPlanFixture *fixture, SourceRemova
     source_file_map_init(&fixture->files, sources.allocator);
     source_package_environment_init(&fixture->expected, sources.allocator);
     source_operation_plan_init(&fixture->plan, sources.allocator);
+    source_operation_writes_init(&fixture->writes, sources.allocator);
     if (source_clone_map_seal(&fixture->mains) != SOURCE_CLONE_OK
         || source_file_map_seal(&fixture->files) != SOURCE_FILE_MAP_OK) { return false; }
     SourceRemovalMaterial material;
     if (source_removal_material_prepare(&fixture->arena, selected, &material) != SOURCE_REMOVAL_MATERIAL_OK) { return false; }
     if (source_observed_image_build(&fixture->observed, &capture, (SourceImageBounds){0},
         material.requests, material.count) != SOURCE_OBSERVATION_OK) { return false; }
+    SourceOperationWritesInputs writes = {.observed = &fixture->observed, .mains = &fixture->mains,
+        .files = &fixture->files, .removal = selected};
+    if (source_operation_writes_build(&fixture->writes, &writes) != SOURCE_OPERATION_WRITES_OK) { return false; }
     if (source_package_environment_build(&fixture->expected, &capture.catalog) != SOURCE_ENVIRONMENT_OK) { return false; }
     size_t count = 0;
     for (const SourcePackageScope *scope = fixture->expected.first; scope; scope = scope->next) { count++; }
@@ -44,7 +49,7 @@ static bool removal_plan_fixture_build(RemovalPlanFixture *fixture, SourceRemova
     SourceOperationPlanInputs inputs = {.original = &analysis,
         .final_roots = capture.roots, .final_root_count = capture.root_count,
         .observed = &fixture->observed, .mains = &fixture->mains, .files = &fixture->files,
-        .changes = material.changes, .change_count = material.count, .removal = selected,
+        .changes = fixture->writes.changes, .change_count = fixture->writes.count, .removal = selected,
         .configurations = expectations, .configuration_count = count};
     return source_operation_plan_build(&fixture->plan, &inputs) == SOURCE_OPERATION_PLAN_OK;
 }
@@ -52,6 +57,7 @@ static bool removal_plan_fixture_build(RemovalPlanFixture *fixture, SourceRemova
 static void removal_plan_fixture_destroy(RemovalPlanFixture *fixture) {
     source_operation_plan_destroy(&fixture->plan);
     source_package_environment_destroy(&fixture->expected);
+    source_operation_writes_destroy(&fixture->writes);
     source_file_map_destroy(&fixture->files); source_clone_map_destroy(&fixture->mains);
     source_observed_image_destroy(&fixture->observed); source_arena_destroy(&fixture->arena);
 }

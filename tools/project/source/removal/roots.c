@@ -15,9 +15,19 @@ static bool valid(const DeliverySourceDefinition *definitions, const SourceClien
     if (root->action != SOURCE_CLIENT_MAP) { return root->destination == NULL; }
     return root->destination && module_path_canonical((const unsigned char *)root->destination, strlen(root->destination));
 }
+/** Refuse malformed client cycles before either common cut or final-setting
+ * consumers traverse them; ordinary finite requests need no guessed size cap. */
+static bool finite(const SourceClientRoot *roots) {
+    const SourceClientRoot *slow = roots, *fast = roots;
+    while (fast && fast->next) {
+        slow = slow->next; fast = fast->next->next;
+        if (slow == fast) { return false; }
+    }
+    return true;
+}
 SourceRemovalStatus source_removal_client_roots(SourceArena *arena, const DeliverySourceDefinition *definitions,
     const SourceClientRoot *roots, const char *const *removed, size_t count, const SourceClientRootBlocker **output) {
-    if (!arena || !output || (count && !removed)) { return SOURCE_REMOVAL_INVALID; }
+    if (!arena || !output || (count && !removed) || !finite(roots)) { return SOURCE_REMOVAL_INVALID; }
     for (size_t index = 0; index < count; index++) {
         if (!removed[index] || !*removed[index]) { return SOURCE_REMOVAL_INVALID; }
     }

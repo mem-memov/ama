@@ -3,6 +3,7 @@
  * @see [T224 contract](../../../../../../docs/implementation/source-operations.md)
  */
 #include "common.c"
+#include "../write-join/common.c"
 #include "cases/material.c"
 #include "cases/declarations.c"
 #include "cases/declared-observations.c"
@@ -10,6 +11,7 @@
 #include "cases/failures.c"
 #include "cases/plan-fixture.c"
 #include "cases/plan-inputs.c"
+#include "complete/cases.c"
 #include "cases/image.c"
 #include "cases/merge.c"
 #include "reselection/fixture.c"

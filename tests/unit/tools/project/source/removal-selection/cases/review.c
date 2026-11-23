@@ -17,10 +17,10 @@ static void it_refuses_unadmitted_domains_and_keeps_review_output_atomic_on_inva
     SourceClientRoot root = {.definition = &foreign};
     SourceClientRootBlocker blocker = {0};
     SourceRemovalReview review = {.clients = &blocker};
-    assert(source_removal_selection_review(&removal, NULL, &root, &review) == SOURCE_REMOVAL_INVALID);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, &root, &review) == SOURCE_REMOVAL_INVALID);
     assert(review.clients == &blocker && !review.consumers);
-    assert(source_removal_selection_review(NULL, NULL, NULL, &review) == SOURCE_REMOVAL_INVALID);
-    assert(source_removal_selection_review(&removal, NULL, NULL, NULL) == SOURCE_REMOVAL_INVALID);
+    assert(source_removal_selection_review(NULL, NULL, NULL, NULL, &review) == SOURCE_REMOVAL_INVALID);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, NULL) == SOURCE_REMOVAL_INVALID);
     end_removal(MATERIAL_TESTS);
 }
 /** Known native/configuration inputs are protected automatically without caller-duplicated use records. */
@@ -35,7 +35,7 @@ static void it_protects_original_native_and_configuration_inputs_without_treatin
         SourceDeclaredGroup declared = {.requester = unit("/vendor/pkg/v1.0.0/src/parent/child"), .files = &input};
         assert(source_removal_selection_build(&removal, &selection, &analysis, &declared) == SOURCE_REMOVAL_SELECTION_OK);
         SourceRemovalReview review;
-        assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+        assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
         assert(review.consumers && review.consumers->next && !review.consumers->next->next);
         assert(review.consumers->next->kind == SOURCE_REMOVAL_INPUT
             && !strcmp(review.consumers->next->owner->identity, "/vendor/pkg/v1.0.0/src/native"));
@@ -53,7 +53,7 @@ static void it_derives_shared_original_declaration_uses_for_surviving_owners(voi
         .requester = unit("/vendor/pkg/v1.0.0/src/parent/child"), .files = &input};
     assert(source_removal_selection_build(&removal, &selection, &analysis, &selected) == SOURCE_REMOVAL_SELECTION_OK);
     SourceRemovalReview review;
-    assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
     assert(review.consumers && review.consumers->next && !review.consumers->next->next);
     assert(review.consumers->next->kind == SOURCE_REMOVAL_INPUT
         && !strcmp(review.consumers->next->owner->identity, "/vendor/pkg/v1.0.0/src/parentish"));
@@ -69,7 +69,7 @@ static void it_protects_the_selected_package_environment_for_all_surviving_origi
     SourceDeclaredGroup declared = {.requester = child, .files = &input};
     assert(source_removal_selection_build(&removal, &selection, &analysis, &declared) == SOURCE_REMOVAL_SELECTION_OK);
     SourceRemovalReview review;
-    assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
     size_t modules = 0, inputs = 0;
     for (const SourceRemovalBlocker *block = review.consumers; block; block = block->next) {
         if (block->kind == SOURCE_REMOVAL_MODULE) { modules++; }
@@ -86,6 +86,6 @@ static void it_reviews_standard_material_without_invented_ordinary_configuration
         assert(strcmp(input->owner->identity, "//child"));
     }
     SourceRemovalReview review;
-    assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_OK);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_OK);
     end_removal(MATERIAL_STANDARD);
 }

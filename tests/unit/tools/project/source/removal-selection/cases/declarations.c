@@ -16,7 +16,7 @@ static void it_includes_selected_explicit_assets_and_preserves_shared_outside_co
         assert(included == (selected_owner != 0));
         SourceRemovalInputUse input = {.owner = definition("/vendor/pkg/v1.0.0/tests/outside"), .path = file_entry.file.path};
         SourceRemovalReview review;
-        assert(source_removal_selection_review(&removal, &input, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+        assert(source_removal_selection_review(&removal.arena, &removal, &input, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
         assert(review.consumers && (review.consumers->next != NULL) == included);
         end_removal(MATERIAL_TESTS);
     }
@@ -65,7 +65,7 @@ static void it_closes_module_asset_cycles_once_and_leaves_outgoing_dependency_un
     }
     assert(units == 6 && companion && nested);
     SourceRemovalReview review;
-    assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
     assert(review.consumers && !review.consumers->next
         && !strcmp(review.consumers->owner->identity, "/vendor/pkg/v1.0.0/tests/outside"));
     end_removal(MATERIAL_MODULE_ASSET);

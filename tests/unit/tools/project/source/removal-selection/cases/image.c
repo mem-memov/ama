@@ -14,6 +14,12 @@ static void it_prepares_actual_removals_through_final_compiler_and_surviving_bin
         RemovalPlanFixture fixture;
         assert(removal_plan_fixture_build(&fixture, &removal) && fixture.plan.prepared);
         SourceOperationPlan *image = &fixture.plan;
+        assert(fixture.writes.valid && fixture.writes.count == removal.path_count && !fixture.writes.prepared);
+        for (size_t i = 0; i < fixture.writes.count; i++) {
+            assert(fixture.writes.owners[i].kind == SOURCE_OPERATION_EXTRA_REMOVAL
+                && fixture.writes.owners[i].owner.removal == &removal);
+        }
+        if (!profile) { check_source_write_join_failures(&fixture.writes.inputs); }
         SourceOperationIntent intent = {.kind = SOURCE_OPERATION_DELETE, .source = removal.tree, .source_removal = &removal};
         SourceOperationIntentIssue intent_issue;
         assert(source_operation_intent_check(image, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_OK);
@@ -42,6 +48,7 @@ static void it_prepares_actual_removals_through_final_compiler_and_surviving_bin
         assert(source_compiler_client_run(&final, "../../../../../../ama", "generated/final-removal.json", &image->capture.view, NULL) == SOURCE_COMPILER_OK);
         SourceCopyProofIssue issue;
         assert(source_operation_plan_prove(image, &final, &issue) == SOURCE_COPY_PROOF_OK);
+        check_complete_removal(image, &final, !profile, false);
         assert(source_operation_plan_prove(image, &final, &issue) == SOURCE_COPY_PROOF_OK);
         assert(source_operation_plan_prove(image, &analysis.original, &issue) ==
             (profile == 3 ? SOURCE_COPY_PROOF_OK : SOURCE_COPY_PROOF_INPUTS));

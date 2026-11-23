@@ -122,7 +122,9 @@ reviewing actual T224 consumers and retained evidence. Its complete current
 [subtask contracts and checkpoint](source-operations.md#current-plan-after-t274)
 are authoritative for planning that branch; canonical semantics stay in spec.
 The accepted selection/closure/protocol foundations feed T275's separation of
-semantic and physical domains, then T276's immutable plan. T277 exposes previews
+semantic and physical domains. [T276](../../DONE.md#t276) now supplies the accepted
+complete immutable read-only operation certificate with actual final sealing.
+T277 is next for entry review and exposes previews
 before T278's first complete journal/recovery slice; T279 expands publication,
 T280 integrates root/client metadata, and T281 exposes complete apply/recovery.
 T224 retains final acceptance after all seven children; T236 still depends on

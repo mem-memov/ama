@@ -195797,6 +195797,16 @@
         "source": "tests/unit/tools/project/source/removal/main.c",
         "case": "it_refuses_malformed_client_roots_and_preserves_output_on_late_invalidity",
         "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -195838,6 +195848,16 @@
         "source": "tests/unit/tools/project/source/removal/main.c",
         "case": "it_refuses_malformed_client_roots_and_preserves_output_on_late_invalidity",
         "command": "make -C tests/unit/tools/project/source/removal"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -203040,6 +203060,26 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_handles_standard_empty_and_draft_destination_partitions",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -204073,6 +204113,11 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
         "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -206492,6 +206537,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -206555,6 +206615,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -206570,6 +206645,16 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_accounts_for_context_omissions_without_losing_active_units_or_failed_prefixes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -207547,27 +207632,6 @@
       }
     ]
   },
-  "tools/project/source/copy/configuration/absence.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/copy/main.c",
-        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
-        "command": "make -C tests/unit/tools/project/source/copy"
-      },
-      {
-        "source": "tests/unit/tools/project/source/copy/main.c",
-        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
-        "command": "make -C tests/unit/tools/project/source/copy"
-      },
-      {
-        "source": "tests/unit/tools/project/source/copy/main.c",
-        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
-        "command": "make -C tests/unit/tools/project/source/copy"
-      }
-    ]
-  },
   "tools/project/source/copy/configuration/internal.h": {
     "contract": "docs/implementation/source-operations.md",
     "purpose": "Prepare absent-version zero-byte configuration and required areas with exact placement/absence and preserved carried input ownership.",
@@ -207909,6 +207973,21 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -208066,6 +208145,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -208096,6 +208185,21 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
@@ -208159,6 +208263,16 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -208190,6 +208304,21 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -209916,6 +210045,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -209941,6 +210075,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -209994,6 +210133,36 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -210010,42 +210179,6 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
         "command": "make -C tests/unit/tools/project/source/image"
-      }
-    ]
-  },
-  "tools/project/source/copy/proof/original.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Preserve ignored original unit bytes and complete companion membership after selection retirement.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/copy/main.c",
-        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
-        "command": "make -C tests/unit/tools/project/source/copy"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -211021,6 +211154,2070 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/capture/preservation.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compare captured main and complete dot-companion membership/bytes with an immutable original or final physical image.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_accepts_untouched_external_reselection_and_refuses_original_target_substitution",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_requires_original_configuration_main_companion_and_parent_observations_for_reselection",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_rejects_changed_reselected_material_and_arbitrary_new_modules_even_when_they_compile",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_reselection_allocation_and_preserves_invalid_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/image/absence.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prove exact path absence from the closest complete directory observation without inferring absence through unavailable or regular ancestors.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/capture/preservation.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Declare exact main/companion preservation over real captured units and immutable image evidence.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Share exact original/final context and clone queries plus strict logical/physical ancestry.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/copy/contexts/topology.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Resolve exact context identities and strict physical plus ancestry without basename matching.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/contexts/required.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prove that every non-explicit structural-only clone is necessary and its destination parent was originally absent.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/context-copies.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently compile required, existing and detached context-copy images and prove their necessity/refusal without allocation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/context-suppliers.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate genuine formerly ignored parent providers through explicit original/final roots and actual complete compiler proofs.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_context_copy_necessity_and_refuses_existing_or_detached_parent_clones",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_unchanged_previously_ignored_parents_as_structural_providers",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_existing_parent_and_detached_context_omissions_against_real_final_images",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/context-unobserved.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare complete and genuinely incomplete original observations and refuse unknown structural-context destination absence even when the independently prepared final image compiles.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unknown_context_destinations_without_borrowing_final_image_absence",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/admission.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/carried.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/configuration.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/configuration/versions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare actual existing/carried/initialized package configuration writes through exact raw/C/P and original/preview scope authority; retain only canonical authorized selector and owned alias fields.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/module/admission.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare only an actual copied active module registered INI through original ordinary/standard alias scopes and exact mapped companion membership, leaving drafts opaque.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/module/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare only an actual copied active module registered INI through original ordinary/standard alias scopes and exact mapped companion membership, leaving drafts opaque.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/module/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare only an actual copied active module registered INI through original ordinary/standard alias scopes and exact mapped companion membership, leaving drafts opaque.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/module/module.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare only an actual copied active module registered INI through original ordinary/standard alias scopes and exact mapped companion membership, leaving drafts opaque.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/module/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare only an actual copied active module registered INI through original ordinary/standard alias scopes and exact mapped companion membership, leaving drafts opaque.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/verify.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_configuration_write_prefixes_and_refuses_unowned_configuration_recipes",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/carried.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/module-writes/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/module-writes/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/module-writes/failures.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose real copy/INI metadata with actual original/final environments, independent compiler acceptance, typed category refusals and every measured owner allocation failure.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_module_alias_write_failures_and_refuses_foreign_companion_authority",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/admission.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/configurations.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/extra.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/initialization.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/join/join.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/writes/join/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/modules.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/writes/join/prepared.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Construct exact source removals, required initializers and recognized regular configuration changes from typed immutable producers, merge only C-main and owned INI preparations, and retain one explicit owner per mutation with bounded failed-prefix storage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/module-writes/join-refusals.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify closed source-write provenance with genuine producers and independent compiler evidence, including wrong compiling images and exact failure boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_untyped_companion_routes_and_duplicate_or_unbounded_write_joins",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/write-join/initialization.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify closed source-write provenance with genuine producers and independent compiler evidence, including wrong compiling images and exact failure boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/configuration-writes/unrelated.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify closed source-write provenance with genuine producers and independent compiler evidence, including wrong compiling images and exact failure boundaries.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_refuses_unrelated_initialized_versions_despite_actual_final_compiler_acceptance",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/write-join/common.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exhaust every allocation in genuine copy/delete/move write joins while preserving borrowed producer, map and text owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/clients/clients.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own explicit entry/export dispositions over actual exact original/final checked definitions, refusing missing targets, malformed clients and every failed report prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/clients/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own explicit entry/export dispositions over actual exact original/final checked definitions, refusing missing targets, malformed clients and every failed report prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/clients/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own explicit entry/export dispositions over actual exact original/final checked definitions, refusing missing targets, malformed clients and every failed report prefix.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/roots/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/coverage.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/regions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/settings.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/roots.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/roots/originals.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/roots/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Account for explicit configured/augmented/final semantic root settings, actual carried directory provenance, original complete material/identity preservation and exact symbolic root/exclusion coverage.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/rebuild/build.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retain all configured/original/final build-input domains and explicit generated-state regeneration and unknown-format boundaries without executing or guessing output mutations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/rebuild/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retain all configured/original/final build-input domains and explicit generated-state regeneration and unknown-format boundaries without executing or guessing output mutations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/operation/rebuild/rebuild.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Retain all configured/original/final build-input domains and explicit generated-state regeneration and unknown-format boundaries without executing or guessing output mutations.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/complete/prepare.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/complete/configurations.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/complete/complete.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/complete/seal.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/complete/internal.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/operation/complete/companions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/complete/lifetime.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Join typed mutation producers, exact request/material facts, independently derived complete scope authority, explicit root/client settings and actual final compiler/site proofs into one immutable complete operation certificate.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/client-settings/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/root-settings/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/root-settings/rebuild.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/root-settings/regions.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_decides_root_region_unions_against_exhaustive_tree_sets",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/complete/common.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/complete/retained.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check actual complete-operation boundary ownership, independent expected results and all relevant failed allocation prefixes without fabricating valid source/compiler owners.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_module_alias_writes_and_compiles_actual_copied_companions",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_test_only_copies_with_required_new_version_areas",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/complete/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Verify actual deletion and unchanged supplier reselection through the same complete certificate as copy/move, with per-allocation failed-prefix ownership.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/plan/project.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project one actual simultaneous image, then admit independently derived configuration expectations and mutation trees before preparing the shared fact-level plan.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/plan/finish.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Project one actual simultaneous image, then admit independently derived configuration expectations and mutation trees before preparing the shared fact-level plan.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_owns_carried_package_configuration_aliases_without_importing_unselected_tables",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_proves_reselection_through_shared_plan_and_preserves_explicit_original_client_choices",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/complete/placement.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Independently compile and admit exact source/site facts for an arbitrarily renamed additional dependency, then prove the complete operation refuses its incorrect suffix placement.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_prepares_owned_existing_and_initialized_configuration_writes_from_real_copy_facts",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   }

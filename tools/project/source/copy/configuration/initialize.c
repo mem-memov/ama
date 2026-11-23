@@ -18,7 +18,7 @@ SourceConfigurationStatus source_copy_configuration_initialize(SourceArena *aren
     bool owned = false;
     for (const SourcePackageScope *row = final->first; row; row = row->next) { if (row == scope) { owned = true; } }
     if (!owned || edits->original != scope->document.source || source_length(edits->original)
-        || !source_configuration_version_absent(&original->image, scope->version->physical_path)) { return SOURCE_CONFIGURATION_INVALID; }
+        || !source_image_path_absent(&original->image, scope->version->physical_path)) { return SOURCE_CONFIGURATION_INVALID; }
     SourceSelectionRoots baseline = {0}, additions = {0};
     issue->permission_status = source_copy_permission_additions(arena, copy, map, final, scope,
         &baseline, &additions, &issue->permission);

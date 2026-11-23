@@ -43,7 +43,7 @@ typedef struct {
     const SourceCopyContextOmissions *contexts;
     const SourceImageChange *changes;
     size_t change_count;
-    SourceRemovalSelection *removal;
+    const SourceRemovalSelection *removal;
     const SourceRemovalInputUse *inputs;
     const SourceClientRoot *clients;
     const SourceOperationConfigurationExpectation *configurations;
@@ -74,7 +74,7 @@ typedef struct {
     const SourcePackageScope *failed_scope;
     const char *failed_path;
     SourceOperationPlanStatus status;
-    bool attempted, prepared;
+    bool attempted, projected, finished, prepared;
 } SourceOperationPlan;
 /** Initialize child owners without I/O. */
 void source_operation_plan_init(SourceOperationPlan *, SourceAllocator);

@@ -4,8 +4,8 @@
  */
 #include "../../../../../../tools/project/source/copy/contexts/omissions.h"
 /** Select an actual child whose draft parent and flat companion are context only. */
-static void prepare_child_context(void) {
-    prepare(); source_tree_selection_init(&tree, sources.allocator);
+static void select_child_context(void) {
+    source_tree_selection_init(&tree, sources.allocator);
     const ModuleSource *child = NULL;
     assert(module_catalog_find(&capture.catalog, child_identity, &child) == MODULE_OK);
     assert(source_tree_selection_read(&tree, &capture, source_path(child->text)) == SOURCE_TREE_OK);
@@ -13,6 +13,8 @@ static void prepare_child_context(void) {
     assert(source_copy_closure_build(&copy, &tree, SOURCE_COPY_KEEP_EXTERNAL) == SOURCE_COPY_CLOSURE_OK);
     assert(copy_role("/vendor/pkg/v1.0.0/src/parent")->role == ACQUISITION_CONTEXT);
 }
+/** Construct the usual physical original before selecting its child. */
+static void prepare_child_context(void) { prepare(); select_child_context(); }
 /** Map only the selected child and its test, never its old structural parent. */
 static void child_context_mains(SourceArena *arena, SourceCloneMap *mains, bool detached) {
     source_clone_map_init(mains, sources.allocator, &capture);
@@ -96,12 +98,12 @@ static void it_proves_existing_parent_and_detached_context_omissions_against_rea
         const char *removed[] = {parent->logical_path}; size_t before = allocation_count;
         if (profile == 2) {
             assert(captured != SOURCE_IMAGE_CAPTURE_OK && !final.valid);
-            assert(source_copy_context_omissions_check(&omissions, &final, NULL, 0, &issue) == SOURCE_COPY_CONTEXT_INVALID);
+            assert(source_copy_context_omissions_check(&omissions, &observed, &final, NULL, 0, &issue) == SOURCE_COPY_CONTEXT_INVALID);
         } else {
             assert(captured == SOURCE_IMAGE_CAPTURE_OK);
             SourceCopyContextStatus expected = profile < 2 ? SOURCE_COPY_CONTEXT_OK
                 : profile < 5 ? SOURCE_COPY_CONTEXT_CHANGED : SOURCE_COPY_CONTEXT_MISSING;
-            assert(source_copy_context_omissions_check(&omissions, &final, removed, profile == 5 ? 1 : 0, &issue) == expected);
+            assert(source_copy_context_omissions_check(&omissions, &observed, &final, removed, profile == 5 ? 1 : 0, &issue) == expected);
             assert(allocation_count == before);
             if (profile < 2) {
                 assert(!issue.context && !issue.requester && !issue.parent);
@@ -112,11 +114,11 @@ static void it_proves_existing_parent_and_detached_context_omissions_against_rea
                 SourceSitesIssue sites;
                 assert(source_graph_sites(analysis.original.response.definitions, compiler.response.definitions, &mains, NULL, 0, (SourceRegistryRetirement){0}, NULL, &sites) == SOURCE_SITES_OK);
                 source_compiler_client_destroy(&compiler);
-                assert(source_copy_context_omissions_check(&omissions, &final, NULL, 0, &issue) == SOURCE_COPY_CONTEXT_OK);
+                assert(source_copy_context_omissions_check(&omissions, &observed, &final, NULL, 0, &issue) == SOURCE_COPY_CONTEXT_OK);
             } else { assert(issue.context && issue.requester); }
         }
-        assert(source_copy_context_omissions_check(&omissions, &final, NULL, 1, &issue) == SOURCE_COPY_CONTEXT_INVALID);
-        assert(source_copy_context_omissions_check(&omissions, &final, NULL, 0, NULL) == SOURCE_COPY_CONTEXT_INVALID);
+        assert(source_copy_context_omissions_check(&omissions, &observed, &final, NULL, 1, &issue) == SOURCE_COPY_CONTEXT_INVALID);
+        assert(source_copy_context_omissions_check(&omissions, &observed, &final, NULL, 0, NULL) == SOURCE_COPY_CONTEXT_INVALID);
         source_image_capture_destroy(&final); source_manager_destroy(&texts); source_observed_image_destroy(&observed);
         source_file_map_destroy(&files); source_copy_context_omissions_destroy(&omissions); source_clone_map_destroy(&mains);
         source_arena_destroy(&arena); finish_copy();

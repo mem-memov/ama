@@ -29,8 +29,8 @@ static void it_merges_joint_original_cuts_and_proves_the_actual_final_image(void
     source_removal_selection_init(&second, sources.allocator); source_removal_selection_init(&merged, sources.allocator);
     assert(source_removal_selection_build(&second, &tree, &analysis, NULL) == SOURCE_REMOVAL_SELECTION_OK);
     SourceRemovalReview review;
-    assert(source_removal_selection_review(&removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
-    assert(source_removal_selection_review(&second, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+    assert(source_removal_selection_review(&removal.arena, &removal, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
+    assert(source_removal_selection_review(&second.arena, &second, NULL, NULL, &review) == SOURCE_REMOVAL_BLOCKED);
     const SourceRemovalSelection *parts[] = {&removal, &second, &removal};
     assert(source_removal_selection_merge(&merged, parts, 3) == SOURCE_REMOVAL_SELECTION_OK);
     assert(merged.path_count == removal.path_count + second.path_count && merged.identity_count == 3);
@@ -38,9 +38,9 @@ static void it_merges_joint_original_cuts_and_proves_the_actual_final_image(void
     for (const SourceRemovalInputUse *use = removal.inputs; use; use = use->next) { expected++; }
     for (const SourceRemovalInputUse *use = merged.inputs; use; use = use->next) { actual++; }
     assert(actual == expected && actual);
-    assert(source_removal_selection_review(&merged, NULL, NULL, &review) == SOURCE_REMOVAL_OK);
+    assert(source_removal_selection_review(&merged.arena, &merged, NULL, NULL, &review) == SOURCE_REMOVAL_OK);
     SourceClientRoot root = {.definition = definition("/vendor/pkg/v1.0.0/src/parentish")};
-    assert(source_removal_selection_review(&merged, NULL, &root, &review) == SOURCE_REMOVAL_BLOCKED && review.clients);
+    assert(source_removal_selection_review(&merged.arena, &merged, NULL, &root, &review) == SOURCE_REMOVAL_BLOCKED && review.clients);
     RemovalPlanFixture fixture; assert(removal_plan_fixture_build(&fixture, &merged));
     SourceOperationPlan *image = &fixture.plan;
     FILE *request = fopen("generated/final-merged.json", "wb"); assert(request);

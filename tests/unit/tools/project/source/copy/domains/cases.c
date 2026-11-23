@@ -89,3 +89,11 @@ static void it_retires_each_wider_envelope_observation_allocation_failure(void) 
     }
     domain_end(&fixture);
 }
+
+/** Copied tables retain keys/comments while their owned alias targets are rooted;
+ * the resulting actual image still passes independent final compiler/site proof. */
+static void it_owns_carried_package_configuration_aliases_without_importing_unselected_tables(void) {
+    DomainFixture fixture;
+    domain_begin_configuration(&fixture, 0, "; original spelling\n[aliases]\n~helper = ./src/helper\n");
+    domain_project(&fixture); domain_prove(&fixture); domain_end(&fixture);
+}

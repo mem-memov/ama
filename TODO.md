@@ -108,8 +108,8 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 [T274](DONE.md#t274) reviews the actual T224 state as of 2026-11-23. Existing
 analysis, graph/image/configuration preparation, root-preserving planning,
 freshness/leases, record codecs and private-tree ownership have component and
-composition evidence. Public copy/delete/move, a durable transaction journal and
-complete root-changing operation plans remain unfinished.
+composition evidence. Public copy/delete/move integration and a durable
+transaction journal remain unfinished.
 [T275](DONE.md#t275) now supplies separate semantic/physical domains and exact
 selected-registry retirement, with real promotion/relocation/compiler evidence. Reuse the tested
 foundations; do not restart them or infer public support from them.
@@ -117,28 +117,13 @@ foundations; do not restart them or infer public support from them.
 The [current checkpoint and task graph](docs/implementation/source-operations.md#current-plan-after-t274)
 identify the concrete owners, retained evidence and next action. The old step log
 in that note is historical; its earlier "next" statements are not the current
-queue. T282/T283 are accepted; extracted T284 owns acceptance of the new source-material gates, then T285 reviews final supplier changes before T276 resumes. Each remaining subtask below is a separate
+queue. T282 through T285 and [T276](DONE.md#t276) are accepted. The complete
+immutable operation owner joins their image, request, material, edit and supplier
+gates with configuration/root/client authority and actual final sealing. T277
+is next for entry review and public preview integration. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
-
-<a id="t276"></a>
-
-- [ ] **T276 — Prepare one complete immutable copy/delete/move plan.**
-  Status: active; entry review completed. Prerequisites: T275, T282, T283, T284 and T285. Extend the shared image plan
-  owner to all supported operations and original/final roots. Join complete
-  source/test/companion and declared-input closure, injective identity/physical
-  maps, context obligations, original joint deletion/replacement safety, exact
-  selector/alias/configuration edits and actual final compiler/binding proofs.
-  Carry client entry/export/root-setting changes and owned build-invalidation
-  intentions now so publication cannot discover them later. Every planned write
-  needs an explicit owner and authorization. Preparation executes no module,
-  test, native code, CMake, network or source mutation. Accept independent
-  compilable-but-incorrect final-image refusals, unused/static/native/test edges,
-  constants/storage suffixes, drafts/opaque bytes, missing client roots, allocation
-  failures and retained root-preserving compositions. Unknown configuration formats
-  are reported without patching. The finite owned plan is the common input to
-  preview and publication; no second command-specific planner is allowed.
 
 <a id="t277"></a>
 

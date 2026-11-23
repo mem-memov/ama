@@ -40,7 +40,8 @@ SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis
     }
     SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, retired, &introduced, issue);
     if (units != SOURCE_COPY_PROOF_OK) { return units; }
-    if (contexts && source_copy_context_omissions_check(contexts, final, retired.names, retired.count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
+    if (contexts && source_copy_context_copies_check(contexts, observed, final, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
+    if (contexts && source_copy_context_omissions_check(contexts, observed, final, removed, count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
     if (source_graph_sites(original->original.response.definitions, introduced.conserved, map, removed, count, retired, prepared, &issue->sites) != SOURCE_SITES_OK) { return SOURCE_COPY_PROOF_SITES; }
     *issue = (SourceCopyProofIssue){0}; return SOURCE_COPY_PROOF_OK;
 }

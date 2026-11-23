@@ -6,6 +6,7 @@
 #ifndef AMA_SOURCE_COPY_PROOF_INTERNAL_H
 #define AMA_SOURCE_COPY_PROOF_INTERNAL_H
 #include "proof.h"
+#include "../../capture/preservation.h"
 /** Compare finite prepared P observations with actual final image rows; no allocation. */
 bool source_copy_proof_material(const SourceCopyMaterial *, const SourceCatalogImage *, const char **);
 /** Permit main-file edits only inside authored module operands; final site proof
@@ -14,10 +15,6 @@ bool source_copy_proof_material(const SourceCopyMaterial *, const SourceCatalogI
  * edges per definition, use O(T(C+D) + EH) comparisons and O(1) scratch. */
 bool source_copy_proof_edits(const DeliverySourceDefinition *, const SourceCloneMap *,
     const SourceGraphPreparedText *, SourceCopyProofIssue *);
-/** Compare complete main/dot-companion bytes and membership against another
- * immutable image. Use original-to-final for retired preserved suppliers and
- * final-to-original for introduced untouched suppliers; unknown parents refuse. */
-bool source_copy_proof_preserved_unit(const SourceCapturedUnit *, const SourceCatalogImage *);
 /** Prove retained originals, C placement, complete companion membership and final
  * main accounting over validated immutable inputs; no allocation or publication. */
 SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *, const SourceFileMap *,

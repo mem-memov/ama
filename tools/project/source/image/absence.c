@@ -1,14 +1,15 @@
 /** @file
- * @brief Prove new-version absence from exact original directory observations.
- * [TOOL-01](../../../../../spec/implementation/tools-and-conformance.md#tool-01)
- * permits initialization only for a wholly absent version, never repair of an
- * existing directory or inference through an unread/regular ancestor.
+ * @brief Prove exact path absence from complete immutable original directory observations.
+ * [TOOL-01](../../../../spec/implementation/tools-and-conformance.md#tool-01)
+ * permits new-version initialization and needed context creation only where
+ * complete observations prove absence, never through an unread/regular ancestor.
  */
-#include "internal.h"
+#include "image.h"
 #include <string.h>
 /** An exact missing key is proven only by the closest observed complete
  * directory ancestor. Existing, unknown or regular ancestors grant no repair. */
-bool source_configuration_version_absent(const SourceCatalogImage *image, const char *path) {
+bool source_image_path_absent(const SourceCatalogImage *image, const char *path) {
+    if (!image || !image->valid || !path || path[0] != '/') { return false; }
     size_t length = strlen(path);
     for (;;) {
         for (size_t i = 0; i < image->count; i++) {

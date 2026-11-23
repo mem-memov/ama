@@ -106,7 +106,8 @@ SourceRemovalSelectionStatus source_removal_selection_merge(SourceRemovalSelecti
  * their caller owners through consumption. This necessary safety review does not
  * establish final structural topology or transaction freshness under
  * [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04).
- */
-SourceRemovalStatus source_removal_selection_review(SourceRemovalSelection *, const SourceRemovalInputUse *,
+ * Review scratch belongs to the explicit caller arena; the selected original
+ * material remains immutable and can be shared by independent failed plans. */
+SourceRemovalStatus source_removal_selection_review(SourceArena *, const SourceRemovalSelection *, const SourceRemovalInputUse *,
     const SourceClientRoot *, SourceRemovalReview *);
 #endif

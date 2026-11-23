@@ -8769,3 +8769,43 @@ T201. Specification bytes have not changed.
   LSan remains disabled under unsupported sandbox ptrace, with counted teardown
   checked. No spec changes or complete-operation/public-command claim. Detailed
   invariants, corrected fixture assumptions and receipts are in the linked record.
+
+<a id="t276"></a>
+
+- [x] **T276 — Prepare one complete immutable copy/delete/move plan.**
+  Status: completed; entry review and full acceptance completed. Prerequisites: T275, T282, T283, T284 and T285. Extend the shared image plan
+  owner to all supported operations and original/final roots. Join complete
+  source/test/companion and declared-input closure, injective identity/physical
+  maps, context obligations, original joint deletion/replacement safety, exact
+  selector/alias/configuration edits and actual final compiler/binding proofs.
+  Carry client entry/export/root-setting changes and owned build-invalidation
+  intentions now so publication cannot discover them later. Every planned write
+  needs an explicit owner and authorization. Preparation executes no module,
+  test, native code, CMake, network or source mutation. Accept independent
+  compilable-but-incorrect final-image refusals, unused/static/native/test edges,
+  constants/storage suffixes, drafts/opaque bytes, missing client roots, allocation
+  failures and retained root-preserving compositions. Unknown configuration formats
+  are reported without patching. The finite owned plan is the common input to
+  preview and publication; no second command-specific planner is allowed.
+
+  Delivered `source/operation/complete`: one typed closed-write, configuration,
+  original-cut, exact material, root/client and rebuild-intention owner with a
+  single simultaneous image and an immutable seal over the actual independent
+  final compiler/unit/context/supplier/occurrence proof. Fact-level image-plan
+  stages remain shared children; public preview and publication are separate.
+  Root coverage uses an exact finite-boundary algorithm with 46,656 independent
+  tree-set checks. Configuration recipes preserve aliases/finite permission sets;
+  missing owners, missing client targets and compiling wrong additional mappings
+  refuse. Removal review now borrows const selections with caller-owned scratch.
+
+  Acceptance: strict affected source parent; copy/removal ASan/UBSan leaves;
+  genuine copy/delete/move, promotion, existing/absent root relocation, supplier
+  reselection, initialized/existing/carried configurations, ordinary/standard
+  module aliases, malformed accounting and every measured prepare/seal failure
+  prefix; independent ama-project build; 3998 ready documentation inputs/zero
+  debt. Doxygen 1.11.0 checked 3128 maintained file pages, 11843 interfaces and
+  495 canonical destinations. Unsupported LSan remains disabled, with counted
+  fail-at-N teardown checked separately. No spec files changed. Corrected earlier
+  fixture assumptions, documentation refusals, exact commands/receipts and the
+  remaining freshness/publication boundary are retained in the
+  [task record](docs/implementation/source-operations.md#t276-resumed-entry-review-after-t285).

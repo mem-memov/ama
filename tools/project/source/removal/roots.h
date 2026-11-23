@@ -35,7 +35,8 @@ typedef struct SourceClientRootBlocker {
  * reflect already explicit client decisions, never an inferred replacement.
  * Validate original handle membership, categories, destinations and removal keys.
  * Output changes only on OK/BLOCKED, in client order; failure scratch stays owned.
- * No final graph availability or source-topology claim is made. For N original
+ * Reject cyclic request lists before traversal. No final graph availability or
+ * source-topology claim is made. For N original
  * definitions, Q roots and R removed keys, time is O(Q*(N+R)) comparisons plus
  * canonical spelling validation, storage O(blocking occurrences). No I/O occurs.
  */

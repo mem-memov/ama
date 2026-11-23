@@ -31,6 +31,7 @@ static void it_proves_reselection_through_shared_plan_and_preserves_explicit_ori
             assert(status == SOURCE_OPERATION_PLAN_OK && plan.prepared);
             SourceCopyProofIssue issue;
             assert(source_operation_plan_prove(&plan, &fixture.client, &issue) == SOURCE_COPY_PROOF_OK);
+            check_complete_removal(&plan, &fixture.client, !disposition, true);
         }
         source_operation_plan_destroy(&plan);
     }

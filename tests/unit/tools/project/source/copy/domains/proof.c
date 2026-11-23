@@ -78,6 +78,9 @@ static void domain_prove_move(DomainFixture *fixture, const SourceOperationPlanI
     source_operation_material_destroy(&material);
     SourceCopyProofIssue proof;
     assert(source_operation_plan_prove(&move, &fixture->after, &proof) == SOURCE_COPY_PROOF_OK);
+    check_carried_configuration_write(&move, &intent);
+    check_operation_client_settings(&move, &fixture->after);
+    check_operation_root_settings(&move, &fixture->after);
     if (replacement) {
         const SourceRemovalSelection *repeated[] = {replacement, replacement};
         intent.replacements = repeated; intent.replacement_count = 2;
@@ -141,6 +144,8 @@ static void domain_prove(DomainFixture *fixture) {
     assert(plan.mutations.count == 1 && !strcmp(plan.mutations.roots[0].path, fixture->destination));
     SourceCopyProofIssue issue;
     assert(source_operation_plan_prove(&plan, &fixture->after, &issue) == SOURCE_COPY_PROOF_OK);
+    check_operation_client_settings(&plan, &fixture->after);
+    check_operation_root_settings(&plan, &fixture->after);
     SourceTreePlacement placement; source_tree_placement_init(&placement, sources.allocator);
     assert(source_tree_placement_build(&placement, &selected, fixture->destination) == SOURCE_PLACEMENT_OK);
     const SourceRemovalSelection *replacement_cut = replacements ? &removed : NULL;
@@ -148,6 +153,7 @@ static void domain_prove(DomainFixture *fixture) {
         .replacements = replacement_cut ? &replacement_cut : NULL, .replacement_count = replacements, .replace = replacements != 0};
     SourceOperationIntentIssue intent_issue;
     assert(source_operation_intent_check(&plan, &intent, &intent_issue) == SOURCE_OPERATION_INTENT_OK);
+    check_carried_configuration_write(&plan, &intent);
     SourceOperationMaterialReview material; source_operation_material_init(&material, sources.allocator);
     assert(source_operation_material_build(&material, &plan, &intent) == SOURCE_OPERATION_MATERIAL_OK && material.valid);
     size_t material_calls = allocation_count;

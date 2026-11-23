@@ -1,12 +1,12 @@
 /** @file
  * @brief Compare complete captured unit membership/bytes with another immutable physical image.
- * [TOOL-02](../../../../../spec/implementation/tools-and-conformance.md#tool-02)
+ * [TOOL-02](../../../../spec/implementation/tools-and-conformance.md#tool-02)
  * preserves original main/companion material when suppliers lose selection,
- * and certifies unchanged observed material when ignored suppliers gain it. [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
+ * and certifies unchanged observed material when ignored suppliers gain it. [TOOL-04](../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * requires complete observed membership rather than assuming missing companions.
  */
 #include <string.h>
-#include "internal.h"
+#include "preservation.h"
 /** Exact immutable image keys require neither path normalization nor host probes. */
 static const SourceCatalogImageEntry *entry(const SourceCatalogImage *image, const char *path, size_t length) {
     for (size_t i = 0; i < image->count; i++) {
@@ -32,7 +32,7 @@ static bool membership(const SourceCapturedUnit *old, const SourceCatalogImage *
     }
     return true;
 }
-bool source_copy_proof_preserved_unit(const SourceCapturedUnit *old, const SourceCatalogImage *image) {
+bool source_captured_unit_preserved(const SourceCapturedUnit *old, const SourceCatalogImage *image) {
     if (!membership(old, image)) { return false; }
     for (const AcquisitionUnitEntry *file = old->files; file; file = file->next) {
         const SourceCatalogImageEntry *row = entry(image, file->file.path, strlen(file->file.path));

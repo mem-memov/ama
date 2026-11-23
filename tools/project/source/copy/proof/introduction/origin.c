@@ -5,7 +5,7 @@
  * forbids augmenting original semantic coverage after the fact.
  */
 #include "internal.h"
-#include "../internal.h"
+#include "../../../capture/preservation.h"
 #include <string.h>
 /** Exact known regular bytes certify a configuration; unavailable is not empty. */
 static bool configuration(const SourceCatalogImage *image, const SourceText *text) {
@@ -39,7 +39,7 @@ SourceIntroductionStatus source_copy_introduction_origin(SourceArena *arena, con
         if (issue->identity_status != SOURCE_IDENTITY_OK || strcmp(placement.identity, names[i])) { return SOURCE_INTRODUCTION_ORIGIN; }
     }
     issue->path = source_path(source->text);
-    if (!source_copy_proof_preserved_unit(unit, &observed->image)) { return SOURCE_INTRODUCTION_MATERIAL; }
+    if (!source_captured_unit_preserved(unit, &observed->image)) { return SOURCE_INTRODUCTION_MATERIAL; }
     issue->path = source_path(version->configuration);
     return configuration(&observed->image, version->configuration) ? SOURCE_INTRODUCTION_OK : SOURCE_INTRODUCTION_MATERIAL;
 }

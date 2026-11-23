@@ -99,9 +99,9 @@ static void prepare_permission_additions(PermissionAdditionFixture *fixture, Sou
     permission_clone(fixture, "/vendor/pkg/v1.0.0/tests/main/check", "/tests/copied/check");
     directory(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/copied"));
     if (fixture->cloned) {
-        permission_clone(fixture, "/vendor/pkg/v1.0.0/src/other", "/src/helper");
-        permission_clone(fixture, "/vendor/pkg/v1.0.0/tests/other/check", "/tests/helper/check");
-        directory(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/helper"));
+        permission_clone(fixture, "/vendor/pkg/v1.0.0/src/other", "/src/other");
+        permission_clone(fixture, "/vendor/pkg/v1.0.0/tests/other/check", "/tests/other/check");
+        directory(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/other"));
     }
     assert(source_clone_map_seal(&fixture->map) == SOURCE_CLONE_OK); permission_write_clones(fixture);
     if (missing == 1) { assert(unlink("generated/project/packages/vendor/pkg/v1.0.0/src/other") == 0); }
@@ -134,7 +134,7 @@ static void finish_permission_additions(PermissionAdditionFixture *fixture) {
     source_root_capture_destroy(&fixture->final_capture);
     for (const SourceCloneMapping *row = fixture->map.first; row; row = row->next) { assert(unlink(row->path) == 0); }
     assert(rmdir(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/copied")) == 0);
-    if (fixture->cloned) { assert(rmdir(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/helper")) == 0); }
+    if (fixture->cloned) { assert(rmdir(source_arena_join(&fixture->arena, fixture->target_physical, "/", "tests/other")) == 0); }
     if (fixture->new_version) {
         assert(unlink("generated/project/packages/target/new/v3.0.0/package.ini") == 0);
         assert(rmdir("generated/project/packages/target/new/v3.0.0/src") == 0);
