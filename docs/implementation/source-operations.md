@@ -4,7 +4,7 @@
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
 actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
-accepted T275 and T282 below. The public operation is not
+accepted T275, T282 and T283 below. The public operation is not
 complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
@@ -29,7 +29,7 @@ components or declare the unfinished parent complete.
 | Project-side process/wire/input capture | Accepted [T273](../../DONE.md#t273); no compiler dispatcher is linked into the project tool |
 | Source/test/native/configuration closure | Accepted [T235](../../DONE.md#t235), plus the detailed compositions below; acquisition remains separate |
 | Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; their complete root-changing orchestration is pending |
-| [Prepared copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; T282 adds explicit final-root assembly while complete root/client authorization remains T276; its copy proof derives selected-registry retirement separately from physical removal |
+| [Operation image plan](../../tools/project/source/operation/plan/plan.h) | Joins dependency modes, joint removal and final proofs; T282 supplies explicit final-root assembly; T283 unifies deletion and copy material/configuration/mutation/proof gates; complete authorization remains T276. The proof derives selected-registry retirement separately from physical removal |
 | [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; T275 adds separate physical boundaries, unchanged-root regression and real changed-root consumers |
 | [Image records](../../tools/project/source/transaction/document/document.h) and [private-tree ownership](../../tools/project/source/transaction/tree/tree.h) | Codec roundtrip, exact saved classes, synchronization/readback, reopen and permitted partial-cleanup transitions pass; a codec/private copy is not yet a durable transaction journal |
 | Public command and process-loss recovery | Unfinished: command dispatch still supports init, not source-operation preview/apply; real whole-operation journal/recovery must be integrated |
@@ -57,7 +57,8 @@ next action; keep prior facts explicitly historical.
 |---|---|---|
 | [T275](../../DONE.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
 | [T282](../../DONE.md#t282) | T275 | One simultaneous changed-root image through actual assembly and copy-plan consumers; T276 consumes it |
-| [T276](../../TODO.md#t276) | T275, T282 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
+| [T283](../../DONE.md#t283) | T275, T282 | One shared copy/deletion image and proof owner, with migrated real consumers; T276 supplies remaining authorization |
+| [T276](../../TODO.md#t276) | T275, T282, T283 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
 | [T279](../../TODO.md#t279) | T278 | Whole multi-tree copy/delete/move/replace publication and repeatable recovery, with writer/reader coordination and same/cross-filesystem failure evidence |
@@ -69,7 +70,8 @@ next action; keep prior facts explicitly historical.
 flowchart TD
     existing[T232 / T233 / T235 / T272 / T273 and T224 foundations] --> roots[T275: distinct domains]
     roots --> assembly[T282: simultaneous final-root assembly]
-    assembly --> plan[T276: complete immutable plan]
+    assembly --> shared[T283: shared copy and deletion image/proof]
+    shared --> plan[T276: complete immutable plan]
     plan --> preview[T277: public preview]
     plan --> journal[T278: one-tree apply and recovery]
     preview --> journal
@@ -93,10 +95,11 @@ existing dependencies; do not switch to it to bypass unfinished source work.
 ### Next action and acceptance safeguards
 
 Resume T276 with the actual plan/image/removal/configuration interfaces after accepted T282. Its entry
-review must account for T275's accepted physical envelopes, explicit final
+review accounts for T275's accepted physical envelopes, explicit final
 semantic roots and independent registry retirement. The remaining gap is one
-complete immutable operation plan: SourceCopyPlan now accepts explicit final roots but still orchestrates copy, while deletion has its own preparation owner. Join those
-real consumers with explicit root/client/configuration and rebuild intentions;
+complete immutable operation plan: T283 now unifies copy/deletion image preparation and final proof. Complete that
+shared owner with operation-kind/source-versus-replacement removal provenance,
+explicit root/client/configuration authority and rebuild intentions;
 do not restart the accepted wire, closure, image, lease, record or owned-tree
 foundations. Public commands and durable publication remain later gates.
 
@@ -126,8 +129,8 @@ its own complete evidence before the next task.
 ## T276 entry review
 
 The accepted T275 interfaces separate physical observation bounds from semantic
-roots. Actual consumers still split copy preparation (`copy/plan`) and deletion
-(`removal/image`). Neither is a complete public operation plan. Their existing
+roots. At entry, consumers split copy preparation (`copy/plan`) and deletion
+(`removal/image`). Neither was a complete public operation plan. Their existing
 proofs, configuration expectations and mutation forests remain reusable.
 
 The copy image builder still invokes projection with original semantic roots.
@@ -141,6 +144,88 @@ root/client intentions, build invalidations and one common immutable-plan owner.
 Original augmented-domain preparation must preserve selected original physical
 identities and use the common whole-version selector; merging independently
 selected catalogs is not an acceptable substitute.
+
+## T283 entry review and execution
+
+**Entry finding.** T282 now delivers one final-root projection. The current copy
+plan joins material, original removal cuts, final package scopes and mutation
+forest. `removal/image` independently repeats projection/capture/proof and lacks
+those configuration/forest gates. Its only live consumers are the actual removal
+composition tests; copy-plan consumers are the actual copy compositions. Unify
+these owners before adding operation authorization, rather than maintaining two
+planners. Shared unit/material/registry/site proof already accepts empty sealed
+maps algebraically; only the copy-context admission requires an actual copy.
+Deletion has no copied context obligations, so require absent context only for
+an empty relation and no mapped material/prepared text. No synthetic valid copy
+closure or fallback is permitted.
+
+**Finite steps.** Move the actual copy plan to the shared operation component and
+make original analysis explicit. Admit either a genuine copy/context or deletion
+with empty sealed maps and a genuine removal selection. Extract finite removal
+observation requests/changes, migrate deletion compositions to this same owner,
+remove obsolete removal orchestration, then test actual final compiler proofs,
+original cuts, wrong input/owner/shape failures and allocation teardown. Run both
+real consumer leaves strictly and with ASan/UBSan, independent tool build and
+Doxygen/coverage/navigation before archival/commit. T276 retains the complete
+request-kind/root/client/edit-authority and build-invalidation seal; prepared
+image is not publication authority.
+
+**Contract/invariant.** All input facts borrow one admitted original capture and
+matching analysis. Empty maps express no clones; every physical deletion still
+belongs to one reviewed original union with exact observed bytes/membership.
+The shared image builder projects complete changes once against final roots;
+final configuration scopes and disjoint mutation trees use that same image.
+Independent final compiler evidence must match that capture exactly, and shared
+unit/registry/site laws preserve originals even if their selected registry changes.
+All list scans/child algorithms are finite; no new path resolution, catalog,
+semantic interpretation, source mutation or native execution is introduced.
+Failed prefixes remain owned and unprepared. Root/configuration/write authority
+and complete operation-kind provenance remain explicit T276 obligations.
+
+**Result.** All steps accepted. Shared `source/operation/plan` owns the actual
+copy and deletion image/configuration/mutation gates; admission is its own
+cohesive component. All live copy-plan/removal-image consumers migrated, and the
+six-file superseded removal owner was deleted. The only extracted removal helper
+pairs exact observation demands and REMOVE keys; observing remains explicit and
+original material is compared by the shared plan. Deletion supplies empty sealed
+relations without a fake copy owner. Both operations use complete original-unit,
+material, registry-retirement and final site proofs. The deletion fixtures now
+exercise these stronger gates, wrong mixed owners, stale/expanded physical
+material, original cuts and every measured preparation/proof allocation failure.
+No specification change, public-operation support or publication authority is
+claimed. T276 remains active for complete operation authorization and intentions.
+
+**Acceptance.** Strict C11 copy and expanded removal suites passed:
+`/tmp/ama-t283-copy.exit = 0`,
+`/tmp/ama-t283-removal-inputs-fixed.exit = 0`.
+After extracting admission, final complete strict ASan/UBSan suites passed:
+`/tmp/ama-t283-copy-final-sanitizers.exit = 0`,
+`/tmp/ama-t283-removal-final-sanitizers.exit = 0`.
+Flags are `-O0 -g -Wall -Wextra -Werror -std=c11 -pedantic
+-D_POSIX_C_SOURCE=200809L -fsanitize=address,undefined
+-fno-omit-frame-pointer -fno-pie -no-pie`, with
+`ASAN_OPTIONS=detect_leaks=0:halt_on_error=1` and
+`UBSAN_OPTIONS=halt_on_error=1`. Counted allocation teardown remains active;
+no unsupported LSan claim. Independent tool build:
+`/tmp/ama-t283-final-build.exit = 0`. The first new assertion used nonexistent
+request field `demand`; strict compilation caught it and it was corrected to
+actual typed field `kind` before execution. No expected result was weakened.
+
+The first full documentation run passed; its earlier 3889-input coverage sample
+predated the admission-file extraction. It is superseded by the final
+`make docs-check`, `/tmp/ama-t283-final-coverage.exit = 0`: **3890 ready inputs,
+zero debts**. Generated Doxygen checks passed with 3020 maintained file pages,
+11571 documented interfaces, 495 canonical destinations and 9418 pages. The
+archive-only final generator refresh uses the unchanged accepted code/registry
+and writes `/tmp/ama-t283-docs-archived.exit`; its success is required before
+this task's commit. No implementation job remains after the recorded acceptance.
+
+**Next T276 step.** Verify complete request-kind and source/replacement-removal
+provenance, then make every supplemental write trace to its actual prepared
+owner/authorization. Add root/client selection changes and owned rebuild
+intentions before sealing the one common immutable operation plan. Do not infer
+complete operation support from the now-shared image preparation. Existing map,
+configuration, original/final compiler and mutation evidence remains reusable.
 
 ## T282 entry review and execution
 
@@ -198,8 +283,9 @@ sanitizer run passed; production code/expectations were not changed to hide this
 zero debts; Doxygen 1.11.0, 3021 maintained file pages, 11575 interfaces,
 495 canonical destinations and 9418 pages. The new cohesive test file and
 changed production headers/implementations have explicit current-case registry
-evidence. Archive/navigation changes require the final generator refresh below;
-no code/coverage input changes follow the accepted checks.
+evidence. Archive/navigation changes were covered by the final generator refresh,
+`/tmp/ama-t282-docs-archived.exit = 0`; no code/coverage input changes followed
+those accepted checks.
 
 ## T275 entry review and execution
 

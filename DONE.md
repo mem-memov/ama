@@ -8679,3 +8679,32 @@ T201. Specification bytes have not changed.
   with 3021 maintained file pages and 11575 documented interfaces. Detailed
   commands, initial environmental failures and scoped limits remain in the
   linked source-operation record. T276 still owns the complete operation plan.
+
+<a id="t283"></a>
+
+- [x] **T283 — Unify copy and deletion image-plan consumers.**
+  Status: completed, extracted from T276. Prerequisites: T275 and T282.
+  Migrate the real copy plan and separate removal-image owner into one shared
+  operation-image plan with explicit original analysis and final roots. Admit
+  deletion using honest empty sealed copy maps, without inventing a copy closure.
+  Reuse the same material/projection/configuration/mutation and full final proof
+  gates. Extract only reusable removal observation demands; delete superseded
+  orchestration and migrate its real tests. Accept original graph/input/client
+  cuts, opaque material, changed/expanded removal observations, empty selections,
+  genuine compiler proofs, every preparation/proof allocation refusal and retained
+  copy/changed-root compositions. This is a common image/proof boundary; T276
+  retains request-kind, settings/edit authorization and sealed publication intents.
+  Steps/evidence: [source-operation record](docs/implementation/source-operations.md#t283-entry-review-and-execution).
+
+  Delivered one source/operation/plan owner for the actual copy and deletion
+  consumers. Original analysis and final roots are explicit; deletion uses honest
+  empty relations and the same material/unit/registry/site proof. Migrated all
+  removal-image compositions; deleted its six-file superseded orchestration.
+  Extracted only exact removal demand/key preparation. Separated admission from
+  orchestration, with typed owner/mode refusal before image construction.
+  Acceptance: strict copy/removal compositions, final strict ASan/UBSan suites
+  with measured preparation/proof allocation failures, independent ama-project
+  build, 3890 ready inputs/zero debt and generated Doxygen 1.11.0 navigation
+  (3020 maintained file pages, 11571 interfaces). No specification change or
+  public preview/application support claim. T276 retains full operation-kind,
+  root/client/edit authorization and immutable publication/rebuild intentions.

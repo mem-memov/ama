@@ -77,7 +77,7 @@ belong to each affected task's acceptance, not a compatibility layer.
 ## Current tasks
 
 [T220](DONE.md#t220) specifies markers; [T225](DONE.md#t225) specifies declaration
-type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T283**.
+type expressions, retained by [T227](DONE.md#t227). The next unused task ID is **T284**.
 [T230](DONE.md#t230) specifies versioned projects, revised paths and independent
 project tools. T222 joins the selected sprint by the user's 2026-11-20 request.
 The user's 2026-11-20 continuation request authorizes implementation of this
@@ -117,7 +117,7 @@ foundations; do not restart them or infer public support from them.
 The [current checkpoint and task graph](docs/implementation/source-operations.md#current-plan-after-t274)
 identify the concrete owners, retained evidence and next action. The old step log
 in that note is historical; its earlier "next" statements are not the current
-queue. T282 is accepted; T276 resumes after its entry review. Each remaining subtask below is a separate
+queue. T282 and T283 are accepted; T276 resumes with the common image/proof owner. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
@@ -125,7 +125,7 @@ and TOOL-01..04 throughout; no task authorizes a new language rule.
 <a id="t276"></a>
 
 - [ ] **T276 — Prepare one complete immutable copy/delete/move plan.**
-  Status: active; entry review completed. Prerequisites: T275 and T282. Extend the existing copy plan
+  Status: active; entry review completed. Prerequisites: T275, T282 and T283. Extend the shared image plan
   owner to all supported operations and original/final roots. Join complete
   source/test/companion and declared-input closure, injective identity/physical
   maps, context obligations, original joint deletion/replacement safety, exact

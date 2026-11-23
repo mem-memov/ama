@@ -28,9 +28,10 @@ typedef struct {
     SourceSitesIssue sites;
     SourceRegistryStatus registry_status;
 } SourceCopyProofIssue;
-/** Require admitted original analysis of C's exact capture, sealed C/P, a ready
- * complete context ledger over C, valid immutable final capture and successful
- * compiler response matching that capture's exact input bytes. Removed names
+/** Require admitted original analysis of C's exact capture, sealed C/P,
+ * valid immutable final capture and successful
+ * compiler response matching that capture's exact input bytes. Copies additionally
+ * require a ready complete context ledger over C. Removed names
  * describe only the previously reviewed union of actual physical removals.
  * Derive selected-registry retirement separately from original/final main paths.
  *
@@ -54,6 +55,12 @@ typedef struct {
  * This does not authorize removals, configuration changes,
  * dependency mode or publication: exact package-set, safe original cut, freshness
  * and recoverable transaction gates remain mandatory outer obligations.
+ *
+ * A deletion may omit contexts only with empty sealed C/P and no prepared
+ * text. Empty relations introduce no copied context obligations; all original
+ * units, registry retirement and final site laws still undergo the same checks.
+ * [TOOL-03](../../../../../spec/implementation/tools-and-conformance.md#tool-03)
+ * retains independent original-cut authorization at the enclosing plan boundary.
  */
 SourceCopyProofStatus source_copy_prove(SourceArena *, const SourceAnalysis *,
     const SourceCloneMap *, const SourceFileMap *, const SourceGraphPreparedText *,

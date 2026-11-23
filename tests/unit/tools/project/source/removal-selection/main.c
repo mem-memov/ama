@@ -8,10 +8,14 @@
 #include "cases/declared-observations.c"
 #include "cases/review.c"
 #include "cases/failures.c"
+#include "cases/plan-fixture.c"
+#include "cases/plan-inputs.c"
 #include "cases/image.c"
 #include "cases/merge.c"
 /** Run actual missing/present test material, exact original cuts, overlap and allocation ownership. */
 void run(void) {
+    it_prepares_exact_removal_demands_and_retires_failed_outputs();
+    it_refuses_mixed_copy_deletion_plan_owners();
     it_merges_joint_original_cuts_and_proves_the_actual_final_image();
     it_retires_merged_removal_failures_and_rejects_foreign_owners();
     it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks();

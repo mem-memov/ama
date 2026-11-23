@@ -14,10 +14,13 @@ LOCAL_SOURCES := main.c $(call source_files,$(ROOT)/tools/project/source/image) 
     $(call source_files,$(ROOT)/tools/project/source/capture) \
     $(call source_files,$(ROOT)/tools/project/source/analysis) \
     $(call source_files,$(ROOT)/tools/project/source/compiler) \
-    $(call source_files,$(ROOT)/tools/project/acquisition/closure/unit) \
-    $(ROOT)/tools/project/acquisition/closure/tests/association.c \
-    $(ROOT)/tools/project/acquisition/closure/tests/namespace.c \
-    $(ROOT)/tools/project/source/mapping/lifetime.c $(ROOT)/tools/project/source/mapping/seal.c \
+    $(call source_files,$(ROOT)/tools/project/source/mapping) \
+    $(call source_files,$(ROOT)/tools/project/source/copy) \
+    $(call source_files,$(ROOT)/tools/project/source/operation) \
+    $(call source_files,$(ROOT)/tools/project/source/environment) \
+    $(call source_files,$(ROOT)/tools/project/source/transaction/forest) \
+    $(call source_files,$(ROOT)/tools/project/source/expansion) \
+    $(call source_files,$(ROOT)/tools/project/acquisition/closure) \
     $(call source_files,$(ROOT)/tools/project/source/edits) \
     $(ROOT)/tools/project/source/graph/sites.c $(ROOT)/tools/project/source/graph/bindings.c $(ROOT)/tools/project/source/graph/equal.c $(ROOT)/tools/project/process/run.c
 include ../../../../../leaf.mk

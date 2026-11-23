@@ -198567,6 +198567,11 @@
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_retires_merged_removal_failures_and_rejects_foreign_owners",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -198677,6 +198682,11 @@
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
         "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
         "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
@@ -205606,165 +205616,9 @@
       }
     ]
   },
-  "tools/project/source/removal/image/image.h": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ],
-    "standalone_header_command": [
-      "cc",
-      "-std=c11",
-      "-D_POSIX_C_SOURCE=200809L",
-      "-Wall",
-      "-Wextra",
-      "-Werror",
-      "-pedantic",
-      "-I.",
-      "-Isrc",
-      "-x",
-      "c",
-      "-fsyntax-only",
-      "-"
-    ]
-  },
-  "tools/project/source/removal/image/internal.h": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ],
-    "standalone_header_command": [
-      "cc",
-      "-std=c11",
-      "-D_POSIX_C_SOURCE=200809L",
-      "-Wall",
-      "-Wextra",
-      "-Werror",
-      "-pedantic",
-      "-I.",
-      "-Isrc",
-      "-x",
-      "c",
-      "-fsyntax-only",
-      "-"
-    ]
-  },
-  "tools/project/source/removal/image/lifetime.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ]
-  },
-  "tools/project/source/removal/image/material.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ]
-  },
-  "tools/project/source/removal/image/build.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ]
-  },
   "tests/unit/tools/project/source/removal-selection/cases/image.c": {
     "contract": "docs/implementation/source-operations.md",
     "purpose": "Join exact original removal safety and material demands with atomic prepared image projection and real final compiler-input capture.",
-    "tests": [
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      },
-      {
-        "source": "tests/unit/tools/project/source/removal-selection/main.c",
-        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
-        "command": "make -C tests/unit/tools/project/source/removal-selection"
-      }
-    ]
-  },
-  "tools/project/source/removal/image/prove.c": {
-    "contract": "docs/implementation/source-operations.md",
-    "purpose": "Require exact prepared compiler inputs before proving surviving original binding and parsed occurrence-site identities without allocation or I/O.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/removal-selection/main.c",
@@ -207868,6 +207722,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -207930,6 +207789,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -208034,9 +207898,9 @@
       }
     ]
   },
-  "tools/project/source/copy/plan/plan.h": {
+  "tools/project/source/operation/plan/plan.h": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Own root-preserving simultaneous copy and original-removal plans with exact final scope expectations.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
@@ -208047,6 +207911,21 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -208065,14 +207944,19 @@
       "-"
     ]
   },
-  "tools/project/source/copy/plan/internal.h": {
+  "tools/project/source/operation/plan/internal.h": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Separate original removal and final configuration accounting from image orchestration.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ],
     "standalone_header_command": [
@@ -208091,20 +207975,25 @@
       "-"
     ]
   },
-  "tools/project/source/copy/plan/lifetime.c": {
+  "tools/project/source/operation/plan/lifetime.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Retire independent final scopes and capture before their projected image rows.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
-  "tools/project/source/copy/plan/build.c": {
+  "tools/project/source/operation/plan/build.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Join dependency-mode admission, original cut, image, final capture and exact configuration checks.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
@@ -208115,39 +208004,69 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
-  "tools/project/source/copy/plan/configurations.c": {
+  "tools/project/source/operation/plan/configurations.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Account for every independently rebuilt final package exactly once.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
-  "tools/project/source/copy/plan/removal.c": {
+  "tools/project/source/operation/plan/removal.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Require exact observed original removal material and the combined consumer/client cut.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
-  "tools/project/source/copy/plan/prove.c": {
+  "tools/project/source/operation/plan/prove.c": {
     "contract": "docs/implementation/source-operations.md",
-    "purpose": "Admit final compiler evidence for the exact prepared copy/removal image.",
+    "purpose": "Join copy or deletion material, explicit original/final domains, original removal review, exact final configuration and mutation/proof gates.",
     "tests": [
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   },
@@ -210021,6 +209940,106 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_retires_every_simultaneous_root_replacement_allocation_failure",
         "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/removal/selection/material.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact original removal observation demands and simultaneous REMOVE rows without observing or authorizing mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_exact_removal_demands_and_retires_failed_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/removal/selection/material.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact original removal observation demands and simultaneous REMOVE rows without observing or authorizing mutation.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_exact_removal_demands_and_retires_failed_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/cases/plan-fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise honest original removal facts through shared operation-plan admission, material, final compiler proof and allocation teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_actual_removals_through_final_compiler_and_surviving_binding_checks",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_blocked_changed_and_structurally_expanded_removal_images",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_retires_every_removal_image_allocation_failure_and_checks_invalid_inputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/removal-selection/cases/plan-inputs.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Exercise honest original removal facts through shared operation-plan admission, material, final compiler proof and allocation teardown.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_prepares_exact_removal_demands_and_retires_failed_outputs",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
+      }
+    ]
+  },
+  "tools/project/source/operation/plan/admission.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Validate one exact original analysis and genuine copy or deletion input owners and enforce explicit cross-version dependency modes before orchestration.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/removal-selection/main.c",
+        "case": "it_refuses_mixed_copy_deletion_plan_owners",
+        "command": "make -C tests/unit/tools/project/source/removal-selection"
       }
     ]
   }

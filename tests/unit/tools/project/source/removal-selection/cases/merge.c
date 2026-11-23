@@ -41,15 +41,15 @@ static void it_merges_joint_original_cuts_and_proves_the_actual_final_image(void
     assert(source_removal_selection_review(&merged, NULL, NULL, &review) == SOURCE_REMOVAL_OK);
     SourceClientRoot root = {.definition = definition("/vendor/pkg/v1.0.0/src/parentish")};
     assert(source_removal_selection_review(&merged, NULL, &root, &review) == SOURCE_REMOVAL_BLOCKED && review.clients);
-    SourceRemovalImage image; source_removal_image_init(&image, sources.allocator);
-    assert(source_removal_image_build(&image, &merged, NULL, NULL) == SOURCE_REMOVAL_IMAGE_OK);
+    RemovalPlanFixture fixture; assert(removal_plan_fixture_build(&fixture, &merged));
+    SourceOperationPlan *image = &fixture.plan;
     FILE *request = fopen("generated/final-merged.json", "wb"); assert(request);
-    assert(delivery_source_snapshot_write(request, &image.capture.view) && fclose(request) == 0);
+    assert(delivery_source_snapshot_write(request, &image->capture.view) && fclose(request) == 0);
     SourceCompilerClient final; source_compiler_client_init(&final, sources.allocator);
-    assert(source_compiler_client_run(&final, "../../../../../../ama", "generated/final-merged.json", &image.capture.view, NULL) == SOURCE_COMPILER_OK);
-    SourceSitesIssue issue;
-    assert(source_removal_image_prove(&image, &final, &issue) == SOURCE_REMOVAL_PROOF_OK);
-    source_compiler_client_destroy(&final); source_removal_image_destroy(&image);
+    assert(source_compiler_client_run(&final, "../../../../../../ama", "generated/final-merged.json", &image->capture.view, NULL) == SOURCE_COMPILER_OK);
+    SourceCopyProofIssue issue;
+    assert(source_operation_plan_prove(image, &final, &issue) == SOURCE_COPY_PROOF_OK);
+    source_compiler_client_destroy(&final); removal_plan_fixture_destroy(&fixture);
     source_removal_selection_destroy(&merged); source_removal_selection_destroy(&second);
     source_tree_selection_destroy(&tree); end_removal(MATERIAL_NONE);
 }

@@ -12,7 +12,7 @@ LOCAL_SOURCES := main.c $(call source_files,$(ROOT)/tools/project/source/transac
     $(call source_files,$(ROOT)/tools/project/source/environment) \
     $(call source_files,$(ROOT)/tools/project/source/observation) \
     $(call source_files,$(ROOT)/tools/project/source/edits) \
-    $(call source_files,$(ROOT)/tools/project/source/operands) $(call source_files,$(ROOT)/tools/project/source/mapping) $(call source_files,$(ROOT)/tools/project/source/copy) \
+    $(call source_files,$(ROOT)/tools/project/source/operands) $(call source_files,$(ROOT)/tools/project/source/mapping) $(call source_files,$(ROOT)/tools/project/source/copy) $(call source_files,$(ROOT)/tools/project/source/operation) \
     $(call source_files,$(ROOT)/tools/project/source/expansion) \
     $(call source_files,$(ROOT)/tools/project/source/inputs) \
     $(call source_files,$(ROOT)/tools/project/source/capture) \

@@ -75,7 +75,7 @@ static void domain_prove(DomainFixture *fixture) {
     /* This independent reference image has one empty package.ini. An expected
      * scope proves its exact location/configuration, not inferred permissions. */
     assert(expected_environment.first && !expected_environment.first->next);
-    SourceCopyConfigurationExpectation expectation = {.environment = &expected_environment, .scope = expected_environment.first};
+    SourceOperationConfigurationExpectation expectation = {.environment = &expected_environment, .scope = expected_environment.first};
     SourceTreeSelection replaced_tree; source_tree_selection_init(&replaced_tree, sources.allocator);
     SourceRemovalSelection removed; source_removal_selection_init(&removed, sources.allocator);
     if (replacements) {
@@ -83,24 +83,24 @@ static void domain_prove(DomainFixture *fixture) {
         assert(source_removal_selection_build(&removed, &replaced_tree, &fixture->analysis, NULL) == SOURCE_REMOVAL_SELECTION_OK);
         assert(removed.path_count == 1 && removed.identity_count == 0);
     }
-    SourceCopyPlanInputs inputs = {.final_roots = &fixture->final_root, .final_root_count = 1,
+    SourceOperationPlanInputs inputs = {.original = &fixture->analysis, .final_roots = &fixture->final_root, .final_root_count = 1,
         .copy = &copied, .observed = &fixture->observed, .mains = &fixture->map, .files = &files,
         .texts = fixture->prepared, .contexts = &contexts,
         .changes = replacements ? &replacement : NULL, .change_count = replacements,
         .removal = replacements ? &removed : NULL, .configurations = &expectation, .configuration_count = 1};
-    SourceCopyPlan plan; source_copy_plan_init(&plan, sources.allocator);
-    assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_OK);
+    SourceOperationPlan plan; source_operation_plan_init(&plan, sources.allocator);
+    assert(source_operation_plan_build(&plan, &inputs) == SOURCE_OPERATION_PLAN_OK);
     assert(plan.image->roots == &fixture->final_root && plan.image->root_count == 1);
     assert(delivery_source_response_matches(&fixture->after.response, &plan.capture.view));
     assert(plan.mutations.count == 1 && !strcmp(plan.mutations.roots[0].path, fixture->destination));
     SourceCopyProofIssue issue;
-    assert(source_copy_plan_prove(&plan, &fixture->after, &issue) == SOURCE_COPY_PROOF_OK);
+    assert(source_operation_plan_prove(&plan, &fixture->after, &issue) == SOURCE_COPY_PROOF_OK);
     domain_refuse_lost_original(fixture, &files, &contexts);
-    source_copy_plan_destroy(&plan);
+    source_operation_plan_destroy(&plan);
     inputs.final_roots = NULL;
-    source_copy_plan_init(&plan, sources.allocator);
-    assert(source_copy_plan_build(&plan, &inputs) == SOURCE_COPY_PLAN_INVALID && !plan.prepared);
-    source_copy_plan_destroy(&plan);
+    source_operation_plan_init(&plan, sources.allocator);
+    assert(source_operation_plan_build(&plan, &inputs) == SOURCE_OPERATION_PLAN_INVALID && !plan.prepared);
+    source_operation_plan_destroy(&plan);
     source_removal_selection_destroy(&removed); source_tree_selection_destroy(&replaced_tree);
     source_package_environment_destroy(&expected_environment);
     source_copy_context_omissions_destroy(&contexts); source_file_map_destroy(&files);

@@ -3,11 +3,13 @@
  * [TOOL-04](../../../../../spec/implementation/tools-and-conformance.md#tool-04)
  * composes distinct evidence without replacing original-cut checks with final typing.
  */
-#ifndef AMA_SOURCE_COPY_PLAN_INTERNAL_H
-#define AMA_SOURCE_COPY_PLAN_INTERNAL_H
+#ifndef AMA_SOURCE_OPERATION_PLAN_INTERNAL_H
+#define AMA_SOURCE_OPERATION_PLAN_INTERNAL_H
 #include "plan.h"
+/** Admit original-input equality and disjoint copy/deletion provenance/modes. */
+SourceOperationPlanStatus source_operation_plan_admit(const SourceOperationPlanInputs *);
 /** Check exact original physical removal material and combined consumers. */
-SourceCopyPlanStatus source_copy_plan_removal(SourceCopyPlan *);
+SourceOperationPlanStatus source_operation_plan_removal(SourceOperationPlan *);
 /** Account for every independently rebuilt actual final package exactly once. */
-SourceCopyPlanStatus source_copy_plan_configurations(SourceCopyPlan *);
+SourceOperationPlanStatus source_operation_plan_configurations(SourceOperationPlan *);
 #endif
