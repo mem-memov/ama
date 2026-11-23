@@ -8,6 +8,12 @@ specification. Only [spec/](spec/README.md) defines the product contract.
 
 ## Latest implementation clarification
 
+[AMB-026](#amb-026) is **Open** for T224: copying selected modules into a
+completely absent destination version needs an explicit rule for creating its
+mandatory package.ini/src/tests environment. Existing-destination and explicitly
+copied whole-version rules do not specify that initialization. No empty baseline,
+source-configuration import or default refusal policy is inferred.
+
 [AMB-025](#amb-025) is **Resolved** for T224: a shared source/destination
 package.ini follows destination rules. Exact preservation of its original selected
 set and only concrete `--extend-package` additions are authorized; other bytes,
@@ -1859,3 +1865,73 @@ Each entry must contain:
   concrete permission additions may extend it. Other bytes, original reference
   laws and unrelated source configurations remain protected. T224 resumes;
   this decision does not establish public-operation implementation acceptance.
+
+
+<a id="amb-026"></a>
+
+## AMB-026 — Initialize a completely new destination version for a module copy
+
+- **Status:** Open.
+- **Current task:** [T224](TODO.md#t224), complete operation/configuration-plan
+  orchestration after accepted mapped material, image assembly and freshness.
+- **Authority:** [TOOL-01](spec/implementation/tools-and-conformance.md#tool-01)
+  accepts exact destination paths and requires a defined ordinary destination
+  version for cross-package dependency modes, but does not say whether that
+  version must already exist or may be initialized by copying selected modules.
+  [PKG-01](spec/project/packages.md#pkg-01) requires package.ini, src/ and tests/
+  for each available version. [PKG-03](spec/project/packages.md#pkg-03) permits an
+  empty configuration. [PKG-07](spec/project/packages.md#pkg-07) and
+  [TOOL-02](spec/implementation/tools-and-conformance.md#tool-02) distinguish an
+  existing destination's preserved environment from a configuration explicitly
+  carried by a selected whole-version tree. They prohibit importing the origin's
+  alias/repository table into an existing destination. Neither case supplies an
+  initial environment when only a module is selected and its destination version
+  is entirely absent.
+- **Minimal example:** the configured ordinary root contains:
+
+  ```text
+  packages/acme/demo/v1.0.0/package.ini
+  packages/acme/demo/v1.0.0/src/a
+  packages/acme/demo/v1.0.0/tests/a/check
+  ```
+
+  package.ini is empty; a and check are concrete `@!` modules without dependencies.
+  There is no v2.0.0 directory. Request:
+
+  ```sh
+  ama-project copy packages/acme/demo/v1.0.0/src/a packages/acme/demo/v2.0.0/src/a --copy-dependencies --preview
+  ```
+
+  Mapping the selected module/test yields src/a and tests/a/check in v2.0.0,
+  but no selected input provides v2.0.0/package.ini. Successful final discovery
+  requires that file. Copying the whole v1.0.0 directory would carry it explicitly
+  and is a separate, already specified case.
+- **Precise question:** may the source operation initialize an entirely absent
+  destination version with a new empty package.ini and required src/tests
+  directories, or must selected-module copying require an already prepared
+  destination version (or selection of an entire version tree)? This decides
+  success/refusal, created bytes and the initial permission/alias/repository scope.
+- **Options and consequences:**
+  1. For a completely new destination version, create package.ini with zero bytes
+     and the required directories as explicit reported/staged operation changes.
+     Its permission baseline and alias/repository tables are empty. Only actual
+     concrete --extend-package additions may extend that baseline; dependency
+     cloning does not import the source configuration. Keep all final checks,
+     safe replacement/removal, freshness and transaction requirements. Existing
+     malformed/incomplete versions are not silently repaired. A selected whole
+     version still carries its own configuration by existing rules. The example
+     succeeds without a separate manual initialization step.
+  2. Require an existing valid destination environment for selected-module
+     copying. Refuse the example with instructions to prepare the new version
+     or select a whole-version tree. No empty environment is fabricated. This
+     keeps the currently specified two configuration origins exhaustive but
+     requires manual preparation for creating a version from selected modules.
+- **Investigation/evidence boundary:** source_copy_configuration_prepare requires
+  an actual original package scope: creating a synthetic empty original scope
+  would add the missing policy. Prior immutable-image/compiler tests explicitly
+  supply their destination configuration as a fixture input; their successful
+  final checks do not authorize a public command to create that file. No new
+  initialization/default refusal policy or command workaround is implemented.
+  Stop T224 here; no later TODO task is started.
+- **Decision/source:** awaiting explicit user clarification. No specification
+  change for destination-version initialization has been authorized.

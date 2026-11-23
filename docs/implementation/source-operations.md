@@ -3587,3 +3587,32 @@ sets with the independently rebuilt final environments and join original safety,
 context and C/P/site proofs under one operation plan. Public command handling,
 exclusive access, durable publication/rollback/recovery and final task acceptance
 remain required. Later TODO tasks are not started.
+
+
+### AMB-026: destination-version initialization blocks complete operation planning
+
+On resuming T224, reviewed the accepted image/freshness checkpoint and traced
+original/final package-scope ownership into the planned complete operation.
+An entirely absent destination version has no original scope for the exact
+configuration preparation contract. Selecting one module does not select its
+package.ini, whereas a selected whole-version tree explicitly carries its file.
+PKG-01 requires a final configuration and PKG-03 permits an empty file, but no
+rule says a module copy may create that empty environment. TOOL-01's "defined"
+destination version does not resolve existing versus newly initialized state.
+
+Record the minimal dependency-free v1/src/a -> absent v2/src/a case in AMB-026.
+Ask whether the operation may create an explicitly reported empty package.ini and
+required directories for a wholly new version, or must require an already valid
+version/full-version selection. Preserve rejection of existing malformed versions
+and all original/final graph, permission, scope and transaction rules. Do not
+infer an empty original scope, import origin configuration, or select a default
+refusal as a workaround. Historical compiler/image fixtures deliberately supply
+an empty destination configuration; they prove final validity of supplied inputs,
+not public initialization authority.
+
+Only registry/task/checkpoint documentation changed. Reviewed canonical TOOL-01/02
+and PKG-01/03/07 plus actual configuration/environment contracts; no compiler or
+runtime tests are claimed for this documentation-only blocker. Check Markdown
+links/anchors and diff consistency, then await the user's explicit decision and
+scoped specification authorization. T224 remains unfinished. No active jobs,
+source-code/specification changes or later task work were started in this turn.

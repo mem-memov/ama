@@ -102,7 +102,11 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 <a id="t224"></a>
 
 - [ ] **T224 — Implement resolved source copy, safe deletion and movement.**
-  Status: active after [AMB-025](AMBIGUITIES.md#amb-025): shared source/destination
+  Status: awaiting [AMB-026](AMBIGUITIES.md#amb-026): whether selected-module
+  copying may initialize an entirely absent destination version with an empty
+  package.ini/src/tests environment, or requires a prepared destination. No
+  synthetic original scope or initialization/refusal fallback is chosen.
+  [AMB-025](AMBIGUITIES.md#amb-025) is resolved: shared source/destination
   package.ini follows destination rules, preserving its exact original selected
   set plus only authorized --extend-package additions. Other bytes and original
   reference laws remain protected. Composed configuration preparation now passes
