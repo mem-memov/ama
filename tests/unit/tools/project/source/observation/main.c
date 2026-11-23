@@ -10,7 +10,7 @@ static void it_replays_original_catalog_observations_without_reading_ignored_bod
     for (unsigned standard = 0; standard < 2; standard++) {
         prepare_scope(standard != 0, standard != 0);
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK && observed.valid && observed.sealed);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK && observed.valid && observed.sealed);
         const SourceCatalogImageEntry *ignored = observed_entry(&observed, "/dependencies/vendor/pkg/v1.0.0");
         assert(ignored && !ignored->metadata_captured && !ignored->content && !ignored->children_complete);
         assert(!observed_entry(&observed, "/dependencies/vendor/pkg/v1.0.0/src/ignored"));
@@ -23,7 +23,7 @@ static void it_replays_original_catalog_observations_without_reading_ignored_bod
         }
         assert(fixture_io_end() == 0); compare_catalog(&capture.catalog, &replay);
         size_t before = allocation_count;
-        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_INVALID && observed.valid);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_INVALID && observed.valid);
         assert(allocation_count == before);
         const SourceText *text = NULL; struct stat metadata;
         fixture_io_begin(0);
@@ -44,7 +44,7 @@ static void it_captures_every_original_opaque_companion_before_sealing_the_image
     file("generated/project/packages/vendor/pkg/v1.0.0/src/parent.unknown suffix", "opaque extra bytes\n");
     selection_capture_scope(false, false);
     SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
     const SourceCatalogImageEntry *body = observed_entry(&observed, "/src/parent.c");
     const SourceCatalogImageEntry *extra = observed_entry(&observed, "/src/parent.unknown suffix");
     assert(body && body->metadata_captured && body->content && source_length(body->content) == sizeof(bytes));
@@ -70,7 +70,7 @@ static void it_refuses_changed_original_sources_versions_aliases_and_companion_m
         const ModuleSource *original = NULL;
         assert(module_catalog_find(&capture.catalog, "/vendor/pkg/v1.0.0/src/parent/child", &original) == MODULE_OK);
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_CHANGED && !observed.valid && !observed.image.valid);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_CHANGED && !observed.valid && !observed.image.valid);
         assert(observed.failed_path && source_length(original->text) == 3 && !memcmp(source_bytes(original->text), "@!\n", 3));
         source_observed_image_destroy(&observed); finish();
     }
@@ -82,7 +82,7 @@ static void it_retires_every_original_observation_allocation_failure(void) {
     for (size_t failure = 0; !failure || failure <= allocations; failure++) {
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
         size_t before = allocation_count; if (failure) { failure_at = before + failure; }
-        SourceObservationStatus status = source_observed_image_build(&observed, &capture, NULL, 0);
+        SourceObservationStatus status = source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0);
         if (!failure) { assert(status == SOURCE_OBSERVATION_OK); allocations = allocation_count - before; assert(allocations); }
         else { assert(status == SOURCE_OBSERVATION_MEMORY && !observed.valid && !observed.image.valid); }
         failure_at = 0; source_observed_image_destroy(&observed); assert(live_allocations == baseline);
@@ -96,7 +96,7 @@ static void it_retires_every_original_observation_physical_io_failure(void) {
     for (size_t failure = 0; !failure || failure <= calls; failure++) {
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
         fixture_io_begin(failure);
-        SourceObservationStatus status = source_observed_image_build(&observed, &capture, NULL, 0);
+        SourceObservationStatus status = source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0);
         size_t measured = fixture_io_end();
         if (!failure) { assert(status == SOURCE_OBSERVATION_OK); calls = measured; assert(calls); }
         else { assert(status != SOURCE_OBSERVATION_OK && !observed.valid && !observed.image.valid); }
@@ -109,15 +109,15 @@ static void it_retires_every_original_observation_physical_io_failure(void) {
 static void it_checks_observation_original_interfaces_and_accepts_an_empty_domain(void) {
     setup_test(); SourceRootCapture empty; source_root_capture_init(&empty, sources.allocator);
     SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(NULL, &empty, NULL, 0) == SOURCE_OBSERVATION_INVALID);
-    assert(source_observed_image_build(&observed, &empty, NULL, 0) == SOURCE_OBSERVATION_INVALID && !observed.valid);
+    assert(source_observed_image_build(NULL, &empty, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_INVALID);
+    assert(source_observed_image_build(&observed, &empty, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_INVALID && !observed.valid);
     source_observed_image_destroy(&observed);
     assert(source_root_capture_build(&empty, NULL, 0) == SOURCE_CAPTURE_OK);
     source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &empty, NULL, 0) == SOURCE_OBSERVATION_OK && observed.valid && !observed.image.count);
+    assert(source_observed_image_build(&observed, &empty, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK && observed.valid && !observed.image.count);
     source_observed_image_destroy(&observed);
     source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &empty, NULL, 1) == SOURCE_OBSERVATION_INVALID && !observed.valid);
+    assert(source_observed_image_build(&observed, &empty, (SourceImageBounds){0}, NULL, 1) == SOURCE_OBSERVATION_INVALID && !observed.valid);
     source_observed_image_destroy(&observed); source_root_capture_destroy(&empty); destroy_test();
 }
 /** Exercise original replay, opaque input, contradiction and independent fault domains. */

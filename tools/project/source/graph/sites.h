@@ -28,7 +28,8 @@ typedef struct {
     const SourceGraphPreparedText *prepared;
     const DeliverySourceDependency *original_edge, *final_edge;
 } SourceSitesIssue;
-/** First check complete binding projection, then require unchanged path/offset
+/** First check complete binding projection with independent physical-removal
+ * and selected-registry retirement facts, then require unchanged path/offset
  * sites for surviving originals and exact edit-projected path/offset sites for
  * copies. Match immutable export source handles exactly; compare final projected
  * paths/offsets rather than source pointers because the admitted final response
@@ -43,5 +44,5 @@ typedef struct {
 SourceSitesStatus source_graph_sites(const DeliverySourceDefinition *original,
     const DeliverySourceDefinition *final, const SourceCloneMap *,
     const char *const *removed, size_t removed_count,
-    const SourceGraphPreparedText *, SourceSitesIssue *);
+    SourceRegistryRetirement, const SourceGraphPreparedText *, SourceSitesIssue *);
 #endif

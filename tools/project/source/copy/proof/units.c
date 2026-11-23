@@ -35,7 +35,8 @@ static bool mapped_file(const SourceFileMap *files, const char *path) {
     return false;
 }
 SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *map, const SourceFileMap *files,
-    const SourceImageCapture *final, const char *const *removed, size_t count, SourceCopyProofIssue *issue) {
+    const SourceImageCapture *final, const char *const *removed, size_t count,
+    SourceRegistryRetirement retired, SourceCopyProofIssue *issue) {
     for (const SourceCloneMapping *row = map->first; row; row = row->next) {
         issue->unit = find(final->units, row->identity); issue->path = row->path;
         if (!issue->unit || strcmp(source_path(issue->unit->source->text), row->path)) { return SOURCE_COPY_PROOF_PLACEMENT; }
@@ -46,12 +47,17 @@ SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *map, const S
     }
     for (const SourceCapturedUnit *old = map->capture->units; old; old = old->next) {
         if (removed_name(old->source->logical_path, removed, count)) { continue; }
+        if (removed_name(old->source->logical_path, retired.names, retired.count)) {
+            issue->unit = old; issue->path = source_path(old->source->text);
+            if (!source_copy_proof_preserved_unit(old, final->image)) { return SOURCE_COPY_PROOF_ORIGINAL; }
+            continue;
+        }
         issue->unit = find(final->units, old->source->logical_path); issue->path = source_path(old->source->text);
         if (!issue->unit || !same(old, issue->unit)) { return SOURCE_COPY_PROOF_ORIGINAL; }
     }
     for (const SourceCapturedUnit *now = final->units; now; now = now->next) {
         const char *name = now->source->logical_path;
-        if (!removed_name(name, removed, count) && find(map->capture->units, name)) { continue; }
+        if (!removed_name(name, retired.names, retired.count) && find(map->capture->units, name)) { continue; }
         const SourceCloneMapping *row = map->first;
         while (row && strcmp(row->identity, name)) { row = row->next; }
         if (!row) { issue->unit = now; issue->path = source_path(now->source->text); return SOURCE_COPY_PROOF_PLACEMENT; }

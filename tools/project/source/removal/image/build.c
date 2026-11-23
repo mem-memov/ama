@@ -17,14 +17,12 @@ SourceRemovalImageStatus source_removal_image_build(SourceRemovalImage *image, S
     const SourceObservationRequest *requests = NULL; const SourceImageChange *changes = NULL;
     image->status = source_removal_image_requests(image, &requests);
     if (image->status != SOURCE_REMOVAL_IMAGE_OK) { return image->status; }
-    if (source_observed_image_build(&image->observed, selection->tree->capture,
-        requests, selection->path_count) != SOURCE_OBSERVATION_OK) {
+    if (source_observed_image_build(&image->observed, selection->tree->capture, (SourceImageBounds){0}, requests, selection->path_count) != SOURCE_OBSERVATION_OK) {
         image->failed_path = image->observed.failed_path; return image->status = SOURCE_REMOVAL_IMAGE_OBSERVATION;
     }
     image->status = source_removal_image_changes(image, &changes);
     if (image->status != SOURCE_REMOVAL_IMAGE_OK) { return image->status; }
-    image->projection_status = source_image_project(&image->arena, &image->observed.image, changes,
-        selection->path_count, &image->image, &image->projection_issue);
+    image->projection_status = source_image_project(&image->arena, &image->observed.image, changes, selection->path_count, (&image->observed.image)->roots, (&image->observed.image)->root_count, &image->image, &image->projection_issue);
     if (image->projection_status != SOURCE_PROJECTION_OK) {
         image->failed_path = image->projection_issue.path; return image->status = SOURCE_REMOVAL_IMAGE_PROJECTION;
     }

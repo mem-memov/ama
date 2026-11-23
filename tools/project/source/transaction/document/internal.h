@@ -17,6 +17,8 @@ SourceJsonStatus source_image_document_path(SourceImageReader *, const SourceJso
 SourceJsonStatus source_image_document_array(SourceImageReader *, const SourceJsonValue *, size_t, size_t *);
 /** Decode actual ordered root settings and complete exact physical rows. */
 SourceJsonStatus source_image_document_roots(SourceImageReader *, const SourceJsonValue *, const ModuleRoot **, size_t *);
+/** Decode owned physical boundaries with no namespace or exclusion interpretation. */
+SourceJsonStatus source_image_document_bounds(SourceImageReader *, const SourceJsonValue *, SourceImageBounds *);
 /** Decode filesystem observations without inventing metadata or empty bytes. */
 SourceJsonStatus source_image_document_entries(SourceImageReader *, const SourceJsonValue *, const SourceCatalogImageEntry **, size_t *);
 #endif

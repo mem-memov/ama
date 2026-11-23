@@ -17,13 +17,16 @@ SourceCopyProofStatus source_copy_prove(SourceArena *arena, const SourceAnalysis
     for (size_t i = 0; i < count; i++) { if (!removed[i]) { return SOURCE_COPY_PROOF_INVALID; } }
     if (!delivery_source_response_matches(&original->original.response, &map->capture->view)) { return SOURCE_COPY_PROOF_INVALID; }
     if (!delivery_source_response_matches(&client->response, &final->view)) { return SOURCE_COPY_PROOF_INPUTS; }
+    SourceRegistryRetirement retired;
+    issue->registry_status = source_copy_registry_retirement(arena, map->capture, final, removed, count, &retired);
+    if (issue->registry_status != SOURCE_REGISTRY_OK) { return SOURCE_COPY_PROOF_REGISTRY; }
     if (source_mapping_correspondence(map, files, &issue->correspondence) != SOURCE_CORRESPONDENCE_OK) { return SOURCE_COPY_PROOF_CORRESPONDENCE; }
     SourceCopyMaterial material;
     issue->material_status = source_copy_material_prepare(arena, files, prepared, &material, &issue->material);
     if (issue->material_status != SOURCE_MATERIAL_OK || !source_copy_proof_material(&material, final->image, &issue->path)) { return SOURCE_COPY_PROOF_MATERIAL; }
-    SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, issue);
+    SourceCopyProofStatus units = source_copy_proof_units(map, files, final, removed, count, retired, issue);
     if (units != SOURCE_COPY_PROOF_OK) { return units; }
-    if (source_copy_context_omissions_check(contexts, final, removed, count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
-    if (source_graph_sites(original->original.response.definitions, client->response.definitions, map, removed, count, prepared, &issue->sites) != SOURCE_SITES_OK) { return SOURCE_COPY_PROOF_SITES; }
+    if (source_copy_context_omissions_check(contexts, final, retired.names, retired.count, &issue->context) != SOURCE_COPY_CONTEXT_OK) { return SOURCE_COPY_PROOF_CONTEXT; }
+    if (source_graph_sites(original->original.response.definitions, client->response.definitions, map, removed, count, retired, prepared, &issue->sites) != SOURCE_SITES_OK) { return SOURCE_COPY_PROOF_SITES; }
     *issue = (SourceCopyProofIssue){0}; return SOURCE_COPY_PROOF_OK;
 }

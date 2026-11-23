@@ -44,7 +44,12 @@ typedef struct {
 void source_observed_image_init(SourceObservedImage *, SourceAllocator);
 /** Retire catalog borrowers before captured files and record metadata. */
 void source_observed_image_destroy(SourceObservedImage *);
-/** Build once over the same complete already prepared original domain. Read local
+/** Build once over the same complete already prepared original semantic domain.
+ * bounds may explicitly widen physical observations to stable parents; it neither
+ * augments that semantic domain nor indexes an unrelated directory. Such original
+ * semantic augmentation must already have passed source_root_capture_build.
+ * Borrow explicit boundary paths through destruction, and record the actual
+ * parent chains of semantic roots below them. Read local
  * filesystem inputs only; never execute code, fetch modules or mutate sources.
  * Record complete directory names through the common catalog traversal, preserving
  * unknown ignored entries. Independently compare selected main identities/bytes,
@@ -61,5 +66,5 @@ void source_observed_image_destroy(SourceObservedImage *);
  * prefixes remain owned and never valid; repeated calls preserve previous results.
  */
 SourceObservationStatus source_observed_image_build(SourceObservedImage *, const SourceRootCapture *,
-    const SourceObservationRequest *, size_t);
+    SourceImageBounds, const SourceObservationRequest *, size_t);
 #endif

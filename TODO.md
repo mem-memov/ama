@@ -109,33 +109,18 @@ The earlier conformance matrix must not be refreshed to disguise missing support
 analysis, graph/image/configuration preparation, root-preserving planning,
 freshness/leases, record codecs and private-tree ownership have component and
 composition evidence. Public copy/delete/move, a durable transaction journal and
-complete root-changing operation plans remain unfinished. Reuse the tested
+complete root-changing operation plans remain unfinished.
+[T275](DONE.md#t275) now supplies separate semantic/physical domains and exact
+selected-registry retirement, with real promotion/relocation/compiler evidence. Reuse the tested
 foundations; do not restart them or infer public support from them.
 
 The [current checkpoint and task graph](docs/implementation/source-operations.md#current-plan-after-t274)
 identify the concrete owners, retained evidence and next action. The old step log
 in that note is historical; its earlier "next" statements are not the current
-queue. T275 is the next task for entry review. Each subtask below is a separate
+queue. T276 is the next task for entry review. Each remaining subtask below is a separate
 implementation/test/documentation/commit unit and remains unchecked. T224 keeps
 final acceptance; T236 still waits for it. Follow SRC-06, PKG-04/09, PROJECT-01
 and TOOL-01..04 throughout; no task authorizes a new language rule.
-
-<a id="t275"></a>
-
-- [ ] **T275 — Separate semantic roots, physical changes and observation bounds.**
-  Status: planned; first remaining T224 subtask. Prerequisites: T232, T233, T235,
-  T272 and T273. Reuse the recorded T224 root-preserving foundation. Review the
-  actual catalog/image/lease consumers, then separate original/final selected
-  module registries, the physical mutation/removal set, effective registry
-  retirement, and the stable physical observation/coordination envelope. An
-  observed parent must not acquire module identities or write authority. Feed
-  these distinctions through the existing capture and plan owners rather than
-  introducing another resolver. Accept real augmented-original analysis with
-  initial-name conflict refusal, new/relocated roots and same-identity whole-version
-  promotion whose ignored external files remain intact. Check selection versus
-  actual deletion safety, unchanged-root regressions, exact freshness, allocation
-  failures and real compiler/catalog consumers. Deliver a tested representation
-  consumed immediately by T276; this task does not publish source changes.
 
 <a id="t276"></a>
 

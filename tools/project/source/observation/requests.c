@@ -16,8 +16,8 @@ static const char *prefix(SourceObservedImage *observed, const char *path, size_
 static const char *root_for(SourceObservedImage *observed, const char *path) {
     const char *root = NULL;
     if (!path) { return NULL; }
-    for (size_t i = 0; i < observed->original->root_count; i++) {
-        const char *candidate = observed->original->roots[i].path;
+    for (size_t i = 0; i < source_image_bound_count(&observed->image); i++) {
+        const char *candidate = source_image_bound_path(&observed->image, i);
         if (source_image_below(path, candidate) && (!root || strlen(candidate) > strlen(root))) { root = candidate; }
     }
     if (!root) { return NULL; }

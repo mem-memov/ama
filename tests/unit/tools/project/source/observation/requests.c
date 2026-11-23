@@ -29,7 +29,7 @@ static void it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallb
             {NULL, SOURCE_OBSERVE_CONTENT, false}};
         requests[3] = requests[0];
         if (reverse) { SourceObservationRequest swap = requests[0]; requests[0] = requests[2]; requests[2] = swap; }
-        assert(source_observed_image_build(&observed, &capture, requests, 4) == SOURCE_OBSERVATION_OK);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, requests, 4) == SOURCE_OBSERVATION_OK);
         const SourceCatalogImageEntry *data = observed_entry(&observed, "/raw.assets/deep/data.bin");
         assert(data && data->content && source_length(data->content) == 8 && !memcmp(source_bytes(data->content), "opaque\r\n", 8));
         const SourceCatalogImageEntry *opaque = observed_entry(&observed, "/raw.assets/unrequested.bin");
@@ -47,7 +47,7 @@ static void it_observes_explicit_deep_inputs_and_replays_them_without_disk_fallb
         SourceImageChange addition = {SOURCE_IMAGE_ADD, *data};
         addition.entry.path = request_key(&observed, "packages/vendor/pkg/v1.0.0/src/raw.assets/deep/copied.bin");
         SourceCatalogImage projected = {0}; SourceProjectionIssue projection;
-        assert(source_image_project(&observed.arena, &observed.image, &addition, 1, &projected, &projection) == SOURCE_PROJECTION_OK);
+        assert(source_image_project(&observed.arena, &observed.image, &addition, 1, (&observed.image)->roots, (&observed.image)->root_count, &projected, &projection) == SOURCE_PROJECTION_OK);
         text = NULL; fixture_io_begin(0);
         assert(projected.reader.read(&projected, addition.entry.path, &text) == SOURCE_OK && text == data->content);
         assert(fixture_io_end() == 0);
@@ -66,7 +66,7 @@ static void it_refuses_invalid_or_unavailable_explicit_observation_demands(void)
         SourceObservationRequest request = {path, i == 2 ? SOURCE_OBSERVE_CHILDREN : SOURCE_OBSERVE_CONTENT, i != 0};
         if (i == 7) { request.kind = (SourceObservationKind)99; }
         SourceObservationStatus expected = i < 3 ? SOURCE_OBSERVATION_PHYSICAL : SOURCE_OBSERVATION_INVALID;
-        assert(source_observed_image_build(&observed, &capture, &request, 1) == expected);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, &request, 1) == expected);
         assert(!observed.valid && !observed.image.valid && observed.failed_path);
         source_observed_image_destroy(&observed); finish();
     }
@@ -81,7 +81,7 @@ static void it_retires_every_requested_observation_allocation_and_physical_failu
             SourceObservationRequest request = {request_key(&observed, "packages/vendor/pkg/v1.0.0/src/raw.assets/deep/data.bin"), SOURCE_OBSERVE_CONTENT, false};
             size_t baseline = live_allocations, before = allocation_count;
             if (physical) { fixture_io_begin(failure); } else if (failure) { failure_at = before + failure; }
-            SourceObservationStatus status = source_observed_image_build(&observed, &capture, &request, 1);
+            SourceObservationStatus status = source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, &request, 1);
             size_t measured = physical ? fixture_io_end() : allocation_count - before;
             if (!failure) { assert(status == SOURCE_OBSERVATION_OK); total = measured; assert(total); }
             else { assert(status != SOURCE_OBSERVATION_OK && !observed.valid && !observed.image.valid); }

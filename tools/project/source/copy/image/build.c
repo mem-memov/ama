@@ -45,7 +45,7 @@ SourceCopyImageStatus source_copy_image_prepare(SourceArena *arena, const Source
     if (status != SOURCE_COPY_IMAGE_OK) { return status; }
     SourceCatalogImage *image = source_arena_allocate(arena, sizeof(*image));
     if (!image) { return SOURCE_COPY_IMAGE_MEMORY; }
-    issue->projection_status = source_image_project(arena, original, changes, builder.count, image, &issue->projection);
+    issue->projection_status = source_image_project(arena, original, changes, builder.count, (original)->roots, (original)->root_count, image, &issue->projection);
     if (issue->projection_status != SOURCE_PROJECTION_OK) { return SOURCE_COPY_IMAGE_PROJECTION; }
     *output = image; *issue = (SourceCopyImageIssue){0}; return SOURCE_COPY_IMAGE_OK;
 }

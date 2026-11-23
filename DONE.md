@@ -8527,7 +8527,7 @@ T201. Specification bytes have not changed.
   T224. T277 is an explicit prerequisite of T278 so public integration is tested
   before the journal work expands. No implementation child is marked complete.
 
-  Updated [TODO](TODO.md#t275), the
+  Updated [TODO](TODO.md), the
   [source-operation checkpoint/graph](docs/implementation/source-operations.md#current-plan-after-t274)
   and the [CMake dependency plan](docs/implementation/cmake-launcher-plan.md#dependency-order-and-commit-boundaries)
   together. Preserved the full chronological source-operation record, including
@@ -8581,3 +8581,75 @@ T201. Specification bytes have not changed.
   republished. The task commit contains only planning, workflow and the scoped
   specification clarification. T224 remains unfinished; T275 is next for entry
   review before implementation.
+
+<a id="t275"></a>
+
+- [x] **T275 — Separate semantic roots, physical changes and observation bounds.**
+  Accepted on 2026-11-23 after the recorded current-state entry review. Prerequisites: T232, T233, T235,
+  T272 and T273. Reuse the recorded T224 root-preserving foundation. Review the
+  actual catalog/image/lease consumers, then separate original/final selected
+  module registries, the physical mutation/removal set, effective registry
+  retirement, and the stable physical observation/coordination envelope. An
+  observed parent must not acquire module identities or write authority. Feed
+  these distinctions through the existing capture and plan owners rather than
+  introducing another resolver. Accept real augmented-original analysis with
+  initial-name conflict refusal, new/relocated roots and same-identity whole-version
+  promotion whose ignored external files remain intact. Check selection versus
+  actual deletion safety, unchanged-root regressions, exact freshness, allocation
+  failures and real compiler/catalog consumers. Deliver a tested representation
+  consumed immediately by T276; this task does not publish source changes.
+
+  Result: existing immutable images, observation/projection, copy image ancestor
+  assembly, freshness/leases, mutation forests and image records now keep module
+  roots separate from physical observation boundaries. Physical parents grant
+  observation/exclusion only. Explicit final semantic roots may change while the
+  complete physical image remains unchanged; root retirement alone never erases
+  its tree. `ama.source-image.v2` records both domains with owned byte-exact paths;
+  the superseded private record schema and conflated API signatures are removed.
+  Current root-preserving consumers use the documented exact compact envelope,
+  and projections freeze it before selecting final roots.
+
+  Added a narrow selected-registry retirement owner and an ignored-original unit
+  preservation proof. Selected retirement includes reviewed physical removals and
+  originals no longer selected at their old physical main path. It is distinct
+  from removal authority: binding membership uses retirement, the strict removed-
+  target test uses actual physical removal, and ignored originals outside that
+  removal union retain complete main/dot-companion bytes and membership. This
+  supports same-identity promotion without weakening AMB-022's replacement guard.
+  Contracts, invariants, finite bounds, ownership and failure effects are beside
+  the interfaces and in the [T275 record](docs/implementation/source-operations.md#t275-entry-review-and-execution).
+
+  Acceptance: real original/final compiler captures compose raw selection,
+  concrete associated-test closure, injective maps, production image/ancestor
+  assembly, complete copy proof and exact graph/site laws for whole-version
+  dependencies-to-packages promotion, relocation to an originally empty analyzed
+  root and creation of a previously absent root. Existing external/source files
+  remain intact; only destination material enters the forest. Augmented original
+  same-priority version conflicts refuse before planning. Independently compiling
+  images with lost/changed ignored originals, an extra companion or an incomplete
+  parent listing refuse. Explicit malformed/empty bounds, root-only reselection,
+  codec ownership, unchanged importers, stale opaque bytes and allocation failure
+  prefixes have focused/component and real-parent coverage. All new maintained
+  code/header/test files have Doxygen purpose and named executable evidence;
+  the new header has an independent strict compilation gate.
+
+  Checks: complete strict source-operation parent passes
+  (`/tmp/ama-t275-source-parent-final.exit = 0`); the final expanded strict copy
+  cases pass (`/tmp/ama-t275-copy-interface-final.exit = 0`). Copy and image/codec/
+  forest/mapping ASan+UBSan pass (`/tmp/ama-t275-copy-interface-sanitizers.exit = 0`,
+  `/tmp/ama-t275-boundary-sanitizers.exit = 0`), with non-PIE flags, halt-on-error
+  and the recorded disabled-LSan restriction. Counted teardown checks zero live
+  allocations; no unsupported LSan claim is made. Independent ama-project builds
+  (`/tmp/ama-t275-project-build.exit = 0`). Failed compile/check attempts and their
+  corrections remain in the linked record; no requirement was changed to pass.
+
+  Documentation: 3890 ready inputs, zero debts; Doxygen 1.11.0 accepts 3020
+  maintained file pages, 11573 interfaces, 495 canonical destinations and 9416
+  total pages. The existing selector leaf's missing main-purpose comment was
+  corrected without changing behavior. Accepted generation is recorded in
+  `/tmp/ama-t275-doxygen-final-inputs.exit = 0`; final generation after these
+  archival/queue edits is checked in `/tmp/ama-t275-archived-doxygen.log` before
+  committing, so the delivered manifest describes final maintained inputs.
+  No spec, grammar, compiler/runtime language behavior, network/acquisition or
+  public source-operation command is added by T275. T224 remains unfinished;
+  T276 consumes this representation for complete immutable operation planning.

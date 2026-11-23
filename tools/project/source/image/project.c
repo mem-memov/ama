@@ -33,8 +33,8 @@ static bool parent_complete(const SourceCatalogImage *image, const char *path) {
 static SourceProjectionStatus check(const SourceCatalogImage *image, const SourceImageChange *change) {
     const char *path = change->entry.path;
     if (!path || path[0] != '/' || change->kind < SOURCE_IMAGE_ADD || change->kind > SOURCE_IMAGE_REMOVE) { return SOURCE_PROJECTION_INVALID; }
-    for (size_t i = 0; i < image->root_count; i++) {
-        if (!strcmp(path, image->roots[i].path)) { return SOURCE_PROJECTION_ROOT; }
+    for (size_t i = 0; i < source_image_bound_count(image); i++) {
+        if (!strcmp(path, source_image_bound_path(image, i))) { return SOURCE_PROJECTION_ROOT; }
     }
     const SourceCatalogImageEntry *old = source_image_find(image, path, strlen(path));
     if (change->kind == SOURCE_IMAGE_ADD) {
@@ -50,7 +50,8 @@ static SourceProjectionStatus check(const SourceCatalogImage *image, const Sourc
     return SOURCE_PROJECTION_OK;
 }
 SourceProjectionStatus source_image_project(SourceArena *arena, const SourceCatalogImage *original,
-    const SourceImageChange *changes, size_t count, SourceCatalogImage *output, SourceProjectionIssue *issue) {
+    const SourceImageChange *changes, size_t count, const ModuleRoot *roots, size_t root_count,
+    SourceCatalogImage *output, SourceProjectionIssue *issue) {
     if (!issue) { return SOURCE_PROJECTION_INVALID; }
     *issue = (SourceProjectionIssue){.change = SIZE_MAX};
     if (!arena || !original || !original->valid || !output || output == original || (count && !changes)) { return SOURCE_PROJECTION_INVALID; }
@@ -76,8 +77,16 @@ SourceProjectionStatus source_image_project(SourceArena *arena, const SourceCata
         if (!change || change->kind != SOURCE_IMAGE_REMOVE) { rows[used++] = change ? change->entry : original->entries[i]; }
     }
     for (size_t i = 0; i < count; i++) { if (changes[i].kind == SOURCE_IMAGE_ADD) { rows[used++] = changes[i].entry; } }
+    SourceImageBounds bounds = original->bounds;
+    if (!bounds.count && original->root_count) {
+        if (original->root_count > SIZE_MAX / sizeof(char *)) { return SOURCE_PROJECTION_ALLOCATION; }
+        const char **paths = source_arena_allocate(arena, original->root_count * sizeof(*paths));
+        if (!paths) { return SOURCE_PROJECTION_ALLOCATION; }
+        for (size_t i = 0; i < original->root_count; i++) { paths[i] = original->roots[i].path; }
+        bounds = (SourceImageBounds){paths, original->root_count};
+    }
     SourceImageIssue shape;
-    if (source_catalog_image_prepare(output, rows, used, original->roots, original->root_count, &shape) != SOURCE_IMAGE_OK) {
+    if (source_catalog_image_prepare(output, rows, used, roots, root_count, bounds, &shape) != SOURCE_IMAGE_OK) {
         *issue = (SourceProjectionIssue){SIZE_MAX, shape.path}; return SOURCE_PROJECTION_SHAPE;
     }
     *issue = (SourceProjectionIssue){.change = SIZE_MAX}; return SOURCE_PROJECTION_OK;

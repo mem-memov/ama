@@ -30,8 +30,8 @@ static void begin(void) {
 /** Validate both input images rather than passing fabricated valid flags. */
 static void prepare(size_t count) {
     SourceImageIssue issue;
-    assert(source_catalog_image_prepare(&original, original_rows, 5, &root, 1, &issue) == SOURCE_IMAGE_OK);
-    assert(source_catalog_image_prepare(&final, final_rows, count, &root, 1, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&original, original_rows, 5, &root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&final, final_rows, count, &root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
 }
 /** Retire forest arrays before text/image storage. */
 static void end(void) { source_arena_destroy(&arena); destroy_test(); }
@@ -83,8 +83,13 @@ static void it_refuses_unobserved_mutation_material_and_domain_changes(void) {
         assert(forest.count == sentinel.count && forest.roots == sentinel.roots); end();
     }
     begin(); prepare(5); ModuleRoot foreign_root = root; foreign_root.kind = MODULE_ROOT_STANDARD;
-    SourceImageIssue shape; assert(source_catalog_image_prepare(&final, final_rows, 5, &foreign_root, 1, &shape) == SOURCE_IMAGE_OK);
+    SourceImageIssue shape; assert(source_catalog_image_prepare(&final, final_rows, 5, &foreign_root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     SourceMutationForest forest = {.count = 123}; SourceForestIssue issue;
+    assert(source_mutation_forest(&arena, &original, &final, &forest, &issue) == SOURCE_FOREST_OK && !forest.count);
+    const char *bounds[] = {"/tree", "/tree/from"};
+    assert(source_catalog_image_prepare(&final, final_rows, 5, &foreign_root, 1,
+        (SourceImageBounds){bounds, 2}, &shape) == SOURCE_IMAGE_OK);
+    forest = (SourceMutationForest){.count = 123};
     assert(source_mutation_forest(&arena, &original, &final, &forest, &issue) == SOURCE_FOREST_INVALID && forest.count == 123);
     end();
 }

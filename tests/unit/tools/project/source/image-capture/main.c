@@ -19,7 +19,7 @@ static void it_captures_complete_virtual_image_inputs_and_admits_the_shared_snap
     assert(prepare_catalog(&expected, &oracle) == MODULE_OK);
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; capture_rows(&model, rows);
     SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     SourceImageCapture capture; source_image_capture_init(&capture, sources.allocator);
     fixture_io_begin(0);
     assert(source_image_capture_build(&capture, &image) == SOURCE_IMAGE_CAPTURE_OK && capture.valid);
@@ -55,7 +55,7 @@ static void it_refuses_unavailable_and_nonregular_image_companions_without_disk_
         if (profile == 2) { rows[12].metadata = model.directory; rows[12].content = NULL; rows[12].children_complete = true; }
         if (profile == 3) { rows[5].children_complete = false; }
         SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
         SourceImageCapture capture; source_image_capture_init(&capture, sources.allocator);
         fixture_io_begin(0);
         SourceImageCaptureStatus status = source_image_capture_build(&capture, &image);
@@ -71,7 +71,7 @@ static void it_retires_every_prepared_image_capture_allocation_failure(void) {
     setup_test(); ViewModel model; model_init(&model);
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; capture_rows(&model, rows);
     SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     size_t allocations = 0, baseline = live_allocations;
     for (size_t failure = 0; !failure || failure <= allocations; failure++) {
         SourceImageCapture capture; source_image_capture_init(&capture, sources.allocator);
@@ -95,7 +95,7 @@ static void it_preserves_unknown_binary_companions_and_ignores_other_module_stem
     rows[VIEW_NODE_COUNT + 1].metadata.st_ino = 1000;
     rows[VIEW_NODE_COUNT + 2] = (SourceCatalogImageEntry){.path = "/virtual/packages/vendor/pkg/v1.0.0/src/stateful.c"};
     SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 3, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 3, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     SourceImageCapture capture; source_image_capture_init(&capture, sources.allocator);
     fixture_io_begin(0);
     assert(source_image_capture_build(&capture, &image) == SOURCE_IMAGE_CAPTURE_OK && fixture_io_end() == 0);
@@ -119,7 +119,7 @@ static void it_checks_prepared_capture_interfaces_and_accepts_an_empty_image(voi
     assert(source_image_capture_build(NULL, &image) == SOURCE_IMAGE_CAPTURE_INVALID);
     assert(source_image_capture_build(&capture, &image) == SOURCE_IMAGE_CAPTURE_INVALID && !capture.valid);
     source_image_capture_destroy(&capture); source_image_capture_init(&capture, sources.allocator);
-    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     assert(source_image_capture_build(&capture, &image) == SOURCE_IMAGE_CAPTURE_OK && capture.valid);
     assert(!capture.view.count && !capture.view.entries && !capture.view.versions && !capture.view.companions);
     source_image_capture_destroy(&capture); destroy_test();

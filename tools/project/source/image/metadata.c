@@ -32,9 +32,9 @@ ModuleStatus source_image_root(void *context, ModuleCatalog *catalog, const char
     const SourceCatalogImage *image = context;
     if (!image || !image->valid || !path || !output) { return fail(catalog, MODULE_INVALID_PATH, path); }
     const char *root = NULL;
-    for (size_t i = 0; i < image->root_count; i++) {
-        if (source_image_below(path, image->roots[i].path) &&
-            (!root || strlen(image->roots[i].path) > strlen(root))) { root = image->roots[i].path; }
+    for (size_t i = 0; i < source_image_bound_count(image); i++) {
+        const char *candidate = source_image_bound_path(image, i);
+        if (source_image_below(path, candidate) && (!root || strlen(candidate) > strlen(root))) { root = candidate; }
     }
     if (!root) { return fail(catalog, MODULE_INVALID_PATH, path); }
     struct stat target;

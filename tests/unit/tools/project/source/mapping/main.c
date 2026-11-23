@@ -161,6 +161,7 @@ void run(void) {
     it_checks_binding_laws_without_allocating_and_rejects_invalid_owners();
     it_refuses_retained_targets_removed_by_replacement_even_when_the_final_name_matches();
     it_accepts_identity_preserving_mapped_self_references_after_original_removal();
+    it_preserves_surviving_importers_when_only_selected_provenance_changes();
     it_requires_exact_prepared_site_provenance_after_binding_admission();
     it_prepares_rooted_copied_and_retained_targets_without_rewriting_outside_operand_bytes();
     it_keeps_fixed_dependencies_without_allocation_and_refuses_changed_fixed_identities();

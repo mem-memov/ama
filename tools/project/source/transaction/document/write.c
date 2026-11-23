@@ -43,7 +43,12 @@ static bool entry(ToolJsonWriter *writer, const SourceCatalogImageEntry *row) {
 bool source_image_document_write(FILE *stream, const SourceCatalogImage *image) {
     if (!stream || !image || !image->valid) { return false; }
     ToolJsonWriter writer; tool_json_init(&writer, stream);
-    if (!tool_json_raw(&writer, "{\"format\":\"ama.source-image.v1\",\"roots\":") || !roots(&writer, image) || !tool_json_raw(&writer, ",\"entries\":[")) { return false; }
+    if (!tool_json_raw(&writer, "{\"format\":\"ama.source-image.v2\",\"roots\":") || !roots(&writer, image)
+        || !tool_json_raw(&writer, ",\"bounds\":[")) { return false; }
+    for (size_t i = 0; i < source_image_bound_count(image); i++) {
+        if ((i && !tool_json_raw(&writer, ",")) || !path(&writer, source_image_bound_path(image, i))) { return false; }
+    }
+    if (!tool_json_raw(&writer, "],\"entries\":[")) { return false; }
     for (size_t i = 0; i < image->count; i++) {
         if ((i && !tool_json_raw(&writer, ",")) || !entry(&writer, &image->entries[i])) { return false; }
     }

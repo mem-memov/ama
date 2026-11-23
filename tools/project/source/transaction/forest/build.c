@@ -13,21 +13,10 @@ static bool minimal(const char *path, const char *const *candidates, size_t coun
     }
     return true;
 }
-/** The image universe must remain the same physical observation domain; a root
- * disappearing from a registry alone is not permission to erase its directory. */
-static bool domains(const SourceCatalogImage *a, const SourceCatalogImage *b) {
-    if (a->root_count != b->root_count) { return false; }
-    for (size_t i = 0; i < a->root_count; i++) {
-        const ModuleRoot *left = &a->roots[i], *right = &b->roots[i];
-        if (left->kind != right->kind || strcmp(left->path, right->path) || left->excluded_count != right->excluded_count) { return false; }
-        for (size_t j = 0; j < left->excluded_count; j++) { if (strcmp(left->excluded[j], right->excluded[j])) { return false; } }
-    }
-    return true;
-}
 SourceForestStatus source_mutation_forest(SourceArena *arena, const SourceCatalogImage *before, const SourceCatalogImage *after,
     SourceMutationForest *output, SourceForestIssue *issue) {
     if (!issue) { return SOURCE_FOREST_INVALID; } *issue = (SourceForestIssue){0};
-    if (!arena || !before || !before->valid || !after || !after->valid || !output || !domains(before, after)) { return SOURCE_FOREST_INVALID; }
+    if (!arena || !before || !before->valid || !after || !after->valid || !output || !source_image_same_bounds(before, after)) { return SOURCE_FOREST_INVALID; }
     if (before->count > SIZE_MAX - after->count || before->count + after->count > SIZE_MAX / sizeof(char *)) { return SOURCE_FOREST_LIMIT; }
     size_t capacity = before->count + after->count;
     const char **candidates = capacity ? source_arena_allocate(arena, capacity * sizeof(*candidates)) : NULL;

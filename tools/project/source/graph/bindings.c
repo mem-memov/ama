@@ -47,14 +47,15 @@ static SourceBindingsStatus edges(const SourceCloneMap *map, const char *const *
 }
 SourceBindingsStatus source_graph_bindings(const DeliverySourceDefinition *original,
     const DeliverySourceDefinition *final, const SourceCloneMap *map,
-    const char *const *removed, size_t count, SourceBindingsIssue *issue) {
+    const char *const *removed, size_t count, SourceRegistryRetirement retired, SourceBindingsIssue *issue) {
     if (!issue) { return SOURCE_BINDINGS_INVALID; }
     *issue = (SourceBindingsIssue){0};
-    if (!map || !map->ready || (count && !removed)) { return SOURCE_BINDINGS_INVALID; }
+    if (!map || !map->ready || (count && !removed) || (retired.count && !retired.names)) { return SOURCE_BINDINGS_INVALID; }
     for (size_t index = 0; index < count; index++) { if (!removed[index]) { return SOURCE_BINDINGS_INVALID; } }
+    for (size_t index = 0; index < retired.count; index++) { if (!retired.names[index]) { return SOURCE_BINDINGS_INVALID; } }
     for (const DeliverySourceDefinition *now = final; now; now = now->next) {
         const DeliverySourceDefinition *old = definition(original, now->identity);
-        if (old && removed_name(old->identity, removed, count)) { old = NULL; }
+        if (old && (removed_name(old->identity, removed, count) || removed_name(old->identity, retired.names, retired.count))) { old = NULL; }
         const SourceCloneMapping *copy = mapping(map, now->identity, false);
         *issue = (SourceBindingsIssue){.original = old, .final = now, .clone = copy, .expected = now->identity};
         if (old && copy) { return SOURCE_BINDINGS_COLLISION; }
@@ -65,7 +66,8 @@ SourceBindingsStatus source_graph_bindings(const DeliverySourceDefinition *origi
         if (status != SOURCE_BINDINGS_OK) { return status; }
     }
     for (const DeliverySourceDefinition *old = original; old; old = old->next) {
-        if (!removed_name(old->identity, removed, count) && !definition(final, old->identity)) {
+        if (!removed_name(old->identity, removed, count) && !removed_name(old->identity, retired.names, retired.count)
+            && !definition(final, old->identity)) {
             *issue = (SourceBindingsIssue){.original = old, .expected = old->identity};
             return SOURCE_BINDINGS_MISSING;
         }

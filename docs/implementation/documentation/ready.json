@@ -200196,6 +200196,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_decodes_version_placements_directly_with_explicit_extents_and_no_probe_names",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -201038,6 +201043,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_accepts_identity_preserving_mapped_self_references_after_original_removal",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ],
     "standalone_header_command": [
@@ -201094,6 +201104,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_accepts_identity_preserving_mapped_self_references_after_original_removal",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
   },
@@ -201129,6 +201144,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_accepts_identity_preserving_mapped_self_references_after_original_removal",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -201542,6 +201562,11 @@
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_accepts_identity_preserving_mapped_self_references_after_original_removal",
         "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
+        "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ],
     "standalone_header_command": [
@@ -201582,6 +201607,11 @@
       {
         "source": "tests/unit/tools/project/source/mapping/main.c",
         "case": "it_accepts_identity_preserving_mapped_self_references_after_original_removal",
+        "command": "make -C tests/unit/tools/project/source/mapping"
+      },
+      {
+        "source": "tests/unit/tools/project/source/mapping/main.c",
+        "case": "it_preserves_surviving_importers_when_only_selected_provenance_changes",
         "command": "make -C tests/unit/tools/project/source/mapping"
       }
     ]
@@ -202471,6 +202501,26 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_each_wider_envelope_observation_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -203983,6 +204033,16 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ],
     "standalone_header_command": [
@@ -204090,6 +204150,16 @@
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_replays_original_catalog_observations_without_reading_ignored_bodies_or_using_disk_after_seal",
         "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -204136,6 +204206,16 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -204171,6 +204251,16 @@
       {
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_preserves_single_and_repeated_slash_root_prefixes_through_common_discovery",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
         "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
@@ -204299,6 +204389,11 @@
       {
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
         "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
@@ -204468,6 +204563,11 @@
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
         "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -204657,6 +204757,11 @@
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_checks_observation_original_interfaces_and_accepts_an_empty_domain",
         "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -204852,6 +204957,11 @@
         "source": "tests/unit/tools/project/source/expansion/main.c",
         "case": "it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance",
         "command": "make -C tests/unit/tools/project/source/expansion"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -204908,6 +205018,11 @@
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
         "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -205334,6 +205449,16 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
         "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -205364,6 +205489,16 @@
       {
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
         "command": "make -C tests/unit/tools/project/source/image"
       }
     ],
@@ -205406,6 +205541,11 @@
         "source": "tests/unit/tools/project/source/image/main.c",
         "case": "it_projects_file_directory_replacement_without_inventing_original_membership",
         "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
       }
     ]
   },
@@ -205427,6 +205567,11 @@
         "source": "tests/unit/tools/project/source/observation/main.c",
         "case": "it_retires_every_requested_observation_allocation_and_physical_failure",
         "command": "make -C tests/unit/tools/project/source/observation"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207379,6 +207524,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207411,6 +207561,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -207441,6 +207596,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -207673,6 +207833,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -207698,6 +207863,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
@@ -207725,6 +207895,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -207735,6 +207910,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -207831,6 +208011,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
@@ -207970,6 +208155,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
     "standalone_header_command": [
@@ -208093,6 +208283,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -208123,6 +208318,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -208255,6 +208455,11 @@
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_replacement",
         "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
   },
@@ -208316,6 +208521,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ],
@@ -208408,6 +208618,11 @@
       {
         "source": "tests/unit/tools/project/source/copy/main.c",
         "case": "it_joins_actual_copy_placement_and_projected_version_with_final_compiler_sites",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
         "command": "make -C tests/unit/tools/project/source/copy"
       }
     ]
@@ -208676,6 +208891,11 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ],
     "standalone_header_command": [
@@ -208793,6 +209013,11 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ],
     "standalone_header_command": [
@@ -208859,6 +209084,11 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -208961,6 +209191,11 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   },
@@ -208986,6 +209221,11 @@
       {
         "source": "tests/unit/tools/project/source/image-document/main.c",
         "case": "it_reports_every_image_record_output_failure_and_borrows_stream_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
         "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
@@ -209531,6 +209771,205 @@
         "source": "tests/unit/tools/project/source/private-tree/main.c",
         "case": "it_resumes_only_recorded_partial_private_cleanup_transitions",
         "command": "make -C tests/unit/tools/project/source/private-tree"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/cases.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check promotion, existing/new roots, original conflicts, leased freshness and every wider-observation allocation refusal.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_each_wider_envelope_observation_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/fixture.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Own actual projects, compiler admission and observation owners for physical/semantic domain compositions.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_each_wider_envelope_observation_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/projection.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Prepare exact real-project copied images and main/site provenance under an independent physical envelope.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_each_wider_envelope_observation_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/copy/domains/proof.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Compose raw copy closure and image assembly with complete proof and independently compiling incorrect-image refusals.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_each_wider_envelope_observation_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_rejects_original_conflicts_in_augmented_root_analysis",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tests/unit/tools/project/source/image/domains.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Check separate semantic/physical domains, root-only reselection, exact root material edits and malformed physical bounds.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_separates_module_roots_from_observation_envelopes_without_hidden_io",
+        "command": "make -C tests/unit/tools/project/source/image"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image/main.c",
+        "case": "it_refuses_malformed_or_unobserved_physical_envelopes",
+        "command": "make -C tests/unit/tools/project/source/image"
+      }
+    ]
+  },
+  "tools/project/source/copy/proof/original.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Preserve ignored original unit bytes and complete companion membership after selection retirement.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/registry/retirement.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Derive exact original selected-definition retirement from actual captures and separately supplied removals.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ]
+  },
+  "tools/project/source/copy/registry/retirement.h": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Declare selected-registry retirement independently of physical removal authority.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_proves_real_promotion_and_root_relocation_without_physical_source_removal",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      },
+      {
+        "source": "tests/unit/tools/project/source/copy/main.c",
+        "case": "it_retires_registry_scratch_failures_and_refuses_foreign_removal_names",
+        "command": "make -C tests/unit/tools/project/source/copy"
+      }
+    ],
+    "standalone_header_command": [
+      "cc",
+      "-std=c11",
+      "-D_POSIX_C_SOURCE=200809L",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-I.",
+      "-Isrc",
+      "-x",
+      "c",
+      "-fsyntax-only",
+      "-"
+    ]
+  },
+  "tools/project/source/transaction/document/bounds.c": {
+    "contract": "docs/implementation/source-operations.md",
+    "purpose": "Decode owned physical observation boundaries without treating them as module roots.",
+    "tests": [
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_roundtrips_images_with_independent_physical_boundaries",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_retires_every_image_record_allocation_failure",
+        "command": "make -C tests/unit/tools/project/source/image-document"
+      },
+      {
+        "source": "tests/unit/tools/project/source/image-document/main.c",
+        "case": "it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership",
+        "command": "make -C tests/unit/tools/project/source/image-document"
       }
     ]
   }

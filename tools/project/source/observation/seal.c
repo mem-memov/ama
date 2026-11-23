@@ -14,8 +14,8 @@ SourceObservationStatus source_observation_seal(SourceObservedImage *observed) {
     size_t index = 0;
     for (const SourceObservedEntry *entry = observed->first; entry; entry = entry->next) { entries[index++] = entry->value; }
     SourceImageIssue issue = {0};
-    if (source_catalog_image_prepare(&observed->image, entries, observed->count,
-        observed->original->roots, observed->original->root_count, &issue) != SOURCE_IMAGE_OK) {
+    if (source_catalog_image_prepare(&observed->image, entries, observed->count, observed->original->roots,
+        observed->original->root_count, observed->image.bounds, &issue) != SOURCE_IMAGE_OK) {
         observed->failed_path = issue.path; return observed->status = SOURCE_OBSERVATION_INVALID;
     }
     observed->sealed = observed->valid = true; return SOURCE_OBSERVATION_OK;

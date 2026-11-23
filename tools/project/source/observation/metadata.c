@@ -12,7 +12,9 @@ ModuleStatus source_observation_root(void *context, ModuleCatalog *catalog, cons
         return source_observation_fail(observed, catalog, SOURCE_OBSERVATION_INVALID, MODULE_INVALID_PATH, path);
     }
     bool covered = false;
-    for (size_t i = 0; i < observed->original->root_count; i++) { covered |= source_image_below(path, observed->original->roots[i].path); }
+    for (size_t i = 0; i < source_image_bound_count(&observed->image); i++) {
+        covered |= source_image_below(path, source_image_bound_path(&observed->image, i));
+    }
     if (!covered) { return source_observation_fail(observed, catalog, SOURCE_OBSERVATION_INVALID, MODULE_INVALID_PATH, path); }
     SourceObservedEntry *entry = source_observation_find(observed, path);
     if (entry && entry->value.metadata_captured) {

@@ -15,7 +15,7 @@ static void it_projects_simultaneous_changes_in_every_order_through_common_catal
     setup_test(); ViewModel model; model_init(&model);
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; image_rows(&model, rows);
     SourceCatalogImage original = {0}; SourceImageIssue shape;
-    assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     SourceImageChange edits[] = {
         {SOURCE_IMAGE_REMOVE, {.path = nodes[10].path}},
         {SOURCE_IMAGE_ADD, rows[10]}, {SOURCE_IMAGE_UPDATE, rows[8]},
@@ -33,7 +33,7 @@ static void it_projects_simultaneous_changes_in_every_order_through_common_catal
         if (!unique) { continue; }
         SourceArena arena; source_arena_init(&arena, sources.allocator);
         SourceCatalogImage final = {0}; SourceProjectionIssue issue;
-        assert(source_image_project(&arena, &original, ordered, 5, &final, &issue) == SOURCE_PROJECTION_OK);
+        assert(source_image_project(&arena, &original, ordered, 5, (&original)->roots, (&original)->root_count, &final, &issue) == SOURCE_PROJECTION_OK);
         assert(final.count == original.count + 2 && !row(&final, nodes[10].path));
         assert(row(&final, edits[1].entry.path) && row(&final, edits[4].entry.path));
         assert(row(&final, nodes[8].path)->content == model.texts[21]);
@@ -78,9 +78,9 @@ static void it_refuses_unproved_or_conflicting_projection_without_publishing(voi
         if (profile == 12) { edits[0].entry.path = NULL; }
         if (profile == 13) { edits[0].entry.path = "/virtual/packages/vendor/pkg/v1.0.0/src/new/"; edits[0].kind = SOURCE_IMAGE_ADD; }
         SourceCatalogImage original = {0}, output = {.count = 123}; SourceImageIssue shape; SourceProjectionIssue issue;
-        assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &shape) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
         SourceArena arena; source_arena_init(&arena, sources.allocator);
-        assert(source_image_project(&arena, &original, edits, count, &output, &issue) == expected[profile]);
+        assert(source_image_project(&arena, &original, edits, count, (&original)->roots, (&original)->root_count, &output, &issue) == expected[profile]);
         assert(!output.valid && output.count == 123);
         source_arena_destroy(&arena);
     }
@@ -92,31 +92,31 @@ static void it_checks_projection_ownership_allocation_and_empty_interfaces(void)
     setup_test(); ViewModel model; model_init(&model);
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; image_rows(&model, rows);
     SourceCatalogImage original = {0}; SourceImageIssue shape; SourceProjectionIssue issue;
-    assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&original, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     SourceArena arena; source_arena_init(&arena, sources.allocator);
     SourceCatalogImage output = {.count = 123};
     failure_at = allocation_count + 1;
-    assert(source_image_project(&arena, &original, NULL, 0, &output, &issue) == SOURCE_PROJECTION_ALLOCATION);
+    assert(source_image_project(&arena, &original, NULL, 0, (&original)->roots, (&original)->root_count, &output, &issue) == SOURCE_PROJECTION_ALLOCATION);
     assert(output.count == 123 && !output.valid); failure_at = 0;
-    assert(source_image_project(&arena, &original, NULL, 0, &output, &issue) == SOURCE_PROJECTION_OK);
+    assert(source_image_project(&arena, &original, NULL, 0, (&original)->roots, (&original)->root_count, &output, &issue) == SOURCE_PROJECTION_OK);
     assert(output.entries != original.entries && output.count == original.count);
     for (size_t i = 0; i < original.count; i++) {
         assert(output.entries[i].path == original.entries[i].path && output.entries[i].content == original.entries[i].content);
     }
     SourceImageChange cuts[] = {{SOURCE_IMAGE_REMOVE, rows[9]}, {SOURCE_IMAGE_REMOVE, rows[10]}};
     SourceCatalogImage removed = {0};
-    assert(source_image_project(&arena, &original, cuts, 2, &removed, &issue) == SOURCE_PROJECTION_OK);
+    assert(source_image_project(&arena, &original, cuts, 2, (&original)->roots, (&original)->root_count, &removed, &issue) == SOURCE_PROJECTION_OK);
     assert(removed.count == original.count - 2 && !row(&removed, nodes[9].path) && !row(&removed, nodes[10].path));
-    assert(source_image_project(NULL, &original, NULL, 0, &output, &issue) == SOURCE_PROJECTION_INVALID);
-    assert(source_image_project(&arena, NULL, NULL, 0, &output, &issue) == SOURCE_PROJECTION_INVALID);
-    assert(source_image_project(&arena, &original, NULL, 0, NULL, &issue) == SOURCE_PROJECTION_INVALID);
-    assert(source_image_project(&arena, &original, NULL, 0, &original, &issue) == SOURCE_PROJECTION_INVALID);
-    assert(source_image_project(&arena, &original, NULL, 1, &output, &issue) == SOURCE_PROJECTION_INVALID);
-    assert(source_image_project(&arena, &original, NULL, 0, &output, NULL) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(NULL, &original, NULL, 0, (&original)->roots, (&original)->root_count, &output, &issue) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(&arena, NULL, NULL, 0, NULL, 0, &output, &issue) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(&arena, &original, NULL, 0, (&original)->roots, (&original)->root_count, NULL, &issue) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(&arena, &original, NULL, 0, (&original)->roots, (&original)->root_count, &original, &issue) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(&arena, &original, NULL, 1, (&original)->roots, (&original)->root_count, &output, &issue) == SOURCE_PROJECTION_INVALID);
+    assert(source_image_project(&arena, &original, NULL, 0, (&original)->roots, (&original)->root_count, &output, NULL) == SOURCE_PROJECTION_INVALID);
     SourceCatalogImage empty = {0}, result = {0};
-    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     size_t before = allocation_count;
-    assert(source_image_project(&arena, &empty, NULL, 0, &result, &issue) == SOURCE_PROJECTION_OK);
+    assert(source_image_project(&arena, &empty, NULL, 0, (&empty)->roots, (&empty)->root_count, &result, &issue) == SOURCE_PROJECTION_OK);
     assert(result.valid && result.count == 0 && allocation_count == before);
     source_arena_destroy(&arena); destroy_test();
 }
@@ -132,20 +132,20 @@ static void it_projects_file_directory_replacement_without_inventing_original_me
                 .metadata_captured = true, .children_complete = reverse != 0, .content = reverse ? NULL : model.texts[8]},
             {.path = "/v/data/child", .metadata = model.regular, .metadata_captured = true, .content = model.texts[8]}};
         SourceCatalogImage original = {0}, final = {0}; SourceImageIssue shape; SourceProjectionIssue issue;
-        assert(source_catalog_image_prepare(&original, rows, reverse ? 3 : 2, &root, 1, &shape) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&original, rows, reverse ? 3 : 2, &root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
         SourceImageChange edits[] = {
             {SOURCE_IMAGE_UPDATE, {.path = "/v/data", .metadata = reverse ? model.regular : model.directory,
                 .metadata_captured = true, .children_complete = reverse == 0, .content = reverse ? model.texts[8] : NULL}},
             {reverse ? SOURCE_IMAGE_REMOVE : SOURCE_IMAGE_ADD, rows[2]}};
         SourceArena arena; source_arena_init(&arena, sources.allocator);
-        assert(source_image_project(&arena, &original, edits, 2, &final, &issue) == SOURCE_PROJECTION_OK);
+        assert(source_image_project(&arena, &original, edits, 2, (&original)->roots, (&original)->root_count, &final, &issue) == SOURCE_PROJECTION_OK);
         assert(final.count == (reverse ? 2u : 3u));
         assert((row(&final, "/v/data/child") != NULL) == (reverse == 0));
-        assert(source_image_project(&arena, &original, edits + 1, 1, &final, &issue) ==
+        assert(source_image_project(&arena, &original, edits + 1, 1, (&original)->roots, (&original)->root_count, &final, &issue) ==
             (reverse ? SOURCE_PROJECTION_OK : SOURCE_PROJECTION_SHAPE));
         if (!reverse) {
             SourceImageChange missing = {SOURCE_IMAGE_REMOVE, {.path = "/v/data/missing"}};
-            assert(source_image_project(&arena, &original, &missing, 1, &final, &issue) == SOURCE_PROJECTION_MISSING);
+            assert(source_image_project(&arena, &original, &missing, 1, (&original)->roots, (&original)->root_count, &final, &issue) == SOURCE_PROJECTION_MISSING);
         }
         source_arena_destroy(&arena);
     }

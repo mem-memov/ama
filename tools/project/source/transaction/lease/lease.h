@@ -36,9 +36,11 @@ void source_transaction_lease_init(SourceTransactionLease *, SourceAllocator);
  * Return the first close errno (zero normally); do not blindly retry close.
  * No callback can prevent cleanup; source paths and bytes remain untouched. */
 int source_transaction_lease_destroy(SourceTransactionLease *);
-/** Acquire once over a valid original image's exact configured directory roots.
+/** Acquire once over a valid original image's exact physical observation boundaries,
+ * independently of semantic module roots. A stable parent of a changed root
+ * receives exclusion without becoming a catalog identity root.
  * Walk absolute normalized components with no-follow descriptor-relative opens;
- * retain every ancestor and verify original root device/inode/mode. Union actual
+ * retain every ancestor and verify original boundary device/inode/mode. Union actual
  * directory inode keys, request shared ancestors and exclusive roots, and use a
  * deterministic device/inode order with nonblocking locks. Thus disjoint roots
  * can coexist while overlapping roots and ancestor namespace operations conflict.

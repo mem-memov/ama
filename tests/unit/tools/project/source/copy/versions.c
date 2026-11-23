@@ -13,7 +13,7 @@ static const SourceCatalogImageEntry *version_mode(const SourceObservedImage *ob
  * classes remain distinct and final common discovery gives empty strict scopes. */
 static void it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes(void) {
     prepare(); SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
     SourceArena arena; source_arena_init(&arena, sources.allocator); SourceManager texts; source_manager_init(&texts, sources.allocator);
     SourceFileMap files; source_file_map_init(&files, sources.allocator); assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
     SourceVersionInitialization versions[2]; SourceVersionInitializationIssue issue;
@@ -55,7 +55,7 @@ static void it_initializes_required_empty_version_areas_and_preserves_reserved_i
  * scopes; every allocation failure preserves output and releases both owners. */
 static void it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures(void) {
     prepare(); SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-    assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
     SourceArena arena; source_arena_init(&arena, sources.allocator); SourceManager texts; source_manager_init(&texts, sources.allocator);
     SourceFileMap files; source_file_map_init(&files, sources.allocator); assert(source_file_map_seal(&files) == SOURCE_FILE_MAP_OK);
     const SourceCatalogImageEntry *mode = version_mode(&observed);

@@ -51,7 +51,7 @@ static void it_retires_initialized_scope_allocations_and_refuses_existing_or_for
     SourceRootCapture current; source_root_capture_init(&current, sources.allocator);
     ModuleRoot roots[] = {{.path = "generated/project", .kind = MODULE_ROOT_PROJECT}, {.path = "generated/standard", .kind = MODULE_ROOT_STANDARD}};
     assert(source_root_capture_build(&current, roots, 2) == SOURCE_CAPTURE_OK);
-    assert(source_observed_image_build(&later, &current, NULL, 0) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&later, &current, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
     assert(source_copy_configuration_initialize(&fixture.arena, &edits, &copy, &fixture.map, &later,
         &fixture.final, fixture.scope, &output, &issue) == SOURCE_CONFIGURATION_INVALID);
     SourcePackageEnvironment nonempty; source_package_environment_init(&nonempty, sources.allocator);

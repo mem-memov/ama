@@ -6,9 +6,12 @@
  */
 #include "internal.h"
 #include <string.h>
-/** Exact explicit root keys form trusted provenance boundaries of this adapter. */
+/** Only physical envelope keys terminate ancestor provenance; semantic roots
+ * inside a wider envelope must retain their actual parent chain. */
 static bool root_entry(const SourceCatalogImage *image, const char *path) {
-    for (size_t i = 0; i < image->root_count; i++) { if (!strcmp(image->roots[i].path, path)) { return true; } }
+    for (size_t i = 0; i < source_image_bound_count(image); i++) {
+        if (!strcmp(source_image_bound_path(image, i), path)) { return true; }
+    }
     return false;
 }
 /** Validate row structure independently of whether common selection will read it. */
@@ -24,11 +27,11 @@ static bool entry_shape(const SourceCatalogImageEntry *entry) {
 }
 SourceImageStatus source_catalog_image_prepare(SourceCatalogImage *output,
     const SourceCatalogImageEntry *entries, size_t count, const ModuleRoot *roots,
-    size_t root_count, SourceImageIssue *issue) {
+    size_t root_count, SourceImageBounds bounds, SourceImageIssue *issue) {
     if (!issue) { return SOURCE_IMAGE_INVALID; }
     *issue = (SourceImageIssue){0};
-    if (!output || (count && !entries) || (root_count && !roots)) { return SOURCE_IMAGE_INVALID; }
-    SourceCatalogImage image = {.entries = entries, .count = count, .roots = roots, .root_count = root_count};
+    if (!output || (count && !entries) || (root_count && !roots) || (bounds.count && !bounds.paths)) { return SOURCE_IMAGE_INVALID; }
+    SourceCatalogImage image = {.entries = entries, .count = count, .roots = roots, .root_count = root_count, .bounds = bounds};
     for (size_t i = 0; i < count; i++) {
         issue->entry = i; issue->path = entries[i].path;
         if (!entry_shape(&entries[i])) { return SOURCE_IMAGE_INVALID; }
@@ -43,10 +46,19 @@ SourceImageStatus source_catalog_image_prepare(SourceCatalogImage *output,
         const SourceCatalogImageEntry *root = source_image_find(&image, roots[i].path, strlen(roots[i].path));
         if (!root || !root->metadata_captured || !S_ISDIR(root->metadata.st_mode)) { issue->path = roots[i].path; return SOURCE_IMAGE_PARENT; }
     }
+    for (size_t i = 0; i < source_image_bound_count(&image); i++) {
+        const char *path = source_image_bound_path(&image, i);
+        *issue = (SourceImageIssue){.path = path};
+        if (!path || path[0] != '/') { return SOURCE_IMAGE_INVALID; }
+        const SourceCatalogImageEntry *row = source_image_find(&image, path, strlen(path));
+        if (!row || !row->metadata_captured || !S_ISDIR(row->metadata.st_mode)) { return SOURCE_IMAGE_PARENT; }
+    }
     for (size_t i = 0; i < count; i++) {
         issue->entry = i; issue->path = entries[i].path;
         bool covered = false;
-        for (size_t j = 0; j < root_count; j++) { covered |= source_image_below(entries[i].path, roots[j].path); }
+        for (size_t j = 0; j < source_image_bound_count(&image); j++) {
+            covered |= source_image_below(entries[i].path, source_image_bound_path(&image, j));
+        }
         if (!covered) { return SOURCE_IMAGE_OUTSIDE; }
         if (root_entry(&image, entries[i].path)) { continue; }
         const char *slash = strrchr(entries[i].path, '/');

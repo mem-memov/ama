@@ -85,16 +85,16 @@ void source_copy_plan_destroy(SourceCopyPlan *);
  * edit authority and closure/P completeness remain caller obligations. Finite
  * input scans plus documented child bounds terminate; arena and nested owners
  * retain projected image/catalog/environment allocations and failed prefixes.
- * Root-setting changes and final effective-registry retirement for promotion are
- * not derived by this root-preserving stage; supply those through their owners
+ * Root-setting changes are not derived by this root-preserving stage;
+ * supply those through their explicit semantic/physical domain owners
  * before applying a general source operation.
  */
 SourceCopyPlanStatus source_copy_plan_build(SourceCopyPlan *, const SourceCopyPlanInputs *);
 /** Admit an independently successful client for this exact final capture through
  * the complete final-copy proof. No I/O/source mutation; repeatable. This stage
- * uses actual physical-removal names as original registry retirement names;
- * a promotion/selection change needs an explicitly prepared effective-registry
- * retirement set before this interface can serve that composition. Success is
+ * derives selected-registry retirement independently from original/final main
+ * paths, while strict removal safety still uses the physical-removal union.
+ * General changed-root orchestration remains outside this plan builder. Success is
  * still not freshness, supplemental edit authorization or publication authority.
  */
 SourceCopyProofStatus source_copy_plan_prove(SourceCopyPlan *, const SourceCompilerClient *, SourceCopyProofIssue *);

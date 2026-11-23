@@ -35,8 +35,7 @@ static void it_requires_exact_prepared_site_provenance_after_binding_admission(v
             : choice == 1 || choice == 9 ? SOURCE_SITES_MISSING
             : choice == 5 || choice == 6 || choice == 10 ? SOURCE_SITES_INVALID
             : choice == 8 ? SOURCE_SITES_BINDINGS : SOURCE_SITES_CHANGED;
-        assert(source_graph_sites(&old, &survivor, &map, NULL, 0, choice == 1 ? NULL : &prepared,
-            choice == 10 ? NULL : &issue) == expected);
+        assert(source_graph_sites(&old, &survivor, &map, NULL, 0, (SourceRegistryRetirement){0}, choice == 1 ? NULL : &prepared, choice == 10 ? NULL : &issue) == expected);
         assert(allocation_count == before);
         if (choice == 0) { assert(!issue.prepared && !issue.original_edge && !issue.binding.original); }
         if (choice == 7) { assert(issue.final_edge == &survivor_edge && !issue.prepared); }

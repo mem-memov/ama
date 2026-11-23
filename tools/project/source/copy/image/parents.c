@@ -7,11 +7,11 @@
 #include "internal.h"
 #include <string.h>
 /** Choose the closest explicit root by exact component containment. */
-static const ModuleRoot *containing_root(const SourceCopyImageBuilder *builder, const char *path) {
-    const ModuleRoot *best = NULL;
-    for (size_t i = 0; i < builder->original->root_count; i++) {
-        const ModuleRoot *root = &builder->original->roots[i];
-        if (source_image_below(path, root->path) && (!best || strlen(root->path) > strlen(best->path))) { best = root; }
+static const char *containing_root(const SourceCopyImageBuilder *builder, const char *path) {
+    const char *best = NULL;
+    for (size_t i = 0; i < source_image_bound_count(builder->original); i++) {
+        const char *root = source_image_bound_path(builder->original, i);
+        if (source_image_below(path, root) && (!best || strlen(root) > strlen(best))) { best = root; }
     }
     return best;
 }
@@ -19,12 +19,12 @@ SourceCopyImageStatus source_copy_image_parents(SourceCopyImageBuilder *builder)
     for (size_t i = 0; i < builder->count; i++) {
         if (builder->changes[i].kind == SOURCE_IMAGE_REMOVE) { continue; }
         const char *path = builder->changes[i].entry.path;
-        const ModuleRoot *root = containing_root(builder, path); builder->issue->path = path;
+        const char *root = containing_root(builder, path); builder->issue->path = path;
         if (!root) { return SOURCE_COPY_IMAGE_SCOPE; }
-        const SourceCatalogImageEntry *root_entry = source_copy_image_original(builder, root->path);
+        const SourceCatalogImageEntry *root_entry = source_copy_image_original(builder, root);
         char *parent = source_arena_copy(builder->arena, path);
         if (!parent) { return SOURCE_COPY_IMAGE_MEMORY; }
-        while (strcmp(parent, root->path)) {
+        while (strcmp(parent, root)) {
             char *slash = strrchr(parent, '/');
             if (!slash) { return SOURCE_COPY_IMAGE_SCOPE; }
             if (slash == parent) { parent[1] = 0; } else { *slash = 0; }
@@ -39,7 +39,7 @@ SourceCopyImageStatus source_copy_image_parents(SourceCopyImageBuilder *builder)
                 if (!old->metadata_captured || !S_ISDIR(old->metadata.st_mode) || !old->children_complete) { return SOURCE_COPY_IMAGE_ORIGINAL; }
                 break;
             }
-            if (!strcmp(parent, root->path)) { return SOURCE_COPY_IMAGE_SCOPE; }
+            if (!strcmp(parent, root)) { return SOURCE_COPY_IMAGE_SCOPE; }
             struct stat metadata = root_entry->metadata;
             SourceCopyImageStatus status = source_copy_image_identity(builder, &metadata);
             if (status != SOURCE_COPY_IMAGE_OK) { return status; }

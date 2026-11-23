@@ -25,7 +25,8 @@ typedef struct {
 void source_image_document_init(SourceImageDocument *, SourceAllocator);
 /** Retire all decoded names, rows and bytes, including failed prefixes. */
 void source_image_document_destroy(SourceImageDocument *);
-/** Read once from the closed ama.source-image.v1 schema. Preserve byte paths,
+/** Read once from the closed ama.source-image.v2 schema. Preserve byte paths,
+ * semantic roots and independent physical bounds,
  * empty/binary content, unknown metadata/content, complete directory flags and
  * exact device/inode/mode integers. Reject unknown/missing fields, duplicate keys,
  * lossy/narrowing scalars, NUL paths and invalid image topology. Scratch syntax

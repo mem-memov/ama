@@ -31,7 +31,7 @@ typedef struct { const char *path; const SourceCatalogImageEntry *entry; } Sourc
  * each root, including unchanged children, so replacement and rollback have a
  * complete tree rather than a partial file merge.
  *
- * Require the same ordered physical observation roots/kinds/exclusions in both
+ * Require the same ordered physical observation boundaries in both
  * images; a registry root-setting change alone is never a physical deletion.
  * Require known regular bytes or complete directories throughout each original/
  * final subtree, plus a known complete unchanged original parent for each root.
@@ -39,7 +39,8 @@ typedef struct { const char *path; const SourceCatalogImageEntry *entry; } Sourc
  * observations; no host fallback or invented parent root is used here. No I/O,
  * source mutation or semantic/removal authority. Publish output only on success;
  * failed scratch remains arena-owned. Valid image/byte/path owners stay immutable
- * through consumption. Finite scans terminate; O((N+M)² + bytes) comparisons plus
+ * through consumption. Finite scans terminate; O(B+(N+M)² + bytes) comparisons
+ * for B physical boundaries, plus
  * sorting, O(N+M + roots*parent bytes) storage for N original and M final rows.
  */
 SourceForestStatus source_mutation_forest(SourceArena *, const SourceCatalogImage *, const SourceCatalogImage *,

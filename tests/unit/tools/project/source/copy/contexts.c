@@ -52,7 +52,7 @@ static void it_proves_existing_parent_and_detached_context_omissions_against_rea
         }
         assert(mapped == 3);
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
         SourceImageChange changes[6] = {0}; size_t count = 0;
         SourceManager texts; source_manager_init(&texts, sources.allocator);
         if (profile != 1) {
@@ -89,7 +89,7 @@ static void it_proves_existing_parent_and_detached_context_omissions_against_rea
                 .metadata = fresh_class(&observed.image, changes, count, false), .metadata_captured = true}}; count++;
         }
         SourceCatalogImage image; SourceProjectionIssue projection;
-        assert(source_image_project(&arena, &observed.image, changes, count, &image, &projection) == SOURCE_PROJECTION_OK);
+        assert(source_image_project(&arena, &observed.image, changes, count, (&observed.image)->roots, (&observed.image)->root_count, &image, &projection) == SOURCE_PROJECTION_OK);
         SourceImageCapture final; source_image_capture_init(&final, sources.allocator);
         SourceImageCaptureStatus captured = source_image_capture_build(&final, &image);
         SourceCopyContextIssue issue;
@@ -110,7 +110,7 @@ static void it_proves_existing_parent_and_detached_context_omissions_against_rea
                 SourceCompilerClient compiler; source_compiler_client_init(&compiler, sources.allocator);
                 assert(source_compiler_client_run(&compiler, "../../../../../../ama", "generated/context-final.json", &final.view, NULL) == SOURCE_COMPILER_OK);
                 SourceSitesIssue sites;
-                assert(source_graph_sites(analysis.original.response.definitions, compiler.response.definitions, &mains, NULL, 0, NULL, &sites) == SOURCE_SITES_OK);
+                assert(source_graph_sites(analysis.original.response.definitions, compiler.response.definitions, &mains, NULL, 0, (SourceRegistryRetirement){0}, NULL, &sites) == SOURCE_SITES_OK);
                 source_compiler_client_destroy(&compiler);
                 assert(source_copy_context_omissions_check(&omissions, &final, NULL, 0, &issue) == SOURCE_COPY_CONTEXT_OK);
             } else { assert(issue.context && issue.requester); }

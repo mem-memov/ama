@@ -25,7 +25,7 @@ static void image_assembly_setup(ImageAssemblyFixture *fixture, const char *sour
         fixture->entries[i] = (SourceCatalogImageEntry){paths[i], metadata, content, true, directory};
     }
     fixture->root = (ModuleRoot){.path = "/image", .kind = MODULE_ROOT_PROJECT}; SourceImageIssue issue;
-    assert(source_catalog_image_prepare(&fixture->original, fixture->entries, 5, &fixture->root, 1, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&fixture->original, fixture->entries, 5, &fixture->root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     const SourceFileMapping *row = NULL;
     assert(source_file_map_observation(&fixture->map, source, directory_input ? NULL : fixture->entries[1].content,
         directory_input, target, &row) == SOURCE_FILE_MAP_OK);

@@ -46,8 +46,8 @@ static void begin(void) {
     }
     after_rows[1].metadata.st_ino = 100;
     SourceImageIssue shape;
-    assert(source_catalog_image_prepare(&before_image, before_rows, 5, &root, 1, &shape) == SOURCE_IMAGE_OK);
-    assert(source_catalog_image_prepare(&after_image, after_rows, 5, &root, 1, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&before_image, before_rows, 5, &root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&after_image, after_rows, 5, &root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     SourceForestIssue issue;
     assert(source_mutation_forest(&arena, &before_image, &after_image, &forest, &issue) == SOURCE_FOREST_OK);
     assert(forest.count == 1 && forest.roots[0].after_count == 4);

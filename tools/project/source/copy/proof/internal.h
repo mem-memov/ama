@@ -8,8 +8,11 @@
 #include "proof.h"
 /** Compare finite prepared P observations with actual final image rows; no allocation. */
 bool source_copy_proof_material(const SourceCopyMaterial *, const SourceCatalogImage *, const char **);
+/** Preserve complete main/dot-companion bytes and membership for an ignored
+ * original not physically removed; unavailable parent listings refuse. */
+bool source_copy_proof_preserved_unit(const SourceCapturedUnit *, const SourceCatalogImage *);
 /** Prove retained originals, C placement, complete companion membership and final
  * main accounting over validated immutable inputs; no allocation or publication. */
 SourceCopyProofStatus source_copy_proof_units(const SourceCloneMap *, const SourceFileMap *,
-    const SourceImageCapture *, const char *const *, size_t, SourceCopyProofIssue *);
+    const SourceImageCapture *, const char *const *, size_t, SourceRegistryRetirement, SourceCopyProofIssue *);
 #endif

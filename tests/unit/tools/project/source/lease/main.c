@@ -35,7 +35,7 @@ static void image(SourceCatalogImage *output, const char *const *paths, size_t c
         roots[i] = (ModuleRoot){.path = paths[i], .kind = MODULE_ROOT_PROJECT};
     }
     SourceImageIssue issue;
-    assert(source_catalog_image_prepare(output, entries, count, roots, count, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(output, entries, count, roots, count, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
 }
 /** Shared ancestors permit disjoint roots, but exclusive roots conflict with
  * equal/nested roots; repeated configured roots acquire one inode lock. */

@@ -15,7 +15,7 @@ static const SourceCatalogImageEntry *const *record_tree(SourceMaterialTree *tre
     assert(rows[1].metadata.st_size == 70003);
     SourceCatalogImage material;
     SourceImageIssue issue;
-    assert(source_catalog_image_prepare(&material, complete, 5, &root, 1, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&material, complete, 5, &root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     FILE *stream = tmpfile();
     assert(stream && source_image_document_write(stream, &material));
     long length = ftell(stream);

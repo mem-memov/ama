@@ -20,3 +20,17 @@ bool source_image_below(const char *path, const char *root) {
     size_t length = strlen(root);
     return !strncmp(path, root, length) && (!path[length] || root[length - 1] == '/' || path[length] == '/');
 }
+size_t source_image_bound_count(const SourceCatalogImage *image) {
+    return image->bounds.count ? image->bounds.count : image->root_count;
+}
+const char *source_image_bound_path(const SourceCatalogImage *image, size_t index) {
+    return image->bounds.count ? image->bounds.paths[index] : image->roots[index].path;
+}
+bool source_image_same_bounds(const SourceCatalogImage *a, const SourceCatalogImage *b) {
+    size_t count = source_image_bound_count(a);
+    if (count != source_image_bound_count(b)) { return false; }
+    for (size_t i = 0; i < count; i++) {
+        if (strcmp(source_image_bound_path(a, i), source_image_bound_path(b, i))) { return false; }
+    }
+    return true;
+}

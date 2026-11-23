@@ -3,8 +3,9 @@
 ## Current plan after T274
 
 This is the current implementation checkpoint, revised on 2026-11-23 from the
-actual `af8e43eb` worktree and prior T224 evidence. The public operation is not
-complete. [TODO](../../TODO.md#t275) owns current task status; canonical behavior
+actual `af8e43eb` planning baseline and prior T224 evidence, then updated by
+accepted T275 below. The public operation is not
+complete. [TODO](../../TODO.md#t276) owns current task status; canonical behavior
 remains [TOOL-01..04](../../spec/implementation/tools-and-conformance.md#tool-01),
 [SRC-06](../../spec/language/source-and-names.md#src-06),
 [PKG-04/09](../../spec/project/packages.md#pkg-04) and
@@ -28,12 +29,12 @@ components or declare the unfinished parent complete.
 | Project-side process/wire/input capture | Accepted [T273](../../DONE.md#t273); no compiler dispatcher is linked into the project tool |
 | Source/test/native/configuration closure | Accepted [T235](../../DONE.md#t235), plus the detailed compositions below; acquisition remains separate |
 | Exact original/final images, topology/maps, configuration edits and compiler/site proofs | Implemented and tested below, including independently compilable incorrect-image refusals; their complete root-changing orchestration is pending |
-| [Root-preserving copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; explicitly excludes changed semantic roots and effective-registry retirement separate from physical deletion |
-| [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; new root/observation separation must reuse these consumers |
+| [Root-preserving copy plan](../../tools/project/source/copy/plan/plan.h) | Joins dependency modes, joint removal and final proofs; still excludes changed-root orchestration; its copy proof now derives selected-registry retirement separately from physical removal |
+| [Freshness guard](../../tools/project/source/transaction/guard/guard.h), [hierarchical leases](../../tools/project/source/transaction/lease/lease.h) and [mutation forest](../../tools/project/source/transaction/forest/forest.h) | Tested actual capture, stale membership/inodes and complete disjoint trees; T275 adds separate physical boundaries, unchanged-root regression and real changed-root consumers |
 | [Image records](../../tools/project/source/transaction/document/document.h) and [private-tree ownership](../../tools/project/source/transaction/tree/tree.h) | Codec roundtrip, exact saved classes, synchronization/readback, reopen and permitted partial-cleanup transitions pass; a codec/private copy is not yet a durable transaction journal |
 | Public command and process-loss recovery | Unfinished: command dispatch still supports init, not source-operation preview/apply; real whole-operation journal/recovery must be integrated |
 
-The last collected foundation checks are
+Before T275, the last collected T224 foundation checks were
 `/tmp/ama-t224-private-resume-tool.exit = 0`,
 `/tmp/ama-t224-private-resume-copy.exit = 0` and
 `/tmp/ama-t224-private-resume-docs.exit = 0` (3881 ready inputs, zero explicit
@@ -45,7 +46,7 @@ review checkpoint.
 ### Remaining tasks and consumers
 
 Each row is a separately accepted implementation/test/documentation task and
-commit. [TODO](../../TODO.md#t275) gives its complete scope and acceptance;
+commit. [TODO](../../TODO.md#t276) gives its complete scope and acceptance;
 review that scope against actual circumstances before starting, under the
 [task-entry rule](../development/README.md#review-the-next-task-against-the-current-state).
 Use a short entry record here for each task, then append only its actual steps
@@ -54,7 +55,7 @@ next action; keep prior facts explicitly historical.
 
 | Task | Immediate prerequisites | Finite result and next real consumer |
 |---|---|---|
-| [T275](../../TODO.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
+| [T275](../../DONE.md#t275) | T232, T233, T235, T272, T273 and existing T224 foundations | Original/final semantic registries, actual physical mutation/removal and stable observation/coordination are separate in actual capture/plan consumers; T276 consumes them |
 | [T276](../../TODO.md#t276) | T275 | One complete immutable operation plan, including root/client/configuration and rebuild intentions, actual original/final compiler proofs; common input to T277/T278 |
 | [T277](../../TODO.md#t277) | T276 | Real public read-only previews with precise refusals and no hidden effects; T281 later replaces the explicit unsupported-apply boundary |
 | [T278](../../TODO.md#t278) | T276, T277 | One-tree apply/new-process recovery through the real durable journal/executor; T279 extends this exact consumer |
@@ -89,12 +90,14 @@ existing dependencies; do not switch to it to bypass unfinished source work.
 
 ### Next action and acceptance safeguards
 
-Start T275 with the actual catalog/image/plan interfaces. Write the entry review
-and the invariant separating selected module roots from stable observed physical
-parents; prove same-identity promotion and root augmentation through real
-consumers before extending immutable orchestration in T276. Reuse the accepted
-wire, closure, image, lease, record and owned-tree foundations. No source command
-or recoverable publication is accepted merely by updating these documents.
+Start T276 with the actual plan/image/removal/configuration interfaces. Its entry
+review must account for T275's accepted physical envelopes, explicit final
+semantic roots and independent registry retirement. The remaining gap is one
+complete immutable operation plan: SourceCopyPlan still orchestrates a
+root-preserving copy, while deletion has its own preparation owner. Join those
+real consumers with explicit root/client/configuration and rebuild intentions;
+do not restart the accepted wire, closure, image, lease, record or owned-tree
+foundations. Public commands and durable publication remain later gates.
 
 T277 must exercise the real command executable before further private publication
 work. T278 must perform a real controlled process kill and reopen from another
@@ -118,6 +121,122 @@ Child acceptance never implies whole-sprint conformance; T237 still owns that
 release gate. Do not refresh old conformance fingerprints to hide missing public
 behavior. Every child records successful/refused/failing compositions and commits
 its own complete evidence before the next task.
+
+## T275 entry review and execution
+
+Entry review (2026-11-23, `946a2f6f`, clean worktree): T232/T233/T235/T272/T273
+are accepted and their real capture/analysis/image/lease consumers remain present.
+The current image uses ModuleRoot for both catalog identity and physical coverage;
+projection forbids changes to any semantic root, forest comparison requires equal
+semantic roots, observer demands cannot leave those roots, and leases lock them.
+The copy proof additionally treats physical removal names as effective-registry
+retirement. These are the actual gaps, not missing wire/catalog implementations.
+No unresolved product ambiguity was found in TOOL-02/03/04 or PKG-02. T275
+remains a representation/common-consumer task; general operation orchestration
+and public publication remain T276..T281.
+
+Planned steps and invariant: (1) give image/observer/projection/codec/freshness/
+lease/forest consumers a separate physical observation envelope, keeping semantic
+roots exclusively for common catalog discovery; (2) derive effective-registry
+retirement independently from reviewed physical removal and consume it in the
+existing copy proof; (3) compose actual original/final compiler captures for root
+augmentation/conflict, root relocation and same-identity promotion. A physical
+ancestor grants observation/exclusion only, never module identity or deletion
+permission. An unchanged registry view may use its exact semantic-root paths as
+a compact physical envelope; an explicitly wider envelope never adds semantic
+roots. Finite exact scans and existing no-follow physical operations are reused.
+
+Acceptance will cover malformed/empty domains, root-only reselection with no
+physical mutations, actual changed-root material forests, ignored copies, stale
+opaque membership/identity, allocation refusals, real common-catalog/compiler
+consumers, strict/sanitizer parent checks and per-file/Doxygen evidence. No
+source mutation or specification edit is planned. Current step: implement the
+image/envelope boundary and migrate existing maintained callers/tests; no jobs
+are running at this entry checkpoint.
+
+### T275 representation and proof
+
+Implemented separate `SourceImageBounds` in the existing immutable image, observer,
+projection, freshness, lease, forest and record-codec consumers. Semantic roots
+alone feed common discovery. A zero-count compact envelope means exactly the
+semantic root paths, not a guessed parent or a search; projection materializes
+those paths before selecting different final roots. Explicit wider boundaries
+observe stable ancestor chains and unrelated names/bytes without indexing them.
+The closed image record is `ama.source-image.v2`, with separate roots and bounds;
+the superseded record schema has no compatibility decoder. Original callers and
+tests use the explicit compact envelope where physical/semantic paths coincide.
+
+Let B be the fixed physical envelope, R0/R1 the original/final semantic root sets,
+and E0/E1 the exact entry maps. Image admission requires coverage inside B and
+observed parent provenance. Projection validates simultaneous changes against E0,
+then admits E1 under R1 and the unchanged B. With no material changes, E1 = E0;
+changing R alone therefore creates no mutation-forest removal. Forests compare
+physical bounds, while freshness still requires both the original semantic roots
+and physical envelope to match. Leases now acquire B, and guard reobservation
+uses the same B with the unchanged original semantic capture.
+
+The existing copy proof now consumes `source_copy_registry_retirement`. For
+original/final selected units U0/U1, actual reviewed physical removal names D,
+and selected main paths p0/p1, derive the registry retirement set
+`Q = D union {n in U0 | n not in U1 or p0(n) != p1(n)}`. Q controls selected-main
+and graph membership. D alone controls the strict removed-original-target test;
+promotion does not turn an unchanged importer's target into a deleted definition.
+Every original outside D must still preserve complete main/dot-companion bytes
+and membership, even when Q retires its selected copy. An incomplete parent list,
+missing/changed original or added companion refuses. Retirement never authorizes
+a physical write. The new ignored-unit proof has its own narrow source file.
+
+These are exact finite scans: retirement costs O(U0*(U1+D)) key comparisons and
+O(U0) pointer storage; ignored-unit preservation costs O(I*N) comparisons for I
+captured unit files and N physical image rows, plus compared bytes. Existing
+image/forest/lease child bounds still apply. Borrowed path/text owners remain
+alive through image/proof consumption; arenas own new arrays and failed prefixes.
+
+### T275 checks and continuation
+
+Actual compiler-backed tests now compose raw tree selection, required concrete
+test closure, full physical mapping, production image/ancestor assembly, final
+capture and complete copy proof for promotion, relocation to an existing empty
+root, and creation of a previously absent root. The newly covered empty root is
+part of original analysis; a competing original version refuses as MODULE_AMBIGUOUS.
+Every old file remains present; only destination material enters the mutation
+forest. Independently compilable images with missing/changed ignored originals,
+extra companions or incomplete parent listings refuse. Wider-envelope observation
+allocation failures, exact leased opaque-byte freshness and unchanged-importer
+binding laws have explicit cases. Image/codec tests cover empty, malformed,
+root-only reselection and physical-versus-semantic boundary persistence.
+
+Strict copy composition passes (`/tmp/ama-t275-domain-final.exit = 0`), and the
+independent project tool builds (`/tmp/ama-t275-project-build.exit = 0`). Earlier
+strict image/observation/codec runs passed. The first full parent run reported a
+test-fixture compile error: S_IFREG is not exposed by the selected strict POSIX
+feature profile. The fixture now reuses real regular-file metadata instead of
+requiring an extra platform macro; the corrected strict copy suite passes.
+An earlier test compile caught use of a nonexistent response-definition source
+field; provenance now comes from the exact checked dependency span owner (or
+its original captured text for an edge-free source). No requirement changed.
+
+All implementation/test jobs are collected. Strict source-parent acceptance
+passes (`/tmp/ama-t275-source-parent-final.exit = 0`), including the actual copy
+consumer; expanded NULL/interface cases pass strict and ASan/UBSan
+(`/tmp/ama-t275-copy-interface-final.exit = 0`,
+`/tmp/ama-t275-copy-interface-sanitizers.exit = 0`). The independent image,
+image-document, forest and mapping sanitizer group also passes
+(`/tmp/ama-t275-boundary-sanitizers.exit = 0`). Flags use non-PIE builds,
+halt-on-error and the previously recorded disabled-LSan restriction. Counted
+teardown reports zero live allocations. No physical power-loss or recovery
+journal implementation is claimed.
+
+The first coverage check correctly refused the new header's missing standalone
+compile registration; its explicit strict header command is now registered.
+Doxygen additionally found an existing undocumented main in the selector test
+leaf; a purpose comment fixes that gap without changing its behavior. Complete
+generation now passes (`/tmp/ama-t275-doxygen-final-inputs.exit = 0`): 3890 ready
+inputs, zero debts, 3020 maintained file pages, 11573 interfaces, 495 canonical
+destinations and 9416 total pages, using Doxygen 1.11.0. Final archive-input
+regeneration is checked in `/tmp/ama-t275-archived-doxygen.log` before commit.
+T275 is accepted in [DONE](../../DONE.md#t275); T276 is next for entry review.
+The full parent T224 and public/durable source-operation support remain unfinished.
 
 ## Historical T224 execution record
 

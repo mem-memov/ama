@@ -82,7 +82,7 @@ static void prepare_permission_additions(PermissionAdditionFixture *fixture, Sou
     source_package_environment_init(&fixture->original, sources.allocator);
     assert(source_package_environment_build(&fixture->original, &capture.catalog) == SOURCE_ENVIRONMENT_OK);
     source_observed_image_init(&fixture->observed, sources.allocator);
-    assert(source_observed_image_build(&fixture->observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&fixture->observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
     if (new_version) {
         fixture->target_identity = "/target/new/v3.0.0";
         fixture->target_physical = source_arena_join(&fixture->arena, capture.roots[0].path, "/", "packages/target/new/v3.0.0"); assert(fixture->target_physical);

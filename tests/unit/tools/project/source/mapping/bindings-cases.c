@@ -41,7 +41,7 @@ static void it_preserves_simultaneous_cycle_bindings_for_every_clone_and_survivo
                 if (removed & 1) { deleted[count++] = a; }
                 if (removed & 2) { deleted[count++] = b; }
                 SourceBindingsIssue issue = {0}; size_t before = allocation_count; failure_at = before + 1;
-                assert(source_graph_bindings(old, final, &map, deleted, count, &issue) == SOURCE_BINDINGS_OK);
+                assert(source_graph_bindings(old, final, &map, deleted, count, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_OK);
                 assert(!issue.original && !issue.final && !issue.expected && allocation_count == before);
                 failure_at = 0; source_clone_map_destroy(&map); finish();
             }
@@ -69,7 +69,7 @@ static void it_refuses_each_changed_clone_edge_field_and_surviving_original_redi
         if (changed == 6) { copy.kind = DELIVERY_SOURCE_PARAMETERIZED; }
         if (changed == 7) { changed_survivor.target = "/vendor/target/v2.0.0/src/a"; survivor.dependencies = &changed_survivor; }
         SourceBindingsIssue issue = {0};
-        assert(source_graph_bindings(&old, &survivor, &map, NULL, 0, &issue)
+        assert(source_graph_bindings(&old, &survivor, &map, NULL, 0, (SourceRegistryRetirement){0}, &issue)
             == (changed == 6 ? SOURCE_BINDINGS_KIND : SOURCE_BINDINGS_EDGE));
         assert(issue.original == &old && issue.final == (changed == 7 ? &survivor : &copy));
         if (changed != 6) { assert(issue.original_edge || issue.final_edge); }
@@ -95,11 +95,11 @@ static void it_refuses_missing_extra_and_survivor_clone_identity_collisions(void
         SourceBindingsIssue issue = {0};
         SourceBindingsStatus expected = changed < 2 ? SOURCE_BINDINGS_MISSING
             : changed == 3 ? SOURCE_BINDINGS_COLLISION : SOURCE_BINDINGS_EXTRA;
-        assert(source_graph_bindings(&old, final, &map, NULL, 0, &issue) == expected);
+        assert(source_graph_bindings(&old, final, &map, NULL, 0, (SourceRegistryRetirement){0}, &issue) == expected);
         assert(issue.expected);
         if (changed == 3) {
             const char *removed[] = {a};
-            assert(source_graph_bindings(&old, &copy, &map, removed, 1, &issue) == SOURCE_BINDINGS_OK);
+            assert(source_graph_bindings(&old, &copy, &map, removed, 1, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_OK);
         }
         source_clone_map_destroy(&map); finish();
     }
@@ -108,15 +108,15 @@ static void it_refuses_missing_extra_and_survivor_clone_identity_collisions(void
 static void it_checks_binding_laws_without_allocating_and_rejects_invalid_owners(void) {
     prepare(); source_clone_map_init(&map, sources.allocator, &capture);
     SourceBindingsIssue issue = {0};
-    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, &issue) == SOURCE_BINDINGS_INVALID);
+    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_INVALID);
     assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
     size_t before = allocation_count; failure_at = before + 1;
-    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, &issue) == SOURCE_BINDINGS_OK);
-    assert(source_graph_bindings(NULL, NULL, NULL, NULL, 0, &issue) == SOURCE_BINDINGS_INVALID);
-    assert(source_graph_bindings(NULL, NULL, &map, NULL, 1, &issue) == SOURCE_BINDINGS_INVALID);
+    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_OK);
+    assert(source_graph_bindings(NULL, NULL, NULL, NULL, 0, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_INVALID);
+    assert(source_graph_bindings(NULL, NULL, &map, NULL, 1, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_INVALID);
     const char *removed[] = {NULL};
-    assert(source_graph_bindings(NULL, NULL, &map, removed, 1, &issue) == SOURCE_BINDINGS_INVALID);
-    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, NULL) == SOURCE_BINDINGS_INVALID);
+    assert(source_graph_bindings(NULL, NULL, &map, removed, 1, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_INVALID);
+    assert(source_graph_bindings(NULL, NULL, &map, NULL, 0, (SourceRegistryRetirement){0}, NULL) == SOURCE_BINDINGS_INVALID);
     assert(allocation_count == before); failure_at = 0; source_clone_map_destroy(&map); finish();
 }
 /** A replacement that reuses an identifier cannot stand in for a retained original target. */
@@ -132,13 +132,12 @@ static void it_refuses_retained_targets_removed_by_replacement_even_when_the_fin
         DeliverySourceDefinition copy = {.identity = b, .dependencies = &copy_edge}, kept = {.identity = a, .dependencies = &old_edge, .next = &copy};
         const char *removed[] = {b, a};
         SourceBindingsIssue issue = {0};
-        assert(source_graph_bindings(&old, survivor ? &kept : &copy, &map, removed, survivor ? 1 : 2, &issue) == SOURCE_BINDINGS_REMOVED_TARGET);
+        assert(source_graph_bindings(&old, survivor ? &kept : &copy, &map, removed, survivor ? 1 : 2, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_REMOVED_TARGET);
         assert(issue.original == &old && issue.original_edge == &old_edge && !strcmp(issue.expected, b));
         assert(issue.final_edge && !strcmp(issue.final_edge->target, b));
         assert((issue.clone != NULL) == !survivor);
         SourceSitesIssue sites = {0};
-        assert(source_graph_sites(&old, survivor ? &kept : &copy, &map, removed,
-            survivor ? 1 : 2, NULL, &sites) == SOURCE_SITES_BINDINGS);
+        assert(source_graph_sites(&old, survivor ? &kept : &copy, &map, removed, survivor ? 1 : 2, (SourceRegistryRetirement){0}, NULL, &sites) == SOURCE_SITES_BINDINGS);
         assert(sites.binding_status == SOURCE_BINDINGS_REMOVED_TARGET);
         source_clone_map_destroy(&map); finish();
     }
@@ -152,6 +151,25 @@ static void it_accepts_identity_preserving_mapped_self_references_after_original
     DeliverySourceDependency old_edge = {.target = a}, copied_edge = {.target = a};
     DeliverySourceDefinition old = {.identity = a, .dependencies = &old_edge}, copied = {.identity = a, .dependencies = &copied_edge};
     const char *removed[] = {a}; SourceBindingsIssue issue = {0};
-    assert(source_graph_bindings(&old, &copied, &map, removed, 1, &issue) == SOURCE_BINDINGS_OK);
+    assert(source_graph_bindings(&old, &copied, &map, removed, 1, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_OK);
+    source_clone_map_destroy(&map); finish();
+}
+/** An unchanged importer can reference a promoted nominal type without treating
+ * selection retirement as physical removal; actual deletion still refuses. */
+static void it_preserves_surviving_importers_when_only_selected_provenance_changes(void) {
+    prepare(); const char *a = "/vendor/pkg/v1.0.0/src/parent/child", *b = "/vendor/pkg/v1.0.0/src/parentish";
+    source_clone_map_init(&map, sources.allocator, &capture); const SourceCloneMapping *row = NULL;
+    assert(source_clone_map_add(&map, original(b), "/promoted/b", b, &row) == SOURCE_CLONE_OK);
+    assert(source_clone_map_seal(&map) == SOURCE_CLONE_OK);
+    DeliverySourceDependency edge = {.target = b};
+    DeliverySourceDefinition old_b = {.identity = b}, old_a = {.identity = a, .dependencies = &edge, .next = &old_b};
+    DeliverySourceDefinition now_b = {.identity = b}, now_a = {.identity = a, .dependencies = &edge, .next = &now_b};
+    const char *names[] = {b}; SourceRegistryRetirement retired = {names, 1}; SourceBindingsIssue issue;
+    assert(source_graph_bindings(&old_a, &now_a, &map, NULL, 0, retired, &issue) == SOURCE_BINDINGS_OK);
+    assert(source_graph_bindings(&old_a, &now_a, &map, NULL, 0, (SourceRegistryRetirement){0}, &issue) == SOURCE_BINDINGS_COLLISION);
+    assert(source_graph_bindings(&old_a, &now_a, &map, names, 1, retired, &issue) == SOURCE_BINDINGS_REMOVED_TARGET);
+    assert(source_graph_bindings(&old_a, &now_a, &map, NULL, 0, (SourceRegistryRetirement){NULL, 1}, &issue) == SOURCE_BINDINGS_INVALID);
+    names[0] = NULL;
+    assert(source_graph_bindings(&old_a, &now_a, &map, NULL, 0, retired, &issue) == SOURCE_BINDINGS_INVALID);
     source_clone_map_destroy(&map); finish();
 }

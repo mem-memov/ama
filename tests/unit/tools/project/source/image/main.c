@@ -4,6 +4,7 @@
  */
 #include "common.c"
 #include "projection.c"
+#include "domains.c"
 /** An independent callback model and both image row orders feed the same common
  * discovery/companion pipeline with identical selected source bytes and aliases. */
 static void it_matches_independent_complete_catalog_views_in_both_image_orders_without_disk_io(void) {
@@ -18,7 +19,7 @@ static void it_matches_independent_complete_catalog_views_in_both_image_orders_w
             }
         }
         SourceCatalogImage image = {0}; SourceImageIssue issue = {0}; size_t before = allocation_count;
-        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
         assert(image.valid && image.reader.tree.context == &image && allocation_count == before);
         ModuleCatalog actual; module_catalog_init(&actual, sources.allocator);
         assert(prepare_catalog(&actual, &image.reader) == MODULE_OK);
@@ -49,7 +50,7 @@ static void it_refuses_unavailable_selected_image_inputs_and_preserves_common_al
         if (profile == 6 || profile == 7) { rows[profile == 6 ? 8 : 7] = rows[--count]; }
         if (profile == 8) { rows[8].metadata.st_mode = 0; rows[8].content = NULL; }
         SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-        assert(source_catalog_image_prepare(&image, rows, count, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&image, rows, count, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
         ModuleCatalog catalog; module_catalog_init(&catalog, sources.allocator);
         assert(prepare_catalog(&catalog, &image.reader) == expected[profile]);
         module_catalog_destroy(&catalog); destroy_test();
@@ -67,7 +68,7 @@ static void it_distinguishes_image_absence_from_unavailable_observations_without
         rows[VIEW_NODE_COUNT + 1].metadata.st_dev = 1; rows[VIEW_NODE_COUNT + 1].metadata.st_ino = 1000;
         rows[5].children_complete = complete != 0;
         SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 2, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 2, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
         ModuleCatalog catalog; module_catalog_init(&catalog, sources.allocator);
         struct stat output = model.regular; ino_t before = output.st_ino;
         fixture_io_begin(0);
@@ -102,7 +103,7 @@ static void it_retires_every_prepared_image_catalog_allocation_failure(void) {
     setup_test(); ViewModel model; model_init(&model);
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; image_rows(&model, rows);
     SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, rows, VIEW_NODE_COUNT + 1, image_roots, 2, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
     size_t allocations = 0, baseline = live_allocations;
     for (size_t failure = 0; !failure || failure <= allocations; failure++) {
         ModuleCatalog catalog; module_catalog_init(&catalog, sources.allocator);
@@ -134,7 +135,7 @@ static void it_rejects_malformed_prepared_images_without_overwriting_the_adapter
         if (profile == 9) { rows[0].metadata = model.regular; rows[0].children_complete = false; expected = SOURCE_IMAGE_PARENT; }
         if (profile == 10) { rows[9].metadata = model.regular; rows[9].children_complete = false; expected = SOURCE_IMAGE_PARENT; }
         SourceCatalogImage image = {.count = 123}; SourceImageIssue issue = {0}; size_t before = allocation_count;
-        assert(source_catalog_image_prepare(&image, rows, count, image_roots, 2, &issue) == expected);
+        assert(source_catalog_image_prepare(&image, rows, count, image_roots, 2, (SourceImageBounds){0}, &issue) == expected);
         assert(image.count == 123 && !image.valid && allocation_count == before);
     }
     SourceCatalogImageEntry rows[VIEW_NODE_COUNT + 1]; image_rows(&model, rows);
@@ -146,16 +147,16 @@ static void it_rejects_malformed_prepared_images_without_overwriting_the_adapter
         if (profile == 3) { roots[0].excluded_count = 1; roots[0].excluded = excluded; }
         if (profile == 4) { roots[0].kind = (ModuleRootKind)99; }
         SourceCatalogImage unchanged = {.count = 123}; SourceImageIssue root_issue = {0};
-        assert(source_catalog_image_prepare(&unchanged, rows, VIEW_NODE_COUNT + 1, roots, 2, &root_issue) ==
+        assert(source_catalog_image_prepare(&unchanged, rows, VIEW_NODE_COUNT + 1, roots, 2, (SourceImageBounds){0}, &root_issue) ==
             (profile == 1 ? SOURCE_IMAGE_PARENT : SOURCE_IMAGE_INVALID));
         assert(unchanged.count == 123 && !unchanged.valid && root_issue.path == roots[0].path);
     }
     SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-    assert(source_catalog_image_prepare(NULL, NULL, 0, NULL, 0, &issue) == SOURCE_IMAGE_INVALID);
-    assert(source_catalog_image_prepare(&image, NULL, 1, NULL, 0, &issue) == SOURCE_IMAGE_INVALID);
-    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 1, &issue) == SOURCE_IMAGE_INVALID);
-    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, NULL) == SOURCE_IMAGE_INVALID);
-    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, &issue) == SOURCE_IMAGE_OK && image.valid);
+    assert(source_catalog_image_prepare(NULL, NULL, 0, NULL, 0, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_INVALID);
+    assert(source_catalog_image_prepare(&image, NULL, 1, NULL, 0, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_INVALID);
+    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_INVALID);
+    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, (SourceImageBounds){0}, NULL) == SOURCE_IMAGE_INVALID);
+    assert(source_catalog_image_prepare(&image, NULL, 0, NULL, 0, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK && image.valid);
     ModuleCatalog catalog; module_catalog_init(&catalog, sources.allocator);
     assert(module_catalog_build_view(&catalog, image.roots, image.root_count, &image.reader) == MODULE_OK);
     module_catalog_destroy(&catalog); destroy_test();
@@ -177,7 +178,7 @@ static void it_preserves_single_and_repeated_slash_root_prefixes_through_common_
         rows[0].metadata.st_ino = 1; rows[1].metadata.st_ino = 2;
         ModuleRoot root = {roots[i], NULL, 0, MODULE_ROOT_STANDARD};
         SourceCatalogImage image = {0}; SourceImageIssue issue = {0};
-        assert(source_catalog_image_prepare(&image, rows, 2, &root, 1, &issue) == SOURCE_IMAGE_OK);
+        assert(source_catalog_image_prepare(&image, rows, 2, &root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
         ModuleCatalog catalog; module_catalog_init(&catalog, sources.allocator);
         fixture_io_begin(0);
         assert(module_catalog_build_view(&catalog, &root, 1, &image.reader) == MODULE_OK);
@@ -190,6 +191,8 @@ static void it_preserves_single_and_repeated_slash_root_prefixes_through_common_
 }
 /** Run independent-view equality, complete/unavailable distinctions and all fault domains. */
 void run(void) {
+    it_separates_module_roots_from_observation_envelopes_without_hidden_io();
+    it_refuses_malformed_or_unobserved_physical_envelopes();
     test_image_projection();
     it_preserves_single_and_repeated_slash_root_prefixes_through_common_discovery();
     it_matches_independent_complete_catalog_views_in_both_image_orders_without_disk_io();

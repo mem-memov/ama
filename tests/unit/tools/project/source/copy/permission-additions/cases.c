@@ -37,8 +37,7 @@ static void verify_permission_addition(PermissionAdditionFixture *fixture, const
     SourceCompilerClient client; source_compiler_client_init(&client, sources.allocator);
     assert(source_compiler_client_run(&client, "../../../../../../ama", "generated/addition-request.json", &verified.view, NULL) == SOURCE_COMPILER_OK);
     SourceSitesIssue issue;
-    assert(source_graph_sites(analysis.original.response.definitions, client.response.definitions,
-        &fixture->map, NULL, 0, fixture->provenance, &issue) == SOURCE_SITES_OK);
+    assert(source_graph_sites(analysis.original.response.definitions, client.response.definitions, &fixture->map, NULL, 0, (SourceRegistryRetirement){0}, fixture->provenance, &issue) == SOURCE_SITES_OK);
     SourcePackageEnvironment reparsed; source_package_environment_init(&reparsed, sources.allocator);
     assert(source_package_environment_build(&reparsed, &verified.catalog) == SOURCE_ENVIRONMENT_OK);
     const SourcePackageScope *actual = environment_scope(&reparsed, fixture->scope->version->logical_path);

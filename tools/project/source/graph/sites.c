@@ -15,7 +15,8 @@ static bool same_site(SourceSpan expected, SourceSpan actual) {
 }
 SourceSitesStatus source_graph_sites(const DeliverySourceDefinition *original,
     const DeliverySourceDefinition *final, const SourceCloneMap *map,
-    const char *const *removed, size_t count, const SourceGraphPreparedText *prepared, SourceSitesIssue *issue) {
+    const char *const *removed, size_t count, SourceRegistryRetirement retired,
+    const SourceGraphPreparedText *prepared, SourceSitesIssue *issue) {
     if (!issue) { return SOURCE_SITES_INVALID; }
     *issue = (SourceSitesIssue){0};
     for (const SourceGraphPreparedText *row = prepared; row; row = row->next) {
@@ -24,7 +25,7 @@ SourceSitesStatus source_graph_sites(const DeliverySourceDefinition *original,
             if (previous->edits->original == row->edits->original) { issue->prepared = row; return SOURCE_SITES_INVALID; }
         }
     }
-    issue->binding_status = source_graph_bindings(original, final, map, removed, count, &issue->binding);
+    issue->binding_status = source_graph_bindings(original, final, map, removed, count, retired, &issue->binding);
     if (issue->binding_status != SOURCE_BINDINGS_OK) { return SOURCE_SITES_BINDINGS; }
     for (const DeliverySourceDefinition *now = final; now; now = now->next) {
         const SourceCloneMapping *copy = map->first;

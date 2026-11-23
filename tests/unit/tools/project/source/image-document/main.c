@@ -29,7 +29,7 @@ static void begin(void) {
     assert(source_manager_add(&sources, paths[1], binary, sizeof(binary), &rows[1].content) == SOURCE_OK);
     assert(source_manager_add(&sources, paths[2], NULL, 0, &rows[2].content) == SOURCE_OK);
     SourceImageIssue issue;
-    assert(source_catalog_image_prepare(&image, rows, 5, &root, 1, &issue) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&image, rows, 5, &root, 1, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
 }
 /** Keep retained image owners alive until all independent epoch consumers retire. */
 static void end(void) {
@@ -68,26 +68,41 @@ static void it_roundtrips_lossless_images_and_independent_content_epochs(void) {
     assert(source_observation_freshness(&image, &after.image, &issue) == SOURCE_FRESH_OK);
     source_image_document_destroy(&after); source_image_document_destroy(&before);
     SourceCatalogImage empty; SourceImageIssue shape;
-    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     image = empty; const SourceText *empty_record = encoded(); source_image_document_init(&before, sources.allocator);
     assert(source_image_document_read(&before, empty_record) == SOURCE_JSON_OK && !before.image.count && !before.image.root_count);
     source_image_document_destroy(&before); end();
+}
+/** Recovery retains a physical tree even when no module root selects it. */
+static void it_roundtrips_images_with_independent_physical_boundaries(void) {
+    begin(); const char *paths[] = {"/tree"}; SourceImageIssue shape;
+    assert(source_catalog_image_prepare(&image, rows, 5, NULL, 0, (SourceImageBounds){paths, 1}, &shape) == SOURCE_IMAGE_OK);
+    const SourceText *text = encoded(); SourceImageDocument decoded;
+    source_image_document_init(&decoded, sources.allocator);
+    assert(source_image_document_read(&decoded, text) == SOURCE_JSON_OK && decoded.valid);
+    assert(!decoded.image.root_count && decoded.image.count == 5 && source_image_bound_count(&decoded.image) == 1);
+    assert(!strcmp(source_image_bound_path(&decoded.image, 0), "/tree"));
+    SourceFreshnessIssue issue;
+    assert(source_observation_freshness(&image, &decoded.image, &issue) == SOURCE_FRESH_OK);
+    source_image_document_destroy(&decoded); end();
 }
 /** Closed records reject future/missing/duplicate fields, invalid scalar forms,
  * NUL/invalid byte paths and malformed topology without publishing valid facts. */
 static void it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership(void) {
     static const char *cases[] = {
-        "{}", "{\"format\":\"other\",\"roots\":[],\"entries\":[]}",
-        "{\"format\":\"ama.source-image.v1\",\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[],\"extra\":false}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":false,\"entries\":[]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":false}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[{\"path\":{\"utf8\":\"/\",\"hex\":\"2f\"},\"kind\":\"other\",\"excluded\":[]}],\"entries\":[]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[{\"path\":null,\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2F78\"},\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":{\"device\":1,\"inode\":\"1\",\"mode\":\"1\"},\"childrenComplete\":false,\"content\":null}]}",
-        "{\"format\":\"ama.source-image.v1\",\"roots\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":{\"device\":\"1\",\"inode\":\"18446744073709551616\",\"mode\":\"1\"},\"childrenComplete\":false,\"content\":null}]}"
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":false,\"entries\":[]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[null],\"entries\":[]}",
+        "{}", "{\"format\":\"other\",\"roots\":[],\"bounds\":[],\"entries\":[]}",
+        "{\"format\":\"ama.source-image.v2\",\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[],\"extra\":false}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":false,\"bounds\":[],\"entries\":[]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":false}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[{\"path\":{\"utf8\":\"/\",\"hex\":\"2f\"},\"kind\":\"other\",\"excluded\":[]}],\"bounds\":[],\"entries\":[]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[{\"path\":null,\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2F78\"},\"metadata\":null,\"childrenComplete\":false,\"content\":null}]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":{\"device\":1,\"inode\":\"1\",\"mode\":\"1\"},\"childrenComplete\":false,\"content\":null}]}",
+        "{\"format\":\"ama.source-image.v2\",\"roots\":[],\"bounds\":[],\"entries\":[{\"path\":{\"utf8\":\"/x\",\"hex\":\"2f78\"},\"metadata\":{\"device\":\"1\",\"inode\":\"18446744073709551616\",\"mode\":\"1\"},\"childrenComplete\":false,\"content\":null}]}"
     };
     begin();
     for (size_t i = 0; i < sizeof(cases) / sizeof(*cases); i++) {
@@ -139,6 +154,7 @@ static void it_reports_every_image_record_output_failure_and_borrows_stream_owne
 }
 /** Explicit finite schema, byte/identity, resource and host-stream cases. */
 void run(void) {
+    it_roundtrips_images_with_independent_physical_boundaries();
     it_roundtrips_lossless_images_and_independent_content_epochs();
     it_refuses_invalid_image_records_and_preserves_failed_epoch_ownership();
     it_retires_every_image_record_allocation_failure();

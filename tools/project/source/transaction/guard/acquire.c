@@ -25,7 +25,7 @@ SourceGuardStatus source_transaction_guard_acquire(SourceTransactionGuard *guard
         requests[used++] = (SourceObservationRequest){row->path,
             row->content ? SOURCE_OBSERVE_CONTENT : row->children_complete ? SOURCE_OBSERVE_CHILDREN : SOURCE_OBSERVE_METADATA, false};
     }
-    if (source_observed_image_build(&guard->fresh, baseline->original, requests, count) != SOURCE_OBSERVATION_OK) { return guard->status = SOURCE_GUARD_OBSERVATION; }
+    if (source_observed_image_build(&guard->fresh, baseline->original, baseline->image.bounds, requests, count) != SOURCE_OBSERVATION_OK) { return guard->status = SOURCE_GUARD_OBSERVATION; }
     guard->freshness_status = source_observation_freshness(&baseline->image, &guard->fresh.image, &guard->issue);
     if (guard->freshness_status != SOURCE_FRESH_OK) { return guard->status = SOURCE_GUARD_STALE; }
     guard->valid = true; return guard->status = SOURCE_GUARD_OK;

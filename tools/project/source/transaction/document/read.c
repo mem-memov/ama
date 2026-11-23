@@ -7,16 +7,18 @@
 #include "internal.h"
 /** One complete record has no ignored future fields or permissive version fallback. */
 static SourceJsonStatus decode(SourceImageReader *reader, const SourceJsonValue *root) {
-    const char *const names[] = {"format", "roots", "entries"}; const SourceJsonValue *fields[3];
-    SourceJsonStatus status = source_json_schema_fields(root, names, 3, fields, &reader->output->issue);
+    const char *const names[] = {"format", "roots", "bounds", "entries"}; const SourceJsonValue *fields[4];
+    SourceJsonStatus status = source_json_schema_fields(root, names, 4, fields, &reader->output->issue);
     if (status != SOURCE_JSON_OK) { return status; }
     const char *format = NULL; status = source_json_schema_cstring(fields[0], &format, &reader->output->issue);
     if (status != SOURCE_JSON_OK) { return status; }
-    if (strcmp(format, "ama.source-image.v1")) { return source_image_document_error(reader, fields[0], "Unsupported image record format", SOURCE_JSON_INVALID); }
+    if (strcmp(format, "ama.source-image.v2")) { return source_image_document_error(reader, fields[0], "Unsupported image record format", SOURCE_JSON_INVALID); }
     const ModuleRoot *roots = NULL; const SourceCatalogImageEntry *entries = NULL; size_t root_count = 0, entry_count = 0;
     status = source_image_document_roots(reader, fields[1], &roots, &root_count); if (status != SOURCE_JSON_OK) { return status; }
-    status = source_image_document_entries(reader, fields[2], &entries, &entry_count); if (status != SOURCE_JSON_OK) { return status; }
-    if (source_catalog_image_prepare(&reader->output->image, entries, entry_count, roots, root_count, &reader->output->image_issue) != SOURCE_IMAGE_OK) {
+    SourceImageBounds bounds = {0};
+    status = source_image_document_bounds(reader, fields[2], &bounds); if (status != SOURCE_JSON_OK) { return status; }
+    status = source_image_document_entries(reader, fields[3], &entries, &entry_count); if (status != SOURCE_JSON_OK) { return status; }
+    if (source_catalog_image_prepare(&reader->output->image, entries, entry_count, roots, root_count, bounds, &reader->output->image_issue) != SOURCE_IMAGE_OK) {
         return source_image_document_error(reader, root, "Invalid recorded image topology", SOURCE_JSON_INVALID);
     }
     return SOURCE_JSON_OK;

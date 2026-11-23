@@ -13,7 +13,7 @@ static void it_compares_exact_original_observation_facts_without_allocation_or_t
     rows[3].content = material_text("/image/from", (const unsigned char *)"from", 4);
     rows[3].metadata.st_mtime++;
     ModuleRoot root = fixture.root; SourceCatalogImage fresh; SourceImageIssue shape;
-    assert(source_catalog_image_prepare(&fresh, rows, 5, &root, 1, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&fresh, rows, 5, &root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     SourceFreshnessIssue issue; size_t calls = allocation_count;
     assert(source_observation_freshness(&fixture.original, &fresh, &issue) == SOURCE_FRESH_OK);
     assert(allocation_count == calls && !issue.path && !issue.original && !issue.fresh);
@@ -33,13 +33,13 @@ static void it_compares_exact_original_observation_facts_without_allocation_or_t
     assert(source_observation_freshness(&fixture.original, &fresh, &issue) == SOURCE_FRESH_ROOTS);
     root.excluded = NULL; root.excluded_count = 0;
     rows[5] = (SourceCatalogImageEntry){.path = "/image/ignored.bin"};
-    assert(source_catalog_image_prepare(&fresh, rows, 6, &root, 1, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&fresh, rows, 6, &root, 1, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     assert(source_observation_freshness(&fixture.original, &fresh, &issue) == SOURCE_FRESH_MEMBERSHIP);
     assert(!issue.original && issue.fresh == &rows[5]);
     assert(source_observation_freshness(&fresh, &fixture.original, &issue) == SOURCE_FRESH_MEMBERSHIP);
     assert(issue.original == &rows[5] && !issue.fresh);
     SourceCatalogImage empty = {0};
-    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, &shape) == SOURCE_IMAGE_OK);
+    assert(source_catalog_image_prepare(&empty, NULL, 0, NULL, 0, (SourceImageBounds){0}, &shape) == SOURCE_IMAGE_OK);
     assert(source_observation_freshness(&empty, &empty, &issue) == SOURCE_FRESH_OK);
     assert(source_observation_freshness(NULL, &empty, &issue) == SOURCE_FRESH_INVALID);
     image_assembly_destroy(&fixture);
@@ -52,7 +52,7 @@ static void it_revalidates_real_ignored_membership_opaque_bytes_and_live_inode_r
     const char *payload = source_arena_join(&arena, capture.roots[0].path, "/", "packages/vendor/pkg/v1.0.0/src/payload.blob"); assert(payload);
     SourceObservationRequest request = {payload, SOURCE_OBSERVE_CONTENT, false};
     SourceObservedImage baseline; source_observed_image_init(&baseline, sources.allocator);
-    assert(source_observed_image_build(&baseline, &capture, &request, 1) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&baseline, &capture, (SourceImageBounds){0}, &request, 1) == SOURCE_OBSERVATION_OK);
     size_t total = 0, live = live_allocations;
     for (size_t failure = 0; !failure || failure <= total; failure++) {
         SourceTransactionGuard guard; source_transaction_guard_init(&guard, sources.allocator);

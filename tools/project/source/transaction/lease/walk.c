@@ -36,8 +36,8 @@ static SourceLeaseDirectory *directory(SourceTransactionLease *lease, SourceLeas
     return row;
 }
 SourceLeaseStatus source_lease_walk(SourceTransactionLease *lease) {
-    for (size_t i = 0; i < lease->original->root_count; i++) {
-        const char *path = lease->original->roots[i].path;
+    for (size_t i = 0; i < source_image_bound_count(lease->original); i++) {
+        const char *path = source_image_bound_path(lease->original, i);
         if (!path || path[0] != '/') { return source_lease_fail(lease, SOURCE_LEASE_INVALID, path, 0); }
         size_t prefix = 0; while (path[prefix] == '/') { prefix++; }
         SourceLeaseDirectory *parent = directory(lease, NULL, path, prefix, NULL, 0);

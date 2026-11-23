@@ -17,11 +17,22 @@ static SourceObservationStatus catalog_failure(SourceObservedImage *observed) {
     return observed->status;
 }
 SourceObservationStatus source_observed_image_build(SourceObservedImage *observed, const SourceRootCapture *original,
-    const SourceObservationRequest *requests, size_t count) {
+    SourceImageBounds bounds, const SourceObservationRequest *requests, size_t count) {
     if (!observed || observed->attempted) { return SOURCE_OBSERVATION_INVALID; }
     observed->attempted = true;
-    if (!original || !original->valid || (count && !requests)) { return observed->status = SOURCE_OBSERVATION_INVALID; }
+    if (!original || !original->valid || (count && !requests) || (bounds.count && !bounds.paths)) { return observed->status = SOURCE_OBSERVATION_INVALID; }
     observed->original = original;
+    observed->image = (SourceCatalogImage){.roots = original->roots, .root_count = original->root_count, .bounds = bounds};
+    for (size_t i = 0; i < source_image_bound_count(&observed->image); i++) {
+        const char *path = source_image_bound_path(&observed->image, i);
+        if (!path || path[0] != '/') { observed->failed_path = path; return observed->status = SOURCE_OBSERVATION_INVALID; }
+        SourceObservationRequest request = {path, SOURCE_OBSERVE_METADATA, false};
+        if (source_observation_requests(observed, &request, 1) != SOURCE_OBSERVATION_OK) { return observed->status; }
+    }
+    for (size_t i = 0; i < original->root_count; i++) {
+        SourceObservationRequest request = {original->roots[i].path, SOURCE_OBSERVE_METADATA, false};
+        if (source_observation_requests(observed, &request, 1) != SOURCE_OBSERVATION_OK) { return observed->status; }
+    }
     if (module_catalog_build_view(&observed->catalog, original->roots, original->root_count, &observed->reader) != MODULE_OK) {
         return catalog_failure(observed);
     }

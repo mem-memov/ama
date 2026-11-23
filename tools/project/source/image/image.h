@@ -23,9 +23,17 @@ typedef struct {
     const SourceText *content;
     bool metadata_captured, children_complete;
 } SourceCatalogImageEntry;
-/** Borrow immutable exact roots/entries through every consuming catalog's lifetime.
- * Explicit roots are previously verified original roots or proven prepared final
- * roots, including their ancestor provenance. Below them, callbacks verify exact
+/** Physical observation boundaries carry no namespace, exclusions or module
+ * identity. Borrow exact absolute directory keys through all image consumers.
+ * A zero count is the compact envelope consisting exactly of the semantic root
+ * paths; it adds no ancestor or other inferred directory. Explicit paths replace
+ * that envelope and may include stable parents without indexing them as modules.
+ * Neither representation grants permission to modify observed material.
+ */
+typedef struct { const char *const *paths; size_t count; } SourceImageBounds;
+/** Borrow immutable semantic roots, physical bounds and entries through every
+ * consuming catalog's lifetime. Only roots determine module identities; bounds
+ * determine available observations and ancestor provenance. Callbacks verify exact
  * declared ancestor directory keys and stable metadata. Neither host I/O nor
  * source writes occur. valid certifies input shape, not capture truth/freshness,
  * final semantic typing, edits or transaction safety.
@@ -35,6 +43,7 @@ typedef struct {
     size_t count;
     const ModuleRoot *roots;
     size_t root_count;
+    SourceImageBounds bounds;
     ModuleCatalogReader reader;
     bool valid;
 } SourceCatalogImage;
@@ -50,8 +59,14 @@ typedef struct { size_t entry; const char *path; } SourceImageIssue;
  * lets original observation and prepared-image admission use identical boundaries.
  */
 bool source_image_below(const char *path, const char *root);
-/** Prepare an allocation-free adapter over exact absolute physical keys and roots.
- * Validate every row, duplicate, root membership and declared immediate ancestor
+/** Return the finite physical envelope size, independently of catalog selection. */
+size_t source_image_bound_count(const SourceCatalogImage *);
+/** Borrow an exact physical boundary; index must be below bound_count. */
+const char *source_image_bound_path(const SourceCatalogImage *, size_t);
+/** Compare ordered physical envelopes, ignoring semantic roots/exclusions. */
+bool source_image_same_bounds(const SourceCatalogImage *, const SourceCatalogImage *);
+/** Prepare an allocation-free adapter over exact physical keys and separate domains.
+ * Validate every row, duplicate, semantic root, physical coverage and immediate ancestor
  * before publishing output. Do not normalize keys or merge physical identities:
  * alias equivalence is explicit metadata checked by the common catalog. Expected
  * unknown/unread ignored entries remain unavailable observations. A callback that
@@ -59,9 +74,10 @@ bool source_image_below(const char *path, const char *root);
  * or treating it as absence. Missing children are established only by a complete
  * parent listing. Failure preserves output and sets issue. Reprepare only after
  * all catalog borrowers expire; a successful reader's context is this stable object.
- * O(N squared + N*R) exact path comparisons, O(1) adapter storage. Root provenance,
+ * O(N squared + N*(R+B)) exact path comparisons for R semantic roots and B
+ * physical boundaries; O(1) adapter storage. Root provenance,
  * complete final image construction and transaction freshness are caller proofs.
  */
 SourceImageStatus source_catalog_image_prepare(SourceCatalogImage *, const SourceCatalogImageEntry *, size_t,
-    const ModuleRoot *, size_t, SourceImageIssue *);
+    const ModuleRoot *, size_t, SourceImageBounds, SourceImageIssue *);
 #endif

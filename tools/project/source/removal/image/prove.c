@@ -16,8 +16,7 @@ SourceRemovalProofStatus source_removal_image_prove(const SourceRemovalImage *im
     SourceCloneMap map;
     source_clone_map_init(&map, image->arena.allocator, image->selection->tree->capture);
     source_clone_map_seal(&map);
-    SourceSitesStatus status = source_graph_sites(image->selection->analysis->original.response.definitions,
-        client->response.definitions, &map, image->selection->identities, image->selection->identity_count, NULL, issue);
+    SourceSitesStatus status = source_graph_sites(image->selection->analysis->original.response.definitions, client->response.definitions, &map, image->selection->identities, image->selection->identity_count, (SourceRegistryRetirement){0}, NULL, issue);
     source_clone_map_destroy(&map);
     return status == SOURCE_SITES_OK ? SOURCE_REMOVAL_PROOF_OK : SOURCE_REMOVAL_PROOF_SITES;
 }

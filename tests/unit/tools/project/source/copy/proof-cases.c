@@ -33,7 +33,7 @@ static void check_copy_proof_refusals(SourceArena *arena, SourceManager *texts,
         }
         assert(source_manager_add(texts, path, bytes, length, &change.entry.content) == SOURCE_OK);
         SourceCatalogImage changed; SourceProjectionIssue projection;
-        assert(source_image_project(arena, image, &change, 1, &changed, &projection) == SOURCE_PROJECTION_OK);
+        assert(source_image_project(arena, image, &change, 1, (image)->roots, (image)->root_count, &changed, &projection) == SOURCE_PROJECTION_OK);
         SourceImageCapture captured; source_image_capture_init(&captured, sources.allocator);
         assert(source_image_capture_build(&captured, &changed) == SOURCE_IMAGE_CAPTURE_OK);
         FILE *request = fopen("generated/final-copy-refusal.json", "wb"); assert(request);

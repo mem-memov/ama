@@ -91,7 +91,7 @@ static void it_joins_actual_copy_placement_and_projected_version_with_final_comp
             file->original->directory ? SOURCE_OBSERVE_CHILDREN : SOURCE_OBSERVE_CONTENT, false};
     }
     assert(requested == mapped);
-    assert(source_observed_image_build(&observed, &capture, requests, requested) == SOURCE_OBSERVATION_OK);
+    assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, requests, requested) == SOURCE_OBSERVATION_OK);
     SourceManager prepared; source_manager_init(&prepared, sources.allocator);
     const SourceCatalogImageEntry *configuration_mode = NULL;
     const char *original_configuration_path = source_path(tree.units[0]->source->version->configuration);

@@ -24,8 +24,16 @@
 #include "refusals.c"
 #include "data.c"
 #include "failures.c"
+#include "domains/fixture.c"
+#include "domains/projection.c"
+#include "domains/proof.c"
+#include "domains/cases.c"
 /** Explicit runner keeps each accepted preparation boundary independently named. */
 void run(void) {
+    it_proves_real_promotion_and_root_relocation_without_physical_source_removal();
+    it_retires_registry_scratch_failures_and_refuses_foreign_removal_names();
+    it_retires_each_wider_envelope_observation_allocation_failure();
+    it_rejects_original_conflicts_in_augmented_root_analysis();
     it_checks_complete_final_permission_sets_and_exact_scope_owners_without_allocation();
     it_initializes_required_empty_version_areas_and_preserves_reserved_identity_classes();
     it_refuses_carried_existing_and_foreign_version_initialization_and_retires_failures();

@@ -171,4 +171,5 @@ void run(void) {
     it_refuses_foreign_selector_authority_conflicts_and_every_allocation_failure();
     it_preserves_original_matches_when_the_final_domain_gains_a_module();
 }
+/** Run the concrete-selector parser and exact-selection cases through the leaf harness. */
 int main(void) { run(); return 0; }

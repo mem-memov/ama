@@ -17,7 +17,7 @@ typedef struct {
     const SourceCatalogImageEntry *original, *fresh;
 } SourceFreshnessIssue;
 /** Compare two valid immutable ORIGINAL observation images over the same ordered
- * configured roots/exclusions and exact observation demands. Require identical
+ * semantic roots/exclusions, physical envelope and exact observation demands. Require identical
  * physical key sets, observation precision, known device/inode/mode and observed
  * content bytes. Complete directory rows plus identical key sets prove unchanged
  * immediate membership; an unobserved ignored entry remains unobserved, never

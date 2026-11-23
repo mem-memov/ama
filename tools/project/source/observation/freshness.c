@@ -24,7 +24,7 @@ SourceFreshnessStatus source_observation_freshness(const SourceCatalogImage *ori
     const SourceCatalogImage *fresh, SourceFreshnessIssue *issue) {
     if (!issue) { return SOURCE_FRESH_INVALID; } *issue = (SourceFreshnessIssue){0};
     if (!original || !original->valid || !fresh || !fresh->valid) { return SOURCE_FRESH_INVALID; }
-    if (!same_roots(original, fresh)) { return SOURCE_FRESH_ROOTS; }
+    if (!same_roots(original, fresh) || !source_image_same_bounds(original, fresh)) { return SOURCE_FRESH_ROOTS; }
     for (size_t i = 0; i < original->count; i++) {
         const SourceCatalogImageEntry *a = &original->entries[i], *b = find(fresh, a->path);
         *issue = (SourceFreshnessIssue){a->path, a, b};

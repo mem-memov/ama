@@ -50,9 +50,8 @@ static void prepared_image(SourceArena *arena, const SourceObservedImage *origin
     }
     SourceImageIssue issue = {0};
     SourceCatalogImage base = {0}; SourceProjectionIssue projection;
-    assert(source_catalog_image_prepare(&base, rows, count,
-        original->image.roots, original->image.root_count, &issue) == SOURCE_IMAGE_OK);
-    assert(source_image_project(arena, &base, additions, 2, output, &projection) == SOURCE_PROJECTION_OK);
+    assert(source_catalog_image_prepare(&base, rows, count, original->image.roots, original->image.root_count, (SourceImageBounds){0}, &issue) == SOURCE_IMAGE_OK);
+    assert(source_image_project(arena, &base, additions, 2, (&base)->roots, (&base)->root_count, output, &projection) == SOURCE_PROJECTION_OK);
 }
 /** Reparse actual edited copies, reject a valid wrong binding and reject an unresolved rewrite. */
 static void it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_provenance(void) {
@@ -66,7 +65,7 @@ static void it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_
         SourceCloneMap map; source_clone_map_init(&map, sources.allocator, &capture);
         SourceTextEdits edits[2]; SourceGraphPreparedText provenance[2] = {0};
         SourceObservedImage observed; source_observed_image_init(&observed, sources.allocator);
-        assert(source_observed_image_build(&observed, &capture, NULL, 0) == SOURCE_OBSERVATION_OK);
+        assert(source_observed_image_build(&observed, &capture, (SourceImageBounds){0}, NULL, 0) == SOURCE_OBSERVATION_OK);
         SourceImageCapture final_capture; source_image_capture_init(&final_capture, sources.allocator);
         SourceCatalogImage image = {0}; const SourceText *copied_texts[2] = {0};
         const ModuleSource *originals[2] = {0}; const char *paths[2] = {0};
@@ -115,8 +114,7 @@ static void it_reparses_prepared_cyclic_copies_and_checks_real_binding_and_site_
             }
             assert(status == SOURCE_COMPILER_OK && final.valid);
             SourceSitesIssue issue = {0};
-            assert(source_graph_sites(analysis.original.response.definitions, final.response.definitions, &map,
-                NULL, 0, provenance, &issue) == (choice ? SOURCE_SITES_BINDINGS : SOURCE_SITES_OK));
+            assert(source_graph_sites(analysis.original.response.definitions, final.response.definitions, &map, NULL, 0, (SourceRegistryRetirement){0}, provenance, &issue) == (choice ? SOURCE_SITES_BINDINGS : SOURCE_SITES_OK));
             if (choice == 1) {
                 assert(issue.binding_status == SOURCE_BINDINGS_EDGE);
                 assert(issue.binding.original && !strcmp(issue.binding.original->identity, identities[0]));

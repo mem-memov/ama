@@ -9,6 +9,7 @@
 #ifndef AMA_PROJECT_SOURCE_GRAPH_BINDINGS_H
 #define AMA_PROJECT_SOURCE_GRAPH_BINDINGS_H
 #include "../mapping/map.h"
+#include "../copy/registry/retirement.h"
 #include "delivery/source/records.h"
 /** Exact semantic mismatch stage, independent of diagnostics text. */
 typedef enum { SOURCE_BINDINGS_OK, SOURCE_BINDINGS_INVALID, SOURCE_BINDINGS_MISSING,
@@ -23,7 +24,12 @@ typedef struct {
 } SourceBindingsIssue;
 /** Check complete unique checked original/final exports and a sealed clone map
  * over that original capture. The normalized removed-name array may also contain
- * drafts absent from active exports. Each surviving active original and active
+ * drafts absent from active exports. The separate retirement describes original
+ * selected definitions replaced/omitted from the final registry, without granting
+ * physical removal. Removal names are also registry retirements. Only actual
+ * removal names trigger the strict removed-target guard; promotion's old files
+ * can remain available while C supplies the same nominal target.
+ * Each surviving active original and active
  * clone must appear exactly once in final; other final definitions refuse.
  * Survivor/copy identity overlap refuses even when bytes or origins match.
  * Definition categories, ordered edge multiplicity, implicit flags and normalized
@@ -36,10 +42,10 @@ typedef struct {
  * This does not prove edge source-span translation or unchanged original bytes;
  * callers must separately validate parsed edits and final compiler input capture.
  * With N originals, F final definitions, C clones, E checked edge occurrences
- * and R removals, time is O((N+C)*(N+F)+(N+F)*R+E*C) key comparisons;
+ * and R removal/retirement names, time is O((N+C)*(N+F)+(N+F)*R+E*C) key comparisons;
  * scratch is O(1). All names, spans and owners outlive issue consumption.
  */
 SourceBindingsStatus source_graph_bindings(const DeliverySourceDefinition *original,
     const DeliverySourceDefinition *final, const SourceCloneMap *,
-    const char *const *removed, size_t removed_count, SourceBindingsIssue *);
+    const char *const *removed, size_t removed_count, SourceRegistryRetirement, SourceBindingsIssue *);
 #endif
